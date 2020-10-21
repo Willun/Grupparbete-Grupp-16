@@ -16,6 +16,7 @@ namespace Grupp_16
         }
     }
 }
+
 <<<<<<< HEAD
 //Funkar detta! hej""
 =======
@@ -23,7 +24,8 @@ namespace Grupp_16
 
 //Funkar det här då? Mvh Rebecka
 >>>>>>> 0c1f88d525a66df30bd12ae34c17c2eecc27dd68
-
 //fjkdslfjdklsöfjldks
 
 //hej
+
+//william
