@@ -85,7 +85,7 @@
             // 
             // buttonNew1
             // 
-            this.buttonNew1.Location = new System.Drawing.Point(467, 768);
+            this.buttonNew1.Location = new System.Drawing.Point(498, 768);
             this.buttonNew1.Name = "buttonNew1";
             this.buttonNew1.Size = new System.Drawing.Size(156, 87);
             this.buttonNew1.TabIndex = 6;
@@ -94,7 +94,7 @@
             // 
             // buttonSave1
             // 
-            this.buttonSave1.Location = new System.Drawing.Point(642, 768);
+            this.buttonSave1.Location = new System.Drawing.Point(660, 768);
             this.buttonSave1.Name = "buttonSave1";
             this.buttonSave1.Size = new System.Drawing.Size(138, 87);
             this.buttonSave1.TabIndex = 7;
@@ -113,7 +113,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(72, 886);
+            this.label4.Location = new System.Drawing.Point(51, 886);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 20);
             this.label4.TabIndex = 9;
@@ -164,7 +164,7 @@
             // 
             // buttonNew2
             // 
-            this.buttonNew2.Location = new System.Drawing.Point(1321, 469);
+            this.buttonNew2.Location = new System.Drawing.Point(1399, 469);
             this.buttonNew2.Name = "buttonNew2";
             this.buttonNew2.Size = new System.Drawing.Size(129, 87);
             this.buttonNew2.TabIndex = 15;
@@ -173,7 +173,7 @@
             // 
             // buttonSave2
             // 
-            this.buttonSave2.Location = new System.Drawing.Point(1498, 469);
+            this.buttonSave2.Location = new System.Drawing.Point(1534, 469);
             this.buttonSave2.Name = "buttonSave2";
             this.buttonSave2.Size = new System.Drawing.Size(137, 87);
             this.buttonSave2.TabIndex = 16;
