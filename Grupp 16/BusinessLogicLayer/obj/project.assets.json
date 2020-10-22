@@ -25,6 +25,29 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "DataAccesLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataAccesLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataAccesLayer.dll": {}
+        }
+      },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
+        }
       }
     }
   },
@@ -172,10 +195,22 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "DataAccesLayer/1.0.0": {
+      "type": "project",
+      "path": "../DataAccesLayer/DataAccesLayer.csproj",
+      "msbuildProject": "../DataAccesLayer/DataAccesLayer.csproj"
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../Models/Models.csproj",
+      "msbuildProject": "../Models/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "DataAccesLayer >= 1.0.0",
+      "Models >= 1.0.0",
       "NETStandard.Library >= 2.0.3"
     ]
   },
@@ -204,7 +239,14 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj": {
+              "projectPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj"
+            },
+            "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
