@@ -12,20 +12,7 @@ namespace Grupp_16
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //kommentar
+
         }
     }
 }
-
-<<<<<<< HEAD
-//Funkar detta! hej""
-=======
-//Funkar detta!
-
-//Funkar det här då? Mvh Rebecka
->>>>>>> 0c1f88d525a66df30bd12ae34c17c2eecc27dd68
-//fjkdslfjdklsöfjldks
-
-//hej
-
-//william
