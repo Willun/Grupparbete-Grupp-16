@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "aB4MTZygwDwd2PlY41c3hjWpnrsQS9FvQpCNLiuZIVkVN/0m9I/eCOxQGLTEDOvoCNhririZmuVMxb3QsT4B3w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wlund\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\wlund\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

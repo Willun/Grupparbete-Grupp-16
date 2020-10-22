@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "2s/QKAKWpwLDW0fbdQeQ9wOhYU1B1nNNw1MWODFhdW0e6kNBVmzkb4UA/UZJhCBURCe6JHkC21mc/b4OFI1dHQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wlund\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\wlund\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
