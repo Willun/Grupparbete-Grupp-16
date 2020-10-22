@@ -61,7 +61,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(376, 653);
+            this.label2.Location = new System.Drawing.Point(494, 655);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(169, 20);
             this.label2.TabIndex = 1;
@@ -80,7 +80,7 @@
             // 
             this.textBoxUrl.Location = new System.Drawing.Point(76, 678);
             this.textBoxUrl.Name = "textBoxUrl";
-            this.textBoxUrl.Size = new System.Drawing.Size(203, 26);
+            this.textBoxUrl.Size = new System.Drawing.Size(416, 26);
             this.textBoxUrl.TabIndex = 3;
             // 
             // buttonNew1
@@ -159,7 +159,7 @@
             // 
             this.textBoxCategory.Location = new System.Drawing.Point(1009, 413);
             this.textBoxCategory.Name = "textBoxCategory";
-            this.textBoxCategory.Size = new System.Drawing.Size(203, 26);
+            this.textBoxCategory.Size = new System.Drawing.Size(797, 26);
             this.textBoxCategory.TabIndex = 14;
             // 
             // buttonNew2
@@ -201,9 +201,9 @@
             // comboBoxUpdateFrequency
             // 
             this.comboBoxUpdateFrequency.FormattingEnabled = true;
-            this.comboBoxUpdateFrequency.Location = new System.Drawing.Point(380, 676);
+            this.comboBoxUpdateFrequency.Location = new System.Drawing.Point(498, 678);
             this.comboBoxUpdateFrequency.Name = "comboBoxUpdateFrequency";
-            this.comboBoxUpdateFrequency.Size = new System.Drawing.Size(199, 28);
+            this.comboBoxUpdateFrequency.Size = new System.Drawing.Size(208, 28);
             this.comboBoxUpdateFrequency.TabIndex = 19;
             // 
             // comboBoxCategory
