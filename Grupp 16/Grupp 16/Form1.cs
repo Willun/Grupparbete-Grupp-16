@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Xml;
+using System.ServiceModel;
+using System.ServiceModel.Syndication;
 
 namespace Grupp_16
 {
@@ -29,30 +31,14 @@ namespace Grupp_16
 
         private void buttonNew1_Click(object sender, EventArgs e)
         {
-            if(textBoxUrl.Text !=null && textBoxUrl.Text.Length>=3)
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load("logan.xml");
-                
-                foreach(XmlNode node in doc.DocumentElement)
-                {
-                    String name = node.Attributes[0].InnerText;
-                    if(name== textBoxUrl.Text)
-                    {
-                        foreach(XmlNode child in node.ChildNodes)
-                        {
-                            listloda.Items.Add(child.InnerText);
-                        }
-                    }
-                }
-            }
-            else
+            XmlReader reader = XmlReader.Create("https://rss.art19.com/impaulsive-with-logan-paul");
+            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            Console.WriteLine("--- Title: " + feed.Title.Text);
+            Console.WriteLine("--- Description:" + feed.Description.Text);
+            foreach (SyndicationItem item in feed.Items)
             {
 
-                MessageBox.Show("invalid");
-                textBoxUrl.Text= string.Empty;
-                textBoxUrl.Focus();
-
+                Console.WriteLine(item.Title.Text);
             }
         }
 
