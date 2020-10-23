@@ -28,5 +28,27 @@ namespace DataAccesLayer
             }
             return listOfPodcastsToBeReturned;
         }
+
+        public void SerializeK(List<Kategori> kategoriList)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(kategoriList.GetType());
+            using (FileStream outFile = new FileStream("Kategorier.xml", FileMode.Create,
+                FileAccess.Write))
+            {
+                xmlSerializer.Serialize(outFile, kategoriList);
+            }
+        }
+
+        public List<Kategori> DeserializeK()
+        {
+            List<Kategori> listOfKategorierToBeReturned;
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Kategori>));
+            using (FileStream inFile = new FileStream("Kategorier.xml", FileMode.Open,
+                FileAccess.Read))
+            {
+                listOfKategorierToBeReturned = (List<Kategori>)xmlSerializer.Deserialize(inFile);
+            }
+            return listOfKategorierToBeReturned;
+        }
     }
 }
