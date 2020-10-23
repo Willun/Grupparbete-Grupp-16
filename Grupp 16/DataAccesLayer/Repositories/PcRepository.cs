@@ -56,19 +56,9 @@ namespace DataAccesLayer.Repositories
             return podcastListToBeReturned;
         }
 
-        public Podcast GetByUrl(string url)
+        public Podcast GetByNamn(string namn)
         {
-            return GetAll().FirstOrDefault(p => p.Url.Equals(url));
-        }
-
-        public Podcast GetByUppdateringsfrekvens(int uf)
-        {
-            return GetAll().FirstOrDefault(p => p.Frekvens.Equals(uf));
-        }
-
-        public Podcast GetByKategori(string kategori)
-        {
-            return GetAll().FirstOrDefault(p => p.Kategori.Equals(kategori));
+            return GetAll().FirstOrDefault(p => p.Namn.Equals(namn));
         }
     }
 }

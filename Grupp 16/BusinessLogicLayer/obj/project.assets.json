@@ -215,19 +215,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\wlund\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\oculis\\Grupparbete-Grupp-16\\Grupp 16\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+      "projectUniqueName": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
       "projectName": "BusinessLogicLayer",
-      "projectPath": "D:\\oculis\\Grupparbete-Grupp-16\\Grupp 16\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\oculis\\Grupparbete-Grupp-16\\Grupp 16\\BusinessLogicLayer\\obj\\",
+      "projectPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+      "packagesPath": "C:\\Users\\wlund\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\BusinessLogicLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wlund\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -240,11 +240,11 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "D:\\oculis\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj": {
-              "projectPath": "D:\\oculis\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj"
+            "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj": {
+              "projectPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj"
             },
-            "D:\\oculis\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj": {
-              "projectPath": "D:\\oculis\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj"
+            "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj"
             }
           }
         }
@@ -275,7 +275,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

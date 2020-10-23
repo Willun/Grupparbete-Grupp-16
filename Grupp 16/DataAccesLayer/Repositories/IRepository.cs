@@ -9,5 +9,6 @@ namespace DataAccesLayer.Repositories
         void TaBort(int index);
         void SaveAllChanges();
         List<T> GetAll();
+        T GetByNamn(string namn);
     }
 }
