@@ -5,64 +5,60 @@ using System.Linq;
 
 namespace DataAccesLayer.Repositories
 {
-    class KategoriRepository
+    public class KategoriRepository : IKategoriRepository<Kategori>
     {
-        public class KategoriRepository : IKategoriRepository<Kategori>
+        DataManager dataManager;
+        List<Kategori> kategoriList;
+
+        public KategoriRepository()
         {
-            DataManager dataManager;
-            List<Kategori> kategoriList;
+            kategoriList = new List<Kategori>();
+            dataManager = new DataManager();
+            kategoriList = GetAll();
+        }
 
-            public KategoriRepository()
+        public void Ny(Kategori kategori)
+        {
+            kategoriList.Add(kategori);
+            SaveAllChanges();
+        }
+
+        public void Spara(int index, Kategori kategori)
+        {
+            if (index >= 0)
             {
-                kategoriList = new List<Kategori>();
-                dataManager = new DataManager();
-                kategoriList = GetAllK();
+                kategoriList[index] = kategori;
             }
+            SaveAllChanges();
+        }
 
-            public void NyK(Kategori kategori)
+        public void TaBort(int index)
+        {
+            kategoriList.RemoveAt(index);
+            SaveAllChanges();
+        }
+
+        public void SaveAllChanges()
+        {
+            dataManager.SerializeK(kategoriList);
+        }
+
+        public List<Kategori> GetAll()
+        {
+            List<Kategori> kategoriListToBeReturned = new List<Kategori>();
+            try
             {
-                kategoriList.Add(kategori);
-                SaveAllChangesK();
+                kategoriListToBeReturned = dataManager.DeserializeK();
             }
-
-            public void SparaK(int index, Kategori kategori)
+            catch (Exception)
             {
-                if (index >= 0)
-                {
-                    kategoriList[index] = kategori;
-                }
-                SaveAllChangesK();
             }
+            return kategoriListToBeReturned;
+        }
 
-            public void TaBortK(int index)
-            {
-                kategoriList.RemoveAt(index);
-                SaveAllChangesK();
-            }
-
-            public void SaveAllChangesK()
-            {
-                dataManager.SerializeK(kategoriList);
-            }
-
-            public List<Podcast> GetAllK()
-            {
-                List<Podcast> podcastListToBeReturned = new List<Podcast>();
-                try
-                {
-                    podcastListToBeReturned = dataManager.Deserialize();
-                }
-                catch (Exception)
-                {
-                }
-                return podcastListToBeReturned;
-            }
-
-            public Kategori GetByNamn(string namn)
-            {
-                return GetAllK().FirstOrDefault(p => p.Namn.Equals(namn));
-            }
-
+        public Kategori GetByNamn(string namn)
+        {
+            return GetAll().FirstOrDefault(p => p.Namn.Equals(namn));
         }
     }
 }

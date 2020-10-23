@@ -1,6 +1,6 @@
 ﻿namespace Models
 {
-    public abstract class Podcast
+    public class Podcast
     {
         public string Url { get; set; }
         public int Avsnitt { get; set; }
