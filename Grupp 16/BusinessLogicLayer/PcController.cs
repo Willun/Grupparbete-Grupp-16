@@ -26,7 +26,7 @@ namespace BusinessLogicLayer
             int antalAvsnitt = podcast.Avsnitt;
             for (int i = 0; i <= antalAvsnitt; i++)
             {
-                string resultat += "";
+                resultat += "Avsnitt #" + i;
             }
             return resultat;
         }
