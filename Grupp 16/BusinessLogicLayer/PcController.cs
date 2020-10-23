@@ -1,5 +1,8 @@
 ﻿using DataAccesLayer.Repositories;
 using Models;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace BusinessLogicLayer
 {
@@ -21,34 +24,31 @@ namespace BusinessLogicLayer
 
         public string GetPodcastByNamn(string namn)
         {
-            Podcast podcast;
-            podcast = podcastRepository.GetByNamn(namn);
-            string podcasten = podcast.Avsnitt.ToString() + "   " + podcast.Namn + "   " + "Var " + podcast.Frekvens.ToString() + ":e " + "minut";
+            Podcast podcast = podcastRepository.GetByNamn(namn);
+            string podcasten = podcast.Avsnitt.ToString() + "   " + podcast.Namn + "   " + "Var " + podcast.Frekvens.ToString() + ":e " + "minut" + "   " + podcast.Kategori;
             return podcasten;
         }
 
         public string GetPodcastAllaAvsnittByNamn(string namn)
         {
-            Podcast podcast;
-            podcast = podcastRepository.GetByNamn(namn);
+            Podcast podcast = podcastRepository.GetByNamn(namn);
             int antalAvsnitt = podcast.Avsnitt;
             for (int i = 0; i <= antalAvsnitt; i++)
             {
-                resultat += "Avsnitt #" + i;
+                resultat += "Avsnitt #" + i + "/n";
             }
             return resultat;
         }
 
-        public string GetPodcastAvsnittByNamn(int index)
+        public string GetPodcastAvsnittByNamn(string namn, string url)
         {
-            Podcast podcast;
-            avsnitt = podcastRepository.GetByNamn(namn);
-            int antalAvsnitt = podcast.Avsnitt;
-            for (int i = 0; i <= antalAvsnitt; i++)
-            {
-                resultat += "Avsnitt #" + i;
-            }
-            return resultat;
+            var xmlStr = File.ReadAllText("Podcasts.xml");
+
+            var str = XElement.Parse(xmlStr);
+
+            var result = str.Elements("word").
+            Where(x => x.Element("category").Value.Equals("verb")).ToList();
+            return result;
         }
     }
 }
