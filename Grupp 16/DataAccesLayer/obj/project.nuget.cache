@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "mdvFbFJsMLZde3h1feoraJapX1CcAvAXEgT2oRWBgB4a4lsih3GeuwdaKKu8O/sr/NMPOyqhfvGFFGC6B469VA==",
+  "dgSpecHash": "XZaYs2b7u11U+un3AVOGQ7dhrn0+XyRxx8i85Jo+2L61W/ZLHpBEvW1z+gfPQ6B100cdJAGPIW4V1DTb3Nvzjg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj",
+  "projectFilePath": "D:\\oculis\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\wlund\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\wlund\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }
