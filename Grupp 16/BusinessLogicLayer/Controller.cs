@@ -5,14 +5,14 @@ namespace BusinessLogicLayer
 {
     public class Controller
     {
-        private IRepository<Podcast> personRepository;
+        private IRepository<Podcast> podcastRepository;
 
         public Controller()
         {
             podcastRepository = new PcRepository();
         }
 
-        public void CreatePersonObject(string name, string pn, string address, string objectType)
+        public void CreatePodcast(string name, string pn, string address, string objectType)
         {
             Person newPerson = null;
             if (objectType.Equals("Student"))

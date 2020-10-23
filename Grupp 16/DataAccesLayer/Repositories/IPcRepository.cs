@@ -2,11 +2,10 @@
 
 namespace DataAccesLayer.Repositories
 {
-    class IPcRepository
+    public interface IPcRepository<T> : IRepository<T> where T : Podcast
     {
-        public interface IPersonRepository<T> : IRepository<T> where T : Podcast
-        {
-            T GetByName(string name);
-        }
+        T GetByUrl(string url);
+        T GetByUppdateringsfrekvens(int uf);
+        T GetByKategori(string kategori);
     }
 }

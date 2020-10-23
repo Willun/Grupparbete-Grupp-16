@@ -1,5 +1,7 @@
 ﻿using Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DataAccesLayer.Repositories
 {
@@ -12,6 +14,7 @@ namespace DataAccesLayer.Repositories
         {
             podcastList = new List<Podcast>();
             dataManager = new DataManager();
+            podcastList = GetAll();
         }
 
         public void Ny(Podcast podcast)
@@ -38,6 +41,34 @@ namespace DataAccesLayer.Repositories
         public void SaveAllChanges()
         {
             dataManager.Serialize(podcastList);
+        }
+
+        public List<Podcast> GetAll()
+        {
+            List<Podcast> podcastListToBeReturned = new List<Podcast>();
+            try
+            {
+                podcastListToBeReturned = dataManager.Deserialize();
+            }
+            catch (Exception)
+            {
+            }
+            return podcastListToBeReturned;
+        }
+
+        public Podcast GetByUrl(string url)
+        {
+            return GetAll().FirstOrDefault(p => p.Url.Equals(url));
+        }
+
+        public Podcast GetByUppdateringsfrekvens(int uf)
+        {
+            return GetAll().FirstOrDefault(p => p.Frekvens.Equals(uf));
+        }
+
+        public Podcast GetByKategori(string kategori)
+        {
+            return GetAll().FirstOrDefault(p => p.Kategori.Equals(kategori));
         }
     }
 }
