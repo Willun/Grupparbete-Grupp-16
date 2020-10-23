@@ -19,10 +19,30 @@ namespace BusinessLogicLayer
             podcastRepository.Ny(podcast);
         }
 
+        public string GetPodcastByNamn(string namn)
+        {
+            Podcast podcast;
+            podcast = podcastRepository.GetByNamn(namn);
+            string podcasten = podcast.Avsnitt.ToString() + "   " + podcast.Namn + "   " + "Var " + podcast.Frekvens.ToString() + ":e " + "minut";
+            return podcasten;
+        }
+
         public string GetPodcastAllaAvsnittByNamn(string namn)
         {
             Podcast podcast;
             podcast = podcastRepository.GetByNamn(namn);
+            int antalAvsnitt = podcast.Avsnitt;
+            for (int i = 0; i <= antalAvsnitt; i++)
+            {
+                resultat += "Avsnitt #" + i;
+            }
+            return resultat;
+        }
+
+        public string GetPodcastAvsnittByNamn(int index)
+        {
+            Podcast podcast;
+            avsnitt = podcastRepository.GetByNamn(namn);
             int antalAvsnitt = podcast.Avsnitt;
             for (int i = 0; i <= antalAvsnitt; i++)
             {
