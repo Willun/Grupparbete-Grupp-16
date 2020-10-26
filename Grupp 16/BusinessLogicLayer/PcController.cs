@@ -48,7 +48,7 @@ namespace BusinessLogicLayer
 
             var result = str.Elements("word").
             Where(x => x.Element("category").Value.Equals("verb")).ToList();
-            return result;
+            //return result;
         }
     }
 }
