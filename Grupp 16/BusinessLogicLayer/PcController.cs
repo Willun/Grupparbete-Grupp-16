@@ -1,7 +1,10 @@
 ﻿using DataAccesLayer.Repositories;
 using Models;
+using System;
 using System.IO;
 using System.Linq;
+using System.ServiceModel.Syndication;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace BusinessLogicLayer
@@ -49,6 +52,18 @@ namespace BusinessLogicLayer
             var result = str.Elements("word").
             Where(x => x.Element("category").Value.Equals("verb")).ToList();
             //return result;
+        }
+
+        public void GetUrlFromInternet()
+        {
+            XmlReader reader = XmlReader.Create("https://rss.art19.com/impaulsive-with-logan-paul");
+            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            Console.WriteLine("--- Title: " + feed.Title.Text);
+            Console.WriteLine("--- Description:" + feed.Description.Text);
+            foreach (SyndicationItem item in feed.Items)
+            {
+                Console.WriteLine(item.Title.Text);
+            }
         }
     }
 }

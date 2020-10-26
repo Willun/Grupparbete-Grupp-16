@@ -1,8 +1,7 @@
 ﻿using System;
+using System.ServiceModel.Syndication;
 using System.Windows.Forms;
 using System.Xml;
-using System.ServiceModel;
-using System.ServiceModel.Syndication;
 
 namespace Grupp_16
 {
@@ -26,7 +25,7 @@ namespace Grupp_16
 
         private void textBoxUrl_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void buttonNew1_Click(object sender, EventArgs e)
@@ -37,14 +36,13 @@ namespace Grupp_16
             Console.WriteLine("--- Description:" + feed.Description.Text);
             foreach (SyndicationItem item in feed.Items)
             {
-
                 Console.WriteLine(item.Title.Text);
             }
         }
 
         private void listBoxMediaViewer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
