@@ -7,9 +7,8 @@ namespace Grupp16
 {
     public class Validation
     {
-        public bool CheckIfValidFeed()
+        public bool CheckIfValidFeed(string url)
         {
-            string url = textBoxUrl.text;
             try
             {
                 SyndicationFeed feed = SyndicationFeed.Load(XmlReader.Create(url));

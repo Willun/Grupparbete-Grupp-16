@@ -13,14 +13,17 @@ namespace Models
         public string UpdateFrequency { get; set; }
         public DateTime LastUpdated { get; set; }
 
-        public Podcast(string url, int avsnitt, string namn, int frekvens, string kategori, int antalAvsnitt)
+        public Podcast(string url, int avsnitt, string namn, int frekvens, string kategori)
         {
             Url = url;
             Avsnitt = avsnitt;
             Namn = namn;
             Frekvens = frekvens;
             Kategori = kategori;
-            AntalAvsnitt = antalAvsnitt;
+        }
+        public Podcast()
+        {
+
         }
     }
 }

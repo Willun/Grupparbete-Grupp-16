@@ -1,8 +1,6 @@
 ﻿using DataAccesLayer.Repositories;
 using Models;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace BusinessLogicLayer
 {
@@ -16,56 +14,39 @@ namespace BusinessLogicLayer
             podcastRepository = new PcRepository();
         }
 
-        public void CreatePodcast(string url, int avsnitt, string namn, int frekvens, string kategori, int antalAvsnitt)
+        public void CreatePodcast(string url, int avsnitt, string namn, int frekvens, string kategori)
         {
-            Podcast podcast = new Podcast(url, avsnitt, namn, frekvens, kategori, antalAvsnitt);
+            Podcast podcast = new Podcast(url, avsnitt, namn, frekvens, kategori);
             podcastRepository.New(podcast);
         }
 
-        public string GetPodcastByNamn(string namn)
+        public List<Podcast> GetPodcastList()
+        {
+            return podcastRepository.GetAll();
+        }
+
+        public string GetPodcastByName(string namn)
         {
             Podcast podcast = podcastRepository.GetByNamn(namn);
             string podcasten = podcast.Avsnitt.ToString() + "   " + podcast.Namn + "   " + "Var " + podcast.Frekvens.ToString() + ":e " + "minut" + "   " + podcast.Kategori;
             return podcasten;
         }
 
-        public string GetPodcastAllaAvsnittByNamn(string namn)
-        {
-            Podcast podcast = podcastRepository.GetByNamn(namn);
-            int antalAvsnitt = podcast.Avsnitt;
-            for (int i = 0; i <= antalAvsnitt; i++)
-            {
-                resultat += "Avsnitt #" + i + "/n";
-            }
-            return resultat;
-        }
 
-        public void GetPodcastAvsnittByNamn(string namn, string url)
-        {
-            var xmlStr = File.ReadAllText("Podcasts.xml");
 
-            var str = XElement.Parse(xmlStr);
-
-            var result = str.Elements("word").
-            Where(x => x.Element("category").Value.Equals("verb")).ToList();
-        }
-
-        //public XmlReader GetUrlFromInternet()
+        //public static Dictionary<string, string> GetEpisodeDescription(string filplats)
         //{
-        //    XmlReader reader = XmlReader.Create("https://rss.art19.com/impaulsive-with-logan-paul");
-
-        //    return writer;
-        //}
-
-
-
-
-
-
-        //SyndicationFeed feed = SyndicationFeed.Load(reader);
-        //    foreach (SyndicationItem item in feed.Items)
+        //    Dictionary<string, string> episode = new Dictionary<string, string>();
+        //    string korrigeradBeskrivning;
+        //    XmlDocument dokument = HamtaXMLDokument(filplats);
+        //    XmlNodeList titlar = dokument.SelectNodes("//rss/channel/item/title");
+        //    XmlNodeList beskrivningar = dokument.SelectNodes("//rss/channel/item/description");
+        //    for (int i = 0; i < titlar.Count; i++)
         //    {
-        //        Console.WriteLine(item.Title.Text);
+        //        korrigeradBeskrivning = Regex.Replace(beskrivningar[i].InnerText, @"<.*?>", "");
+        //        episode.Add(titlar[i].InnerText, korrigeradBeskrivning);
         //    }
+        //    return episode;
+        //}
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ArrayOfPodcast xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Podcast>
+    <Url>https://feed.pod.space/alexosigge</Url>
+    <Avsnitt>100</Avsnitt>
+    <Namn>fdsfdsfds</Namn>
+    <Frekvens>1</Frekvens>
+    <Kategori>hej</Kategori>
+    <AntalAvsnitt>0</AntalAvsnitt>
+    <LastUpdated>0001-01-01T00:00:00</LastUpdated>
+  </Podcast>
+  <Podcast>
+    <Url>https://rss.acast.com/rattegangspodden</Url>
+    <Avsnitt>100</Avsnitt>
+    <Namn>fdsfdsfdsf</Namn>
+    <Frekvens>5</Frekvens>
+    <Kategori>hej</Kategori>
+    <AntalAvsnitt>0</AntalAvsnitt>
+    <LastUpdated>0001-01-01T00:00:00</LastUpdated>
+  </Podcast>
+</ArrayOfPodcast>

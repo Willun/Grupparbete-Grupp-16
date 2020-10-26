@@ -10,13 +10,5 @@
             Title = title;
             Description = description;
         }
-
-        //public class Episodelist : List<Episode>
-        //{
-        //    public Episodelist()
-        //    {
-
-        //    }
-        //}
     }
 }
