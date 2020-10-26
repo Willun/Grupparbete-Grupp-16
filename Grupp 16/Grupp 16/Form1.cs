@@ -1,6 +1,7 @@
 ﻿using BusinessLogicLayer;
 using DataAccesLayer.Repositories;
 using Grupp16;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel.Syndication;
@@ -14,6 +15,7 @@ namespace Grupp_16
         PcController pcController = new PcController();
         PcRepository pcRepository = new PcRepository();
         Validation validation = new Validation();
+        XMLController xMLController = new XMLController();
 
         public Form1()
         {
@@ -40,7 +42,7 @@ namespace Grupp_16
         {
             foreach (var item in pcController.GetPodcastList())
             {
-                listBoxShowPodcasts.Items.Add(pcController.GetPodcastByName(item.Namn));
+                listBoxShowPodcast.Items.Add(pcController.GetPodcastByName(item.Namn));
             }
         }
 
@@ -53,7 +55,7 @@ namespace Grupp_16
                 {
                     try
                     {
-                        listBoxShowPodcasts.Items.Clear();
+                        listBoxShowPodcast.Items.Clear();
                         int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
                         //cts.CancelAfter(2500);
                         //Task asyncAddingFeed = new Task(() => AddNewFeedToPersistent(cts));
@@ -81,11 +83,6 @@ namespace Grupp_16
             }
             //string xmlreader = PcController.GetUrlFromInternet();
             //pcController.CreatePodcast();
-        }
-
-        private void listBoxMediaViewer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -116,6 +113,21 @@ namespace Grupp_16
         private void listBoxEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void listBoxShowPodcast_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Podcast curItem = (Podcast)listBoxShowPodcast.SelectedItem;
+            System.Xml.XmlReader reader = xMLController.GetXMLFile(curItem.Url);
+            List<List<string>> list = GetPodcastAllEpisodesByXmlreader(reader);
+
+            foreach (var item in list)
+            {
+                foreach (var item1 in list)
+                {
+                    listBoxEpisodes.Items.Add(list);
+                }
+            }
         }
     }
 }

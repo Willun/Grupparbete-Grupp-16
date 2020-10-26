@@ -37,7 +37,7 @@
             this.buttonDelete1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxEpisodes = new System.Windows.Forms.ListBox();
-            this.listBoxShowPodcasts = new System.Windows.Forms.ListBox();
+            this.listBoxShowPodcast = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.listBoxCategory = new System.Windows.Forms.ListBox();
             this.textBoxCategory = new System.Windows.Forms.TextBox();
@@ -134,15 +134,15 @@
             this.listBoxEpisodes.TabIndex = 10;
             this.listBoxEpisodes.SelectedIndexChanged += new System.EventHandler(this.listBoxEpisodes_SelectedIndexChanged);
             // 
-            // listBoxShowPodcasts
+            // listBoxShowPodcast
             // 
-            this.listBoxShowPodcasts.FormattingEnabled = true;
-            this.listBoxShowPodcasts.ItemHeight = 20;
-            this.listBoxShowPodcasts.Location = new System.Drawing.Point(48, 32);
-            this.listBoxShowPodcasts.Name = "listBoxShowPodcasts";
-            this.listBoxShowPodcasts.Size = new System.Drawing.Size(900, 544);
-            this.listBoxShowPodcasts.TabIndex = 11;
-            this.listBoxShowPodcasts.SelectedIndexChanged += new System.EventHandler(this.listBoxMediaViewer_SelectedIndexChanged);
+            this.listBoxShowPodcast.FormattingEnabled = true;
+            this.listBoxShowPodcast.ItemHeight = 20;
+            this.listBoxShowPodcast.Location = new System.Drawing.Point(48, 32);
+            this.listBoxShowPodcast.Name = "listBoxShowPodcast";
+            this.listBoxShowPodcast.Size = new System.Drawing.Size(900, 544);
+            this.listBoxShowPodcast.TabIndex = 11;
+            this.listBoxShowPodcast.SelectedIndexChanged += new System.EventHandler(this.listBoxShowPodcast_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -263,7 +263,7 @@
             this.Controls.Add(this.textBoxCategory);
             this.Controls.Add(this.listBoxCategory);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.listBoxShowPodcasts);
+            this.Controls.Add(this.listBoxShowPodcast);
             this.Controls.Add(this.listBoxEpisodes);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonDelete1);
@@ -291,7 +291,7 @@
         private System.Windows.Forms.Button buttonDelete1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBoxEpisodes;
-        private System.Windows.Forms.ListBox listBoxShowPodcasts;
+        private System.Windows.Forms.ListBox listBoxShowPodcast;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox listBoxCategory;
         private System.Windows.Forms.TextBox textBoxCategory;

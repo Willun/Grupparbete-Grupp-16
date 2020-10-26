@@ -2,7 +2,7 @@
 
 namespace BusinessLogicLayer
 {
-    class XMLController
+    public class XMLController
     {
         public XmlReader GetXMLFile(string url)
         {
