@@ -43,7 +43,7 @@ namespace BusinessLogicLayer
             return resultat;
         }
 
-        public string GetPodcastAvsnittByNamn(string namn, string url)
+        public void GetPodcastAvsnittByNamn(string namn, string url)
         {
             var xmlStr = File.ReadAllText("Podcasts.xml");
 
@@ -51,7 +51,6 @@ namespace BusinessLogicLayer
 
             var result = str.Elements("word").
             Where(x => x.Element("category").Value.Equals("verb")).ToList();
-            //return result;
         }
 
         public void GetUrlFromInternet()

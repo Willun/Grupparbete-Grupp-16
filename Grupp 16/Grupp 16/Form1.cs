@@ -1,7 +1,5 @@
 ﻿using System;
-using System.ServiceModel.Syndication;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace Grupp_16
 {
@@ -14,7 +12,6 @@ namespace Grupp_16
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
 
         }
 
@@ -30,14 +27,7 @@ namespace Grupp_16
 
         private void buttonNew1_Click(object sender, EventArgs e)
         {
-            XmlReader reader = XmlReader.Create("https://rss.art19.com/impaulsive-with-logan-paul");
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
-            Console.WriteLine("--- Title: " + feed.Title.Text);
-            Console.WriteLine("--- Description:" + feed.Description.Text);
-            foreach (SyndicationItem item in feed.Items)
-            {
-                Console.WriteLine(item.Title.Text);
-            }
+            BusinessLogicLayer.CreateNew();
         }
 
         private void listBoxMediaViewer_SelectedIndexChanged(object sender, EventArgs e)
