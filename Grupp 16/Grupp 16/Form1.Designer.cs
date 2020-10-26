@@ -263,7 +263,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxUrl;
-        private System.Windows.Forms.Button buttonNew1;
         private System.Windows.Forms.Button buttonSave1;
         private System.Windows.Forms.Button buttonDelete1;
         private System.Windows.Forms.Label label4;
@@ -278,6 +277,7 @@
         private System.Windows.Forms.ListBox listBoxViewer;
         private System.Windows.Forms.ComboBox comboBoxUpdateFrequency;
         private System.Windows.Forms.ComboBox comboBoxCategory;
+        private System.Windows.Forms.Button buttonNew1;
     }
 }
 

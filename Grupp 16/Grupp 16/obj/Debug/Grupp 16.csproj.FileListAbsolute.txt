@@ -29,4 +29,9 @@ D:\oculis\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp 16.csproj.CopyC
 D:\oculis\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp 16.exe
 D:\oculis\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp 16.pdb
 D:\oculis\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\logan.xml
-C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\logan.xml
+C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\BusinessLogicLayer.dll
+C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Models.dll
+C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\DataAccesLayer.dll
+C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\BusinessLogicLayer.pdb
+C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Models.pdb
+C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\DataAccesLayer.pdb

@@ -1,4 +1,6 @@
-﻿namespace Models
+﻿using System;
+
+namespace Models
 {
     public class Podcast
     {
@@ -8,6 +10,8 @@
         public int Frekvens { get; set; }
         public string Kategori { get; set; }
         public int AntalAvsnitt { get; set; }
+        public string UpdateFrequency { get; set; }
+        public DateTime LastUpdated { get; set; }
 
         public Podcast(string url, int avsnitt, string namn, int frekvens, string kategori, int antalAvsnitt)
         {

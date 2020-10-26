@@ -1,9 +1,7 @@
 ﻿using DataAccesLayer.Repositories;
 using Models;
-using System;
 using System.IO;
 using System.Linq;
-using System.ServiceModel.Syndication;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -22,7 +20,7 @@ namespace BusinessLogicLayer
         public void CreatePodcast(string url, int avsnitt, string namn, int frekvens, string kategori, int antalAvsnitt)
         {
             Podcast podcast = new Podcast(url, avsnitt, namn, frekvens, kategori, antalAvsnitt);
-            podcastRepository.Ny(podcast);
+            podcastRepository.New(podcast);
         }
 
         public string GetPodcastByNamn(string namn)
@@ -53,16 +51,22 @@ namespace BusinessLogicLayer
             Where(x => x.Element("category").Value.Equals("verb")).ToList();
         }
 
-        public void GetUrlFromInternet()
+        public XmlReader GetUrlFromInternet()
         {
             XmlReader reader = XmlReader.Create("https://rss.art19.com/impaulsive-with-logan-paul");
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
-            Console.WriteLine("--- Title: " + feed.Title.Text);
-            Console.WriteLine("--- Description:" + feed.Description.Text);
-            foreach (SyndicationItem item in feed.Items)
-            {
-                Console.WriteLine(item.Title.Text);
-            }
+
+            return writer;
         }
+
+
+
+
+
+
+        //SyndicationFeed feed = SyndicationFeed.Load(reader);
+        //    foreach (SyndicationItem item in feed.Items)
+        //    {
+        //        Console.WriteLine(item.Title.Text);
+        //    }
     }
 }

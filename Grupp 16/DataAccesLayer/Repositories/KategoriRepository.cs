@@ -17,13 +17,13 @@ namespace DataAccesLayer.Repositories
             kategoriList = GetAll();
         }
 
-        public void Ny(Kategori kategori)
+        public void New(Kategori kategori)
         {
             kategoriList.Add(kategori);
             SaveAllChanges();
         }
 
-        public void Spara(int index, Kategori kategori)
+        public void Save(int index, Kategori kategori)
         {
             if (index >= 0)
             {
@@ -32,7 +32,7 @@ namespace DataAccesLayer.Repositories
             SaveAllChanges();
         }
 
-        public void TaBort(int index)
+        public void Delete(int index)
         {
             kategoriList.RemoveAt(index);
             SaveAllChanges();

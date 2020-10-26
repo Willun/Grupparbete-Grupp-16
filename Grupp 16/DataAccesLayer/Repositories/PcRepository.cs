@@ -17,13 +17,13 @@ namespace DataAccesLayer.Repositories
             podcastList = GetAll();
         }
 
-        public void Ny(Podcast podcast)
+        public void New(Podcast podcast)
         {
             podcastList.Add(podcast);
             SaveAllChanges();
         }
 
-        public void Spara(int index, Podcast podcast)
+        public void Save(int index, Podcast podcast)
         {
             if (index >= 0)
             {
@@ -32,7 +32,7 @@ namespace DataAccesLayer.Repositories
             SaveAllChanges();
         }
 
-        public void TaBort(int index)
+        public void Delete(int index)
         {
             podcastList.RemoveAt(index);
             SaveAllChanges();
