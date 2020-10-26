@@ -1,6 +1,7 @@
 ﻿using BusinessLogicLayer;
 using DataAccesLayer.Repositories;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Grupp_16
@@ -9,7 +10,7 @@ namespace Grupp_16
     {
         PcController pcController = new PcController();
         PcRepository pcRepository = new PcRepository();
-        Validation
+        Validation validation = new Validation();
 
         public Form1()
         {
@@ -61,8 +62,8 @@ namespace Grupp_16
             {
                 MessageBox.Show("Försäkra du har fyllt i alla fält!");
             }
-            //string xmlreader = PcController.GetUrlFromInternet();
-            //pcController.CreatePodcast();
+            string xmlreader = PcController.GetUrlFromInternet();
+            pcController.CreatePodcast();
         }
 
         private void listBoxMediaViewer_SelectedIndexChanged(object sender, EventArgs e)

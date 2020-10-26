@@ -3,12 +3,13 @@ using System.Diagnostics;
 using System.ServiceModel.Syndication;
 using System.Xml;
 
-namespace BusinessLogicLayer
+namespace Grupp16
 {
     public class Validation
     {
-        public bool CheckIfValidFeed(string url)
+        public bool CheckIfValidFeed()
         {
+            string url = textBoxUrl.text;
             try
             {
                 SyndicationFeed feed = SyndicationFeed.Load(XmlReader.Create(url));

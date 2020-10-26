@@ -2,7 +2,6 @@
 using Models;
 using System.IO;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace BusinessLogicLayer
@@ -51,12 +50,12 @@ namespace BusinessLogicLayer
             Where(x => x.Element("category").Value.Equals("verb")).ToList();
         }
 
-        public XmlReader GetUrlFromInternet()
-        {
-            XmlReader reader = XmlReader.Create("https://rss.art19.com/impaulsive-with-logan-paul");
+        //public XmlReader GetUrlFromInternet()
+        //{
+        //    XmlReader reader = XmlReader.Create("https://rss.art19.com/impaulsive-with-logan-paul");
 
-            return writer;
-        }
+        //    return writer;
+        //}
 
 
 
