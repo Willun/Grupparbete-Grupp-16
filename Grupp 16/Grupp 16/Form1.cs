@@ -14,6 +14,7 @@ namespace Grupp_16
     {
         PcController pcController = new PcController();
         PcRepository pcRepository = new PcRepository();
+        KategoriRepository kategoriRepository = new KategoriRepository();
         Validation validation = new Validation();
         XMLController xMLController = new XMLController();
 
@@ -127,6 +128,42 @@ namespace Grupp_16
                 {
                     listBoxEpisodes.Items.Add(list);
                 }
+            }
+        }
+
+        private void buttonNew2_Click(object sender, EventArgs e)
+        {
+            if (textBoxCategory.Text != null)
+            {
+                if (validation.CheckIfItemInListAlreadyExists(kategoriRepository.GetAll(), textBoxCategory.Text))
+                {
+                    try
+                    {
+                        listBoxShowPodcast.Items.Clear();
+                        int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
+                        //cts.CancelAfter(2500);
+                        //Task asyncAddingFeed = new Task(() => AddNewFeedToPersistent(cts));
+                        //asyncAddingFeed.Start();
+                        pcController.CreatePodcast(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.SelectedItem.ToString());
+                        showPodcast();
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        MessageBox.Show("Web request timed out! Det tog för lång tid.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Försäkra dig om att URL:en är korrekt formaterad!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Försäkra du har fyllt i alla fält!");
             }
         }
     }

@@ -177,6 +177,7 @@
             this.buttonNew2.TabIndex = 15;
             this.buttonNew2.Text = "Ny...";
             this.buttonNew2.UseVisualStyleBackColor = true;
+            this.buttonNew2.Click += new System.EventHandler(this.buttonNew2_Click);
             // 
             // buttonSave2
             // 

@@ -37,17 +37,17 @@ namespace Grupp16
             }
         }
 
-        public bool CheckIfItemInListAlreadyExists(string NameList, string NameItem)
-        {
-            string nameList = NameList;
-            if (nameList.Contains(NameItem) == true)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        //public bool CheckIfItemInListAlreadyExists(List<Kategori> namelist, string NameItem)
+        //{
+        //    list<kategori> namelist = namelist;
+        //    if (namelist.contains(nameitem) == true)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
     }
 }

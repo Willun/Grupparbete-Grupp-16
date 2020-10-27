@@ -15,6 +15,7 @@ namespace BusinessLogicLayer
         public void CreateKategori(string name)
         {
             Kategori kategori = new Kategori(name);
+            kategoriRepository.New(kategori);
         }
     }
 }
