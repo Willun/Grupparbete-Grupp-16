@@ -1,7 +1,6 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DataAccesLayer.Repositories
 {
@@ -60,7 +59,18 @@ namespace DataAccesLayer.Repositories
 
         public Podcast GetByNamn(string namn)
         {
-            return GetAll().FirstOrDefault(p => p.Namn.Equals(namn));
+            Podcast pc = new Podcast();
+            List<Podcast> podcasts = GetAll();
+            foreach (var item in podcasts)
+            {
+                if (item.Namn == namn)
+                {
+                    return item;
+                }
+
+            }
+            //Podcast pc = GetAll().FirstOrDefault(p => p.Namn.Equals(namn));
+            return pc;
         }
 
         //public void UpdateKategoriForPodcast(int chosenKategori, string newKategori)

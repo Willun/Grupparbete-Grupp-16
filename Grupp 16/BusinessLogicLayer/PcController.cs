@@ -9,7 +9,6 @@ namespace BusinessLogicLayer
     {
         EController eController = new EController();
         private IRepository<Podcast> podcastRepository;
-        private string resultat;
 
         public PcController()
         {
