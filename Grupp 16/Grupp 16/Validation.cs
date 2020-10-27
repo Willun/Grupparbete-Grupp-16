@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.ServiceModel.Syndication;
 using System.Xml;
@@ -37,17 +38,17 @@ namespace Grupp16
             }
         }
 
-        //public bool CheckIfItemInListAlreadyExists(List<Kategori> namelist, string NameItem)
-        //{
-        //    list<kategori> namelist = namelist;
-        //    if (namelist.contains(nameitem) == true)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-        //    }
-        //}
+        public bool CheckIfItemInListAlreadyExists(List<string> klist, string name)
+        {
+            List<string> KListString = klist;
+            if (KListString.Contains(name) == true)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

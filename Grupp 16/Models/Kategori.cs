@@ -8,5 +8,10 @@
         {
             Namn = namn;
         }
+
+        public Kategori()
+        {
+
+        }
     }
 }

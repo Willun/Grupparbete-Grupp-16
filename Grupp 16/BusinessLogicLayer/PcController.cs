@@ -25,28 +25,11 @@ namespace BusinessLogicLayer
             return podcastRepository.GetAll();
         }
 
-        public string GetPodcastByName(string namn)
+        public string GetPodcastByName(string name)
         {
-            Podcast podcast = podcastRepository.GetByNamn(namn);
+            Podcast podcast = podcastRepository.GetByNamn(name);
             string podcasten = podcast.Avsnitt.ToString() + "   " + podcast.Namn + "   " + "Var " + podcast.Frekvens.ToString() + ":e " + "minut" + "   " + podcast.Kategori;
             return podcasten;
         }
-
-
-
-        //public static Dictionary<string, string> GetEpisodeDescription(string filplats)
-        //{
-        //    Dictionary<string, string> episode = new Dictionary<string, string>();
-        //    string korrigeradBeskrivning;
-        //    XmlDocument dokument = HamtaXMLDokument(filplats);
-        //    XmlNodeList titlar = dokument.SelectNodes("//rss/channel/item/title");
-        //    XmlNodeList beskrivningar = dokument.SelectNodes("//rss/channel/item/description");
-        //    for (int i = 0; i < titlar.Count; i++)
-        //    {
-        //        korrigeradBeskrivning = Regex.Replace(beskrivningar[i].InnerText, @"<.*?>", "");
-        //        episode.Add(titlar[i].InnerText, korrigeradBeskrivning);
-        //    }
-        //    return episode;
-        //}
     }
 }

@@ -104,6 +104,7 @@
             this.buttonSave1.TabIndex = 7;
             this.buttonSave1.Text = "Spara";
             this.buttonSave1.UseVisualStyleBackColor = true;
+            this.buttonSave1.Click += new System.EventHandler(this.buttonSave1_Click);
             // 
             // buttonDelete1
             // 

@@ -14,6 +14,7 @@ namespace Grupp_16
     {
         PcController pcController = new PcController();
         PcRepository pcRepository = new PcRepository();
+        KController kController = new KController();
         KategoriRepository kategoriRepository = new KategoriRepository();
         Validation validation = new Validation();
         XMLController xMLController = new XMLController();
@@ -22,6 +23,7 @@ namespace Grupp_16
         {
             InitializeComponent();
             showPodcast();
+            showCategory();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -131,21 +133,29 @@ namespace Grupp_16
             }
         }
 
+        private void showCategory()
+        {
+            foreach (var item in kController.GetCategoryList())
+            {
+                listBoxCategory.Items.Add(kController.GetKategoriByName(item.Namn));
+            }
+        }
+
         private void buttonNew2_Click(object sender, EventArgs e)
         {
             if (textBoxCategory.Text != null)
             {
-                if (validation.CheckIfItemInListAlreadyExists(kategoriRepository.GetAll(), textBoxCategory.Text))
+                if (validation.CheckIfItemInListAlreadyExists(kController.GetKategoriListStrings(), textBoxCategory.Text))
                 {
                     try
                     {
-                        listBoxShowPodcast.Items.Clear();
-                        int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
+                        listBoxCategory.Items.Clear();
+
                         //cts.CancelAfter(2500);
                         //Task asyncAddingFeed = new Task(() => AddNewFeedToPersistent(cts));
                         //asyncAddingFeed.Start();
-                        pcController.CreatePodcast(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.SelectedItem.ToString());
-                        showPodcast();
+                        kController.CreateCategory(textBoxCategory.Text);
+                        showCategory();
                     }
                     catch (OperationCanceledException)
                     {
@@ -165,6 +175,11 @@ namespace Grupp_16
             {
                 MessageBox.Show("Försäkra du har fyllt i alla fält!");
             }
+        }
+
+        private void buttonSave1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
