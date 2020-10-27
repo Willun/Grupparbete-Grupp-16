@@ -118,7 +118,7 @@ namespace Grupp_16
         private void listBoxShowPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
             Podcast curItem = (Podcast)listBoxShowPodcast.SelectedItem;
-            System.Xml.XmlReader reader = xMLController.GetXMLFile(curItem.Url);
+            XmlReader reader = xMLController.GetXMLFile(curItem.Url);
             List<List<string>> list = GetPodcastAllEpisodesByXmlreader(reader);
 
             foreach (var item in list)
