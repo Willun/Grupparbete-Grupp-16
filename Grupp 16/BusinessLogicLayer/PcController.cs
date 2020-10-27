@@ -7,6 +7,7 @@ namespace BusinessLogicLayer
 {
     public class PcController
     {
+        EController eController = new EController();
         private IRepository<Podcast> podcastRepository;
         private string resultat;
 
@@ -17,7 +18,8 @@ namespace BusinessLogicLayer
 
         public void CreatePodcast(string url, int avsnitt, string namn, int frekvens, string kategori)
         {
-            Podcast podcast = new Podcast(url, avsnitt, namn, frekvens, kategori);
+            List<Episode> episodes = eController.GetEpisodes(url);
+            Podcast podcast = new Podcast(url, avsnitt, namn, frekvens, kategori, episodes);
             podcastRepository.New(podcast);
         }
 

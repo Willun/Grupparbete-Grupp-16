@@ -9,10 +9,12 @@ namespace DataAccesLayer.Repositories
     {
         DataManager dataManager;
         List<Podcast> podcastList;
+        List<Episode> episodeList;
 
         public PcRepository()
         {
             podcastList = new List<Podcast>();
+            episodeList = new List<Episode>();
             dataManager = new DataManager();
             podcastList = GetAll();
         }

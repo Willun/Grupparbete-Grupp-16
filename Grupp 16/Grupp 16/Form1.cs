@@ -1,6 +1,7 @@
 ﻿using BusinessLogicLayer;
 using DataAccesLayer.Repositories;
 using Grupp16;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel.Syndication;
@@ -62,6 +63,7 @@ namespace Grupp_16
                         //cts.CancelAfter(2500);
                         //Task asyncAddingFeed = new Task(() => AddNewFeedToPersistent(cts));
                         //asyncAddingFeed.Start();
+                        List<Episode> episodes = new List<Episode>();
                         pcController.CreatePodcast(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.SelectedItem.ToString());
                         showPodcast();
                     }
@@ -92,7 +94,7 @@ namespace Grupp_16
 
         }
 
-        public List<List<string>> GetPodcastAllEpisodesByXmlreader(XmlReader reader)
+        public List<List<string>> GetPodcastAllEpisodes(XmlReader reader)
         {
             List<string> subject = new List<string>();
             List<string> summary = new List<string>();
@@ -122,9 +124,12 @@ namespace Grupp_16
         private void listBoxShowPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
             string curPodcast = listBoxShowPodcast.SelectedItem.ToString();
-            MessageBox.Show(curPodcast);
-
-
+            Podcast pc = pcController.GetPodcastByNameXXX(curPodcast);
+            foreach (var item in pc.episodeList)
+            {
+                ListViewItem listViewItem = new ListViewItem(item.ToString());
+                listBoxEpisodes.Items.Add(listViewItem);
+            }
             //XmlReader reader = xMLController.GetXMLFile(curPodcast.Url);
             //List<List<string>> list = GetPodcastAllEpisodesByXmlreader(reader);
 
