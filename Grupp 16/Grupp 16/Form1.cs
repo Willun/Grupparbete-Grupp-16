@@ -127,6 +127,7 @@ namespace Grupp_16
             int curPodcast = listBoxShowPodcast.SelectedIndex;
             string pcName = pcController.GetPcNameByIndex(curPodcast);
             Podcast pc = pcController.GetPodcastByNameXXX(pcName);
+
             foreach (var item in pc.episodeList)
             {
                 listBoxEpisodes.Items.Add(item.Title);
