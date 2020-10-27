@@ -131,6 +131,11 @@ namespace Grupp_16
             {
                 listBoxEpisodes.Items.Add(item.Title);
             }
+
+            textBoxName.Text = pc.Namn;
+            textBoxUrl.Text = pc.Url;
+            comboBoxUpdateFrequency.Text = pc.Frekvens.ToString();
+            comboBoxCategory.Text = pc.Kategori;
         }
 
         private void showCategory()
