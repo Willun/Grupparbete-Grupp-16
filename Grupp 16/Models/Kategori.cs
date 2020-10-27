@@ -21,9 +21,9 @@
 
         };
 
-        public static string HamtaKategoriPath()
-        {
-            return KategoriPath;
-        }
+        //public static string HamtaKategoriPath()
+        //{
+        //    return KategoriPath;
+        //}
     }
 }

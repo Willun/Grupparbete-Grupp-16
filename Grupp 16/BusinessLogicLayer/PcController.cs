@@ -33,6 +33,12 @@ namespace BusinessLogicLayer
             return podcasten;
         }
 
+        public Podcast GetPodcastByNameXXX(string name)
+        {
+            Podcast podcast = podcastRepository.GetByNamn(name);
+            return podcast;
+        }
+
         public List<string> PodcastObjectToStringList()
         {
             List<Podcast> pcObjects = new List<Podcast>();

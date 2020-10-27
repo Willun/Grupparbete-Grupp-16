@@ -104,7 +104,6 @@
             this.buttonSave1.TabIndex = 7;
             this.buttonSave1.Text = "Spara";
             this.buttonSave1.UseVisualStyleBackColor = true;
-            this.buttonSave1.Click += new System.EventHandler(this.buttonSave1_Click);
             // 
             // buttonDelete1
             // 
@@ -188,7 +187,6 @@
             this.buttonSave2.TabIndex = 16;
             this.buttonSave2.Text = "Spara";
             this.buttonSave2.UseVisualStyleBackColor = true;
-            this.buttonSave2.Click += new System.EventHandler(this.buttonSave2_Click);
             // 
             // buttonDelete2
             // 
