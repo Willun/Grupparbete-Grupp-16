@@ -1,6 +1,7 @@
 ﻿using DataAccesLayer.Repositories;
 using Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLogicLayer
 {
@@ -30,6 +31,13 @@ namespace BusinessLogicLayer
             Podcast podcast = podcastRepository.GetByNamn(name);
             string podcasten = podcast.Avsnitt.ToString() + "   " + podcast.Namn + "   " + "Var " + podcast.Frekvens.ToString() + ":e " + "minut" + "   " + podcast.Kategori;
             return podcasten;
+        }
+
+        public List<string> PodcastObjectToStringList()
+        {
+            List<Podcast> pcObjects = new List<Podcast>();
+            List<string> pcStrings = (from o in pcObjects select o.ToString()).ToList();
+            return pcStrings;
         }
     }
 }

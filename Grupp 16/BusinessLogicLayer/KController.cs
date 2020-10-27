@@ -1,6 +1,7 @@
 ﻿using DataAccesLayer.Repositories;
 using Models;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BusinessLogicLayer
@@ -43,6 +44,14 @@ namespace BusinessLogicLayer
             Kategori kategori = kategoriRepository.GetByNamn(name);
             string kategorin = kategori.Namn;
             return kategorin;
+        }
+
+        public static void eraseFile(string filePath)
+        {
+            using (var stream = new FileStream(filPath, FileMode.Truncate, FileAccess.Write))
+            {
+
+            }
         }
     }
 }

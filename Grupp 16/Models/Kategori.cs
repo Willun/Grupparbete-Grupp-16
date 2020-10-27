@@ -13,5 +13,17 @@
         {
 
         }
+
+        private static readonly string[] standardKategorier = {
+            @"Racing",
+            @"Komedi",
+            @"Mattematik",
+
+        };
+
+        public static string HamtaKategoriPath()
+        {
+            return KategoriPath;
+        }
     }
 }

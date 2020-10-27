@@ -120,18 +120,35 @@ namespace Grupp_16
 
         private void listBoxShowPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Podcast curItem = (Podcast)listBoxShowPodcast.SelectedItem;
-            XmlReader reader = xMLController.GetXMLFile(curItem.Url);
+            Podcast curPodcast = (Podcast)listBoxShowPodcast.SelectedItem;
+            XmlReader reader = xMLController.GetXMLFile(curPodcast.Url);
             List<List<string>> list = GetPodcastAllEpisodesByXmlreader(reader);
 
             foreach (var item in list)
             {
                 foreach (var item1 in list)
                 {
-                    listBoxEpisodes.Items.Add(list);
+                    listBoxEpisodes.Items.Add(item1);
                 }
             }
+
+            //try
+
+            //    {
+            //    var podcastlist = pcController.GetPodcastList();
+            //    foreach (var p in podcastlist)
+            //    {
+            //        listBoxShowPodcast(p.Namn,p.Kategori);
+            //        Console.WriteLine(p.Namn,p.Kategori);
+            //    };
+            //    }
+            //    catch (Exception)
+            //    {
+            //        Console.WriteLine("Fel!");
+            //    }
         }
+
+
 
         private void showCategory()
         {
@@ -179,7 +196,25 @@ namespace Grupp_16
 
         private void buttonSave1_Click(object sender, EventArgs e)
         {
+            if (listPodcast.SelectedItems.Count == 1)
+            {
+                int selectedFeed = listPodcast.SelectedItems[0].Index;
+                EntitetsLogik.UppdateraFrekvensIntervall(selectedFeed, boxUppdatering.Text);
+                EntitetsLogik.UppdateraFeedKategori(selectedFeed, boxKategori.Text);
+                List<ListViewItem> persistentFeedList = EntitetsLogik.SkickaFeedsTillPoddlista();
+                Populator.UppdateraListView(listPodcast, persistentFeedList);
+                EntitetsLogik.SkickaFeedListaTillFil();
+                Populator.UppdateraValda(listPodcast, listKategori, listAvsnitt, avsnittsBeskrivningTextruta, PodcastTitel);
+            }
+            else
+            {
+                MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+            }
+        }
 
+        private void buttonSave2_Click(object sender, EventArgs e)
+        {
+            listBoxCategory.Items[listBoxCategory.SelectedIndex] = textBoxCategory.Text;
         }
     }
 }

@@ -60,5 +60,10 @@ namespace DataAccesLayer.Repositories
         {
             return GetAll().FirstOrDefault(p => p.Namn.Equals(namn));
         }
+
+        //public void UpdateKategoriForPodcast(int chosenKategori, string newKategori)
+        //{
+        //    kategoriList[chosenKategori].Kategori = newKategori;
+        //}
     }
 }
