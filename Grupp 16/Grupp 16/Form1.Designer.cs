@@ -138,7 +138,7 @@
             // 
             this.listBoxShowPodcast.FormattingEnabled = true;
             this.listBoxShowPodcast.ItemHeight = 20;
-            this.listBoxShowPodcast.Location = new System.Drawing.Point(48, 32);
+            this.listBoxShowPodcast.Location = new System.Drawing.Point(36, 32);
             this.listBoxShowPodcast.Name = "listBoxShowPodcast";
             this.listBoxShowPodcast.Size = new System.Drawing.Size(900, 544);
             this.listBoxShowPodcast.TabIndex = 11;
@@ -196,6 +196,7 @@
             this.buttonDelete2.TabIndex = 17;
             this.buttonDelete2.Text = "Ta bort...";
             this.buttonDelete2.UseVisualStyleBackColor = true;
+            this.buttonDelete2.Click += new System.EventHandler(this.buttonDelete2_Click);
             // 
             // listBoxViewer
             // 

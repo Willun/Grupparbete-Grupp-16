@@ -8,7 +8,7 @@ namespace BusinessLogicLayer
     public class PcController
     {
         EController eController = new EController();
-        private IRepository<Podcast> podcastRepository;
+        private IPcRepository<Podcast> podcastRepository;
 
         public PcController()
         {
@@ -45,6 +45,11 @@ namespace BusinessLogicLayer
             List<Podcast> pcObjects = new List<Podcast>();
             List<string> pcStrings = (from o in pcObjects select o.ToString()).ToList();
             return pcStrings;
+        }
+
+        public string GetPcNameByIndex(int index)
+        {
+            return podcastRepository.GetName(index);
         }
     }
 }

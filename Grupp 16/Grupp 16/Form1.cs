@@ -123,41 +123,15 @@ namespace Grupp_16
 
         private void listBoxShowPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string curPodcast = listBoxShowPodcast.SelectedItem.ToString();
-            Podcast pc = pcController.GetPodcastByNameXXX(curPodcast);
+            listBoxEpisodes.Items.Clear();
+            int curPodcast = listBoxShowPodcast.SelectedIndex;
+            string pcName = pcController.GetPcNameByIndex(curPodcast);
+            Podcast pc = pcController.GetPodcastByNameXXX(pcName);
             foreach (var item in pc.episodeList)
             {
-                ListViewItem listViewItem = new ListViewItem(item.ToString());
-                listBoxEpisodes.Items.Add(listViewItem);
+                listBoxEpisodes.Items.Add(item.Title);
             }
-            //XmlReader reader = xMLController.GetXMLFile(curPodcast.Url);
-            //List<List<string>> list = GetPodcastAllEpisodesByXmlreader(reader);
-
-            //foreach (var item in list)
-            //{
-            //    foreach (var item1 in list)
-            //    {
-            //        listBoxEpisodes.Items.Add(item1);
-            //    }
-            //}
-
-            //try
-
-            //{
-            //    var podcastlist = pcController.GetPodcastList();
-            //    foreach (var p in podcastlist)
-            //    {
-            //        listBoxShowPodcast(p.Namn, p.Kategori);
-            //        Console.WriteLine(p.Namn, p.Kategori);
-            //    };
-            //}
-            //catch (Exception)
-            //{
-            //    Console.WriteLine("Fel!");
-            //}
         }
-
-
 
         private void showCategory()
         {
@@ -201,6 +175,11 @@ namespace Grupp_16
             {
                 MessageBox.Show("Försäkra du har fyllt i alla fält!");
             }
+        }
+
+        private void buttonDelete2_Click(object sender, EventArgs e)
+        {
+
         }
 
         //private void buttonSave1_Click(object sender, EventArgs e)
