@@ -8,7 +8,7 @@ namespace DataAccesLayer.Repositories
     {
         DataManager dataManager;
         List<Podcast> podcastList;
-        //List<Episode> episodeList;
+        List<Episode> episodeList;
 
         public PcRepository()
         {

@@ -154,23 +154,46 @@ namespace Grupp_16
 
         private void listBoxEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listBoxEpisodeDescriptionViewer.Items.Clear();
+            string episodeName = listBoxEpisodes.SelectedItem.ToString();
+            lableEpisodeDescription.Text = episodeName;
             int curPodcast = listBoxShowPodcast.SelectedIndex;
             string pcName = pcController.GetPcNameByIndex(curPodcast);
             Podcast pc = pcController.GetPodcastByNameWithoutAddingToListBox(pcName);
-            //PopulateTextBoxes();
+
+            string selectedEpisodeName = listBoxEpisodes.SelectedItem.ToString();
             List<Episode> episodes = eController.GetEpisodes(pc.Url);
-            try
+
+            foreach (var item in episodes)
             {
-                foreach (Episode episode in episodes)
+                if (selectedEpisodeName.Equals(item.Title))
                 {
-                    listBoxEpisodeDescriptionViewer.Items.Add(episode.Description);
+                    listBoxEpisodeDescriptionViewer.Items.Add(item.Description);
                 }
             }
-            catch (Exception)
-            {
-                Console.WriteLine("Error in clicking podcast!");
-            }
+
+            //listBoxEpisodeDescriptionViewer.Items.Clear();
+            //int curEpisode = listBoxEpisodes.SelectedIndex;
+            //int curEpisode1 = SelectedRow(curEpisode);
+            //List<Episode> episodes = eController.GetEpisodes(pc.Url);
+
+            //Populate the list here
+            // Bind the list box according to the type of application you are using
+            // here i use asp.net
+
+            //try
+            //{
+            //    foreach (Episode episode in episodes)
+            //    {
+            //        if (episodes.Contains(curEpisode))
+            //        {
+            //            listBoxEpisodeDescriptionViewer.Items.Add(episode.Description);
+            //        }
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    Console.WriteLine("Error in clicking podcast!");
+            //}
 
 
             //if (listBoxEpisodes.SelectedItems.Count == 1)
