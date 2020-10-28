@@ -10,5 +10,6 @@ namespace DataAccesLayer.Repositories
         void SaveAllChanges();
         List<T> GetAll();
         T GetByNamn(string namn);
+        string GetName(int index);
     }
 }

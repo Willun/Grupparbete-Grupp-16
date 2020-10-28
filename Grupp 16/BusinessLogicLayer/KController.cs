@@ -20,6 +20,12 @@ namespace BusinessLogicLayer
             kategoriRepository.New(kategori);
         }
 
+        public Kategori CreateCategorySave(string name)
+        {
+            Kategori kategori = new Kategori(name);
+            return kategori;
+        }
+
         public List<Kategori> GetCategoryList()
         {
             return kategoriRepository.GetAll();
@@ -45,6 +51,15 @@ namespace BusinessLogicLayer
             return kategorin;
         }
 
+        public string GetKNameByIndex(int index)
+        {
+            return kategoriRepository.GetName(index);
+        }
 
+        public Kategori GetKategoriByNameWithoutAddingToListBox(string name)
+        {
+            Kategori k = kategoriRepository.GetByNamn(name);
+            return k;
+        }
     }
 }

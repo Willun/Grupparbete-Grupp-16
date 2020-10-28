@@ -60,5 +60,10 @@ namespace DataAccesLayer.Repositories
         {
             return GetAll().FirstOrDefault(p => p.Namn.Equals(namn));
         }
+
+        public string GetName(int index)
+        {
+            return kategoriList[index].Namn;
+        }
     }
 }

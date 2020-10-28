@@ -14,6 +14,7 @@ namespace Grupp_16
     {
         PcController pcController = new PcController();
         KController kController = new KController();
+        EController eController = new EController();
         PcRepository pcRepository = new PcRepository();
         KategoriRepository kategoriRepository = new KategoriRepository();
         Validation validation = new Validation();
@@ -79,6 +80,11 @@ namespace Grupp_16
                         List<Episode> episodes = new List<Episode>();
                         pcController.CreatePodcast(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.SelectedItem.ToString());
                         showPodcast();
+
+                        textBoxName.Text = "";
+                        textBoxUrl.Text = "";
+                        comboBoxUpdateFrequency.Text = "";
+                        comboBoxCategory.Text = "";
                     }
                     catch (OperationCanceledException)
                     {
@@ -131,25 +137,60 @@ namespace Grupp_16
 
         private void listBoxEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //int curEpisode = listBoxEpisodes.SelectedIndex;
+            //string eName = eController.GetENameByIndex(curEpisode);
 
+            //if (listBoxShowPodcast.SelectedItems.Count == 1)
+            //{
+
+            //    int eIndex = listBoxEpisodes.SelectedIndex;
+            //    int feedIndex = listBoxShowPodcast.SelectedItems[0].;
+            //    string description = EntitetsLogik.HamtaAvsnittsBeskrivning(feedIndex, episodeIndex);
+            //    Populator.UppdateraLista(avsnittsBeskrivningTextruta, description);
+            //}
+            //else
+            //{
+            //    avsnittsBeskrivningTextruta.Clear();
+            //}
         }
 
         private void listBoxShowPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listBoxEpisodes.Items.Clear();
-            int curPodcast = listBoxShowPodcast.SelectedIndex;
-            string pcName = pcController.GetPcNameByIndex(curPodcast);
-            Podcast pc = pcController.GetPodcastByNameWithoutAddingToListBox(pcName);
-
-            foreach (var item in pc.episodeList)
+            if (listBoxShowPodcast.SelectedItems.Count == 1)
             {
-                listBoxEpisodes.Items.Add(item.Title);
-            }
+                listBoxEpisodes.Items.Clear();
+                int curPodcast = listBoxShowPodcast.SelectedIndex;
+                string pcName = pcController.GetPcNameByIndex(curPodcast);
+                Podcast pc = pcController.GetPodcastByNameWithoutAddingToListBox(pcName);
 
-            textBoxName.Text = pc.Namn;
-            textBoxUrl.Text = pc.Url;
-            comboBoxUpdateFrequency.Text = pc.Frekvens.ToString();
-            comboBoxCategory.Text = pc.Kategori;
+                foreach (var item in pc.episodeList)
+                {
+                    listBoxEpisodes.Items.Add(item.Title);
+                }
+
+                textBoxName.Text = pc.Namn;
+                textBoxUrl.Text = pc.Url;
+                comboBoxUpdateFrequency.Text = pc.Frekvens.ToString();
+                comboBoxCategory.Text = pc.Kategori;
+            }
+            else
+            {
+                MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+            }
+            //listBoxEpisodes.Items.Clear();
+            //int curPodcast = listBoxShowPodcast.SelectedIndex;
+            //string pcName = pcController.GetPcNameByIndex(curPodcast);
+            //Podcast pc = pcController.GetPodcastByNameWithoutAddingToListBox(pcName);
+
+            //foreach (var item in pc.episodeList)
+            //{
+            //    listBoxEpisodes.Items.Add(item.Title);
+            //}
+
+            //textBoxName.Text = pc.Namn;
+            //textBoxUrl.Text = pc.Url;
+            //comboBoxUpdateFrequency.Text = pc.Frekvens.ToString();
+            //comboBoxCategory.Text = pc.Kategori;
         }
 
         private void showCategory()
@@ -215,14 +256,62 @@ namespace Grupp_16
 
         private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int curKategori = listBoxShowPodcast.SelectedIndex;
-            string kName = curKategori.ToString();
-            textBoxCategory.Text = kName;
+            if (listBoxCategory.SelectedItems.Count == 1)
+            {
+                int curKategori = listBoxCategory.SelectedIndex;
+                string kName = kController.GetKNameByIndex(curKategori);
+                Kategori k = kController.GetKategoriByNameWithoutAddingToListBox(kName);
+                textBoxCategory.Text = k.Namn;
+                //string curKategori = listBoxCategory.SelectedIndex.ToString();
+                //textBoxCategory.Text = curKategori;
+            }
+            else
+            {
+                MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+            }
         }
 
         private void textBoxCategory_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonSave1_Click(object sender, EventArgs e)
+        {
+            if (listBoxShowPodcast.SelectedItems.Count == 1)
+            {
+                int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
+                int curPodcast = listBoxShowPodcast.SelectedIndex;
+                Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.Text);
+                pcRepository.Save(curPodcast, pc);
+                listBoxShowPodcast.Items.Clear();
+                showPodcast();
+
+                textBoxName.Text = "";
+                textBoxUrl.Text = "";
+                comboBoxUpdateFrequency.Text = "";
+                comboBoxCategory.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+            }
+        }
+
+        private void buttonSave2_Click(object sender, EventArgs e)
+        {
+            if (listBoxCategory.SelectedItems.Count == 1)
+            {
+                int curKategori = listBoxShowPodcast.SelectedIndex;
+                Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
+                kategoriRepository.Save(curKategori, k);
+                listBoxCategory.Items.Clear();
+                showCategory();
+            }
+            else
+            {
+                MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+            }
         }
 
         //private void buttonSave1_Click(object sender, EventArgs e)

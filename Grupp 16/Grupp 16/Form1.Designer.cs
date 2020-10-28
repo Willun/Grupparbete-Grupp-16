@@ -80,7 +80,7 @@
             // 
             // textBoxUrl
             // 
-            this.textBoxUrl.Location = new System.Drawing.Point(234, 678);
+            this.textBoxUrl.Location = new System.Drawing.Point(234, 680);
             this.textBoxUrl.Name = "textBoxUrl";
             this.textBoxUrl.Size = new System.Drawing.Size(258, 26);
             this.textBoxUrl.TabIndex = 3;
@@ -104,6 +104,7 @@
             this.buttonSave1.TabIndex = 7;
             this.buttonSave1.Text = "Spara";
             this.buttonSave1.UseVisualStyleBackColor = true;
+            this.buttonSave1.Click += new System.EventHandler(this.buttonSave1_Click);
             // 
             // buttonDelete1
             // 
@@ -189,6 +190,7 @@
             this.buttonSave2.TabIndex = 16;
             this.buttonSave2.Text = "Spara";
             this.buttonSave2.UseVisualStyleBackColor = true;
+            this.buttonSave2.Click += new System.EventHandler(this.buttonSave2_Click);
             // 
             // buttonDelete2
             // 

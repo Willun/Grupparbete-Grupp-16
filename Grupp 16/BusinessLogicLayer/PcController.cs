@@ -22,6 +22,13 @@ namespace BusinessLogicLayer
             podcastRepository.New(podcast);
         }
 
+        public Podcast CreatePodcastSave(string url, int avsnitt, string namn, int frekvens, string kategori)
+        {
+            List<Episode> episodes = eController.GetEpisodes(url);
+            Podcast podcast = new Podcast(url, avsnitt, namn, frekvens, kategori, episodes);
+            return podcast;
+        }
+
         public List<Podcast> GetPodcastList()
         {
             return podcastRepository.GetAll();

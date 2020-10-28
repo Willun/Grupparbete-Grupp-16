@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace BusinessLogicLayer
 {
-    class EController
+    public class EController
     {
         public EController()
         {
@@ -29,5 +29,7 @@ namespace BusinessLogicLayer
 
             return episodeList;
         }
+
+
     }
 }
