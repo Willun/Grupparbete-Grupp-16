@@ -44,7 +44,7 @@
             this.buttonNew2 = new System.Windows.Forms.Button();
             this.buttonSave2 = new System.Windows.Forms.Button();
             this.buttonDelete2 = new System.Windows.Forms.Button();
-            this.listBoxViewer = new System.Windows.Forms.ListBox();
+            this.listBoxEpisodeDescriptionViewer = new System.Windows.Forms.ListBox();
             this.comboBoxUpdateFrequency = new System.Windows.Forms.ComboBox();
             this.comboBoxCategory = new System.Windows.Forms.ComboBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
@@ -129,7 +129,7 @@
             // 
             this.listBoxEpisodes.FormattingEnabled = true;
             this.listBoxEpisodes.ItemHeight = 20;
-            this.listBoxEpisodes.Location = new System.Drawing.Point(48, 909);
+            this.listBoxEpisodes.Location = new System.Drawing.Point(36, 925);
             this.listBoxEpisodes.Name = "listBoxEpisodes";
             this.listBoxEpisodes.Size = new System.Drawing.Size(900, 304);
             this.listBoxEpisodes.TabIndex = 10;
@@ -202,14 +202,15 @@
             this.buttonDelete2.UseVisualStyleBackColor = true;
             this.buttonDelete2.Click += new System.EventHandler(this.buttonDelete2_Click);
             // 
-            // listBoxViewer
+            // listBoxEpisodeDescriptionViewer
             // 
-            this.listBoxViewer.FormattingEnabled = true;
-            this.listBoxViewer.ItemHeight = 20;
-            this.listBoxViewer.Location = new System.Drawing.Point(1010, 585);
-            this.listBoxViewer.Name = "listBoxViewer";
-            this.listBoxViewer.Size = new System.Drawing.Size(798, 624);
-            this.listBoxViewer.TabIndex = 18;
+            this.listBoxEpisodeDescriptionViewer.FormattingEnabled = true;
+            this.listBoxEpisodeDescriptionViewer.ItemHeight = 20;
+            this.listBoxEpisodeDescriptionViewer.Location = new System.Drawing.Point(1010, 585);
+            this.listBoxEpisodeDescriptionViewer.Name = "listBoxEpisodeDescriptionViewer";
+            this.listBoxEpisodeDescriptionViewer.Size = new System.Drawing.Size(798, 624);
+            this.listBoxEpisodeDescriptionViewer.TabIndex = 18;
+            this.listBoxEpisodeDescriptionViewer.SelectedIndexChanged += new System.EventHandler(this.listBoxViewer_SelectedIndexChanged);
             // 
             // comboBoxUpdateFrequency
             // 
@@ -260,7 +261,7 @@
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.comboBoxCategory);
             this.Controls.Add(this.comboBoxUpdateFrequency);
-            this.Controls.Add(this.listBoxViewer);
+            this.Controls.Add(this.listBoxEpisodeDescriptionViewer);
             this.Controls.Add(this.buttonDelete2);
             this.Controls.Add(this.buttonSave2);
             this.Controls.Add(this.buttonNew2);
@@ -302,7 +303,7 @@
         private System.Windows.Forms.Button buttonNew2;
         private System.Windows.Forms.Button buttonSave2;
         private System.Windows.Forms.Button buttonDelete2;
-        private System.Windows.Forms.ListBox listBoxViewer;
+        private System.Windows.Forms.ListBox listBoxEpisodeDescriptionViewer;
         private System.Windows.Forms.ComboBox comboBoxUpdateFrequency;
         private System.Windows.Forms.ComboBox comboBoxCategory;
         private System.Windows.Forms.Button buttonNew1;

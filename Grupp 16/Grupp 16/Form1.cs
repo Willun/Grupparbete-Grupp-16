@@ -137,20 +137,40 @@ namespace Grupp_16
 
         private void listBoxEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //int curEpisode = listBoxEpisodes.SelectedIndex;
-            //string eName = eController.GetENameByIndex(curEpisode);
+            if (listBoxEpisodes.SelectedItems.Count == 1)
+            {
+                int curPodcast = listBoxShowPodcast.SelectedIndex;
+                string curEpisode = listBoxEpisodes.SelectedIndex.ToString();
+                string pcName = pcController.GetPcNameByIndex(curPodcast);
+                Podcast pc = pcController.GetPodcastByNameWithoutAddingToListBox(pcName);
 
-            //if (listBoxShowPodcast.SelectedItems.Count == 1)
+                List<Episode> episodes = eController.GetEpisodes(pc.Url);
+                int index = episodes.FindIndex(a => a.ToString() == curEpisode);
+                Episode episode = episodes[index];
+
+                foreach (var item in episodes)
+                {
+                    if (item.Title.Equals(episode))
+                    {
+                        listBoxEpisodeDescriptionViewer.Items.Add(item.Description);
+                    }
+                }
+            }
+            else
+            {
+                listBoxEpisodeDescriptionViewer.Items.Clear();
+            }
+
+            //if (listboxshowpodcast.selecteditems.count == 1)
             //{
-
-            //    int eIndex = listBoxEpisodes.SelectedIndex;
-            //    int feedIndex = listBoxShowPodcast.SelectedItems[0].;
-            //    string description = EntitetsLogik.HamtaAvsnittsBeskrivning(feedIndex, episodeIndex);
-            //    Populator.UppdateraLista(avsnittsBeskrivningTextruta, description);
+            //    int eindex = listboxepisodes.selectedindex;
+            //    int feedindex = listboxshowpodcast.selecteditems[0].;
+            //    string description = entitetslogik.hamtaavsnittsbeskrivning(feedindex, episodeindex);
+            //    populator.uppdateralista(avsnittsbeskrivningtextruta, description);
             //}
             //else
             //{
-            //    avsnittsBeskrivningTextruta.Clear();
+            //    avsnittsbeskrivningtextruta.clear();
             //}
         }
 
@@ -312,6 +332,11 @@ namespace Grupp_16
             {
                 MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
             }
+        }
+
+        private void listBoxViewer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         //private void buttonSave1_Click(object sender, EventArgs e)
