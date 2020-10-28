@@ -161,6 +161,7 @@
             this.listBoxCategory.Name = "listBoxCategory";
             this.listBoxCategory.Size = new System.Drawing.Size(798, 324);
             this.listBoxCategory.TabIndex = 13;
+            this.listBoxCategory.SelectedIndexChanged += new System.EventHandler(this.listBoxCategory_SelectedIndexChanged);
             // 
             // textBoxCategory
             // 
@@ -168,6 +169,7 @@
             this.textBoxCategory.Name = "textBoxCategory";
             this.textBoxCategory.Size = new System.Drawing.Size(798, 26);
             this.textBoxCategory.TabIndex = 14;
+            this.textBoxCategory.TextChanged += new System.EventHandler(this.textBoxCategory_TextChanged);
             // 
             // buttonNew2
             // 
@@ -225,8 +227,6 @@
             // comboBoxCategory
             // 
             this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Items.AddRange(new object[] {
-            "hej"});
             this.comboBoxCategory.Location = new System.Drawing.Point(712, 678);
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(235, 28);
@@ -253,7 +253,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1852, 1062);
+            this.ClientSize = new System.Drawing.Size(1866, 1241);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.comboBoxCategory);

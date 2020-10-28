@@ -44,5 +44,7 @@ namespace BusinessLogicLayer
             string kategorin = kategori.Namn;
             return kategorin;
         }
+
+
     }
 }

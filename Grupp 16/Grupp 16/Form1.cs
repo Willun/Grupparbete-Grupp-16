@@ -13,17 +13,21 @@ namespace Grupp_16
     public partial class Form1 : Form
     {
         PcController pcController = new PcController();
-        PcRepository pcRepository = new PcRepository();
         KController kController = new KController();
+        PcRepository pcRepository = new PcRepository();
         KategoriRepository kategoriRepository = new KategoriRepository();
         Validation validation = new Validation();
-        XMLController xMLController = new XMLController();
 
         public Form1()
         {
             InitializeComponent();
             showPodcast();
             showCategory();
+            List<Kategori> kategori = kategoriRepository.GetAll();
+            foreach (var item in kategori)
+            {
+                comboBoxCategory.Items.Add(item.Namn);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,7 +37,16 @@ namespace Grupp_16
 
         private void buttonDelete1_Click(object sender, EventArgs e)
         {
+            int curPodcast = listBoxShowPodcast.SelectedIndex;
+            pcRepository.Delete(curPodcast);
+            listBoxShowPodcast.Items.Clear();
+            listBoxEpisodes.Items.Clear();
+            showPodcast();
 
+            textBoxName.Text = "";
+            textBoxUrl.Text = "";
+            comboBoxUpdateFrequency.Text = "";
+            comboBoxCategory.Text = "";
         }
 
         private void textBoxUrl_TextChanged(object sender, EventArgs e)
@@ -126,7 +139,7 @@ namespace Grupp_16
             listBoxEpisodes.Items.Clear();
             int curPodcast = listBoxShowPodcast.SelectedIndex;
             string pcName = pcController.GetPcNameByIndex(curPodcast);
-            Podcast pc = pcController.GetPodcastByNameXXX(pcName);
+            Podcast pc = pcController.GetPodcastByNameWithoutAddingToListBox(pcName);
 
             foreach (var item in pc.episodeList)
             {
@@ -156,12 +169,14 @@ namespace Grupp_16
                     try
                     {
                         listBoxCategory.Items.Clear();
-
                         //cts.CancelAfter(2500);
                         //Task asyncAddingFeed = new Task(() => AddNewFeedToPersistent(cts));
                         //asyncAddingFeed.Start();
                         kController.CreateCategory(textBoxCategory.Text);
+                        comboBoxCategory.Items.Add(textBoxCategory.Text);
                         showCategory();
+                        textBoxCategory.Text = "";
+
                     }
                     catch (OperationCanceledException)
                     {
@@ -184,6 +199,28 @@ namespace Grupp_16
         }
 
         private void buttonDelete2_Click(object sender, EventArgs e)
+        {
+            int curKategori = listBoxCategory.SelectedIndex;
+            kategoriRepository.Delete(curKategori);
+            listBoxCategory.Items.Clear();
+            textBoxCategory.Text = "";
+            showCategory();
+            comboBoxCategory.Items.Clear();
+            List<Kategori> kategori = kategoriRepository.GetAll();
+            foreach (var item in kategori)
+            {
+                comboBoxCategory.Items.Add(item.Namn);
+            }
+        }
+
+        private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int curKategori = listBoxShowPodcast.SelectedIndex;
+            string kName = curKategori.ToString();
+            textBoxCategory.Text = kName;
+        }
+
+        private void textBoxCategory_TextChanged(object sender, EventArgs e)
         {
 
         }

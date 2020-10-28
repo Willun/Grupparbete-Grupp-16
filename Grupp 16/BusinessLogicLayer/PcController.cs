@@ -34,7 +34,7 @@ namespace BusinessLogicLayer
             return podcasten;
         }
 
-        public Podcast GetPodcastByNameXXX(string name)
+        public Podcast GetPodcastByNameWithoutAddingToListBox(string name)
         {
             Podcast podcast = podcastRepository.GetByNamn(name);
             return podcast;
