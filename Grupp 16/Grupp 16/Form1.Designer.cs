@@ -320,7 +320,7 @@
             // lableEpisodeDescription
             // 
             this.lableEpisodeDescription.AutoSize = true;
-            this.lableEpisodeDescription.Location = new System.Drawing.Point(1155, 706);
+            this.lableEpisodeDescription.Location = new System.Drawing.Point(659, 496);
             this.lableEpisodeDescription.Name = "lableEpisodeDescription";
             this.lableEpisodeDescription.Size = new System.Drawing.Size(180, 20);
             this.lableEpisodeDescription.TabIndex = 29;

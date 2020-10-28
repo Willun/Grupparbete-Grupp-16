@@ -154,8 +154,9 @@ namespace Grupp_16
 
         private void listBoxEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            listBoxEpisodeDescriptionViewer.Items.Clear();
             string episodeName = listBoxEpisodes.SelectedItem.ToString();
-            lableEpisodeDescription.Text = episodeName;
+            //lableEpisodeDescription.Text = episodeName;
             int curPodcast = listBoxShowPodcast.SelectedIndex;
             string pcName = pcController.GetPcNameByIndex(curPodcast);
             Podcast pc = pcController.GetPodcastByNameWithoutAddingToListBox(pcName);
