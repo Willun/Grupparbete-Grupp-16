@@ -391,35 +391,51 @@ namespace Grupp_16
 
         private void buttonSave1_Click(object sender, EventArgs e)
         {
-            if (listBoxShowPodcast.SelectedItems.Count == 1)
+            try
             {
-                int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
-                int curPodcast = listBoxShowPodcast.SelectedIndex;
-                Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.Text);
-                pcRepository.Save(curPodcast, pc);
-                listBoxShowPodcast.Items.Clear();
-                showPodcast();
+                if (listBoxShowPodcast.SelectedItems.Count == 1)
+                {
+                    int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
+                    int curPodcast = listBoxShowPodcast.SelectedIndex;
+                    Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.Text);
+                    pcRepository.Save(curPodcast, pc);
+                    listBoxShowPodcast.Items.Clear();
+                    showPodcast();
 
-                textBoxName.Text = "";
-                textBoxUrl.Text = "";
-                comboBoxUpdateFrequency.Text = "";
-                comboBoxCategory.Text = "";
+                    textBoxName.Text = "";
+                    textBoxUrl.Text = "";
+                    comboBoxUpdateFrequency.Text = "";
+                    comboBoxCategory.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                throw;
             }
         }
 
         private void buttonSave2_Click(object sender, EventArgs e)
         {
+
             if (listBoxCategory.SelectedItems.Count == 1)
             {
-                int curKategori = listBoxShowPodcast.SelectedIndex;
+                int curKategori = listBoxCategory.SelectedIndex;
                 Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
                 kategoriRepository.Save(curKategori, k);
                 listBoxCategory.Items.Clear();
+                textBoxCategory.Text = "";
                 showCategory();
+                showPodcast();
+                comboBoxCategory.Items.Clear();
+                List<Kategori> kategori = kategoriRepository.GetAll();
+                foreach (var item in kategori)
+                {
+                    comboBoxCategory.Items.Add(item.Namn);
+                }
             }
             else
             {
