@@ -8,7 +8,7 @@ namespace Models
         public string Url { get; set; }
         public int Avsnitt { get; set; }
         public string Namn { get; set; }
-        public int Frekvens { get; set; }
+        public double Frekvens { get; set; }
         public string Kategori { get; set; }
         public string UpdateFrequency { get; set; }
         public DateTime LastUpdated { get; set; }
@@ -27,6 +27,20 @@ namespace Models
         public Podcast()
         {
 
+        }
+
+        public bool NeedsUpdate
+        {
+            get
+            {
+                return LastUpdated <= DateTime.Now;
+            }
+        }
+
+        public string Update()
+        {
+            LastUpdated = DateTime.Now.AddMinutes(Frekvens);
+            return Namn + "'s Update() was invoked. Next update is at " + LastUpdated;
         }
     }
 }
