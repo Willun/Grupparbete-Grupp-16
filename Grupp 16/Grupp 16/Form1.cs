@@ -481,41 +481,49 @@ namespace Grupp_16
                     if (listBoxCategory.SelectedItems.Count == 1)
                     {
                         int curKategori = listBoxCategory.SelectedIndex;
+                        string curCategoryName = listBoxCategory.SelectedItem.ToString();
+                        bool hasItems = false;
                         Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
                         List<Podcast> podcasts = pcRepository.GetAll();
                         List<Podcast> podcastsToSave = new List<Podcast>();
 
+                        List<Kategori> kategoriList = kategoriRepository.GetAll();
+                        foreach (var item in kategoriList)
+                        {
+                            comboBoxCategory.Items.Add(item.Namn);
+                        }
+
                         foreach (var item in podcasts)
                         {
-                            if (k.Namn.Equals(item.Kategori))
+                            if (curCategoryName.Equals(item.Kategori))
                             {
                                 podcastsToSave.Add(item);
+
+                                hasItems = true;
                             }
                         }
 
-                        if (podcastsToSave.Count() >= 0)
+                        if (hasItems)
                         {
-                            //double frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
                             foreach (var item in podcastsToSave)
                             {
                                 //Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, 100, textBoxName.Text, frekvens, k.Namn);
                                 //item.Kategori = k.Namn;
                                 //pcRepository.Save(index, item);
-                                pcController.UpdatePodcastCategory(item.Kategori, k.Namn);
-                            }
-                            kategoriRepository.Save(curKategori, k);
-                            listBoxCategory.Items.Clear();
-                            textBoxCategory.Text = "";
-                            showCategory();
-                            listBoxShowPodcast.Items.Clear();
-                            showPodcast();
-                            comboBoxCategory.Items.Clear();
-                            List<Kategori> kategoriList = kategoriRepository.GetAll();
-                            foreach (var item in kategoriList)
-                            {
-                                comboBoxCategory.Items.Add(item.Namn);
+                                //pcController.UpdatePodcastCategory(item.Kategori, k.Namn);
+                                Podcast pc = pcController.CreatePodcastSave(item.Url, 100, item.Namn, item.Frekvens, k.Namn);
+                                int i = pcRepository.GetPodcastList().IndexOf(item);
+                                pcRepository.Save(i, pc);
                             }
                         }
+
+                        kategoriRepository.Save(curKategori, k);
+                        listBoxCategory.Items.Clear();
+                        textBoxCategory.Text = "";
+                        showCategory();
+                        listBoxShowPodcast.Items.Clear();
+                        showPodcast();
+                        comboBoxCategory.Items.Clear();
                     }
                 }
                 else
