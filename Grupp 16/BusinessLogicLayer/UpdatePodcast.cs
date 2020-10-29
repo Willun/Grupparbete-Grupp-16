@@ -1,34 +1,33 @@
-﻿//namespace BusinessLogicLayer
-//{
-//    class UpdatePodcast
-//    {
+﻿namespace BusinessLogicLayer
+{
+    class UpdatePodcast
+    {
 
-//        public static string[] frekvenser =
-//        {
-//         "10 Sekunder"
-//         "30 Sekunder"
-//         "1 Minut"
+        public static string[] frequencyList =
+        {
+         "10 sek",
+         "1 min",
+         "10 min",
+         "1 h",
+         "1 dag"
+        };
 
-//    };
+        public enum Frequency
+        {
+            sek,
+            min,
+            h,
+            dag,
+        }
 
-//        public enum frekvens
-//        {
-//            sek,
-//            min,
-//        }
+        public static string GetFrequency(Frequency namn)
+        {
+            return frequencyList[(int)namn];
+        }
 
-//        public static string Getfrekvens(frekvens namn)
-//        {
-
-//            return frekvenserg[(int)namn];
-
-//        }
-
-
-//        public static string[] readfrekvens()
-//        {
-//            return frekvenser;
-//        }
-
-//    }
-//}
+        public static string[] GetFrequencys()
+        {
+            return frequencyList;
+        }
+    }
+}

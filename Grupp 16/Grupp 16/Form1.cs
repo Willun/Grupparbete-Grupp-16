@@ -4,6 +4,7 @@ using Grupp16;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Windows.Forms;
 using System.Xml;
@@ -19,8 +20,10 @@ namespace Grupp_16
         KategoriRepository kategoriRepository = new KategoriRepository();
         Validation validation = new Validation();
 
-        private Timer timer1 = new Timer();
-        int numberOfTimeUpdated = 0;
+        //private Timer timer1 = new Timer();
+        //int numberOfTimeUpdated = 0;
+
+        int index = 0;
 
         public Form1()
         {
@@ -33,9 +36,9 @@ namespace Grupp_16
                 comboBoxCategory.Items.Add(item.Namn);
             }
 
-            timer1.Interval = 1000;
-            timer1.Tick += Timer1_Tick;
-            timer1.Start();
+            //timer1.Interval = 1000;
+            //timer1.Tick += Timer1_Tick;
+            //timer1.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -43,17 +46,17 @@ namespace Grupp_16
 
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            foreach (var podcast in pcRepository.GetAll())
-            {
-                if (podcast.NeedsUpdate)
-                {
-                    podcast.Update();
-                    numberOfTimeUpdated++;
-                }
-            }
-        }
+        //private void Timer1_Tick(object sender, EventArgs e)
+        //{
+        //    foreach (var podcast in pcRepository.GetAll())
+        //    {
+        //        if (podcast.NeedsUpdate)
+        //        {
+        //            podcast.Update();
+        //            numberOfTimeUpdated++;
+        //        }
+        //    }
+        //}
 
         private void buttonDelete1_Click(object sender, EventArgs e)
         {
@@ -82,12 +85,11 @@ namespace Grupp_16
             }
         }
 
-
         private void buttonNew1_Click(object sender, EventArgs e)
         {
-            if (textBoxUrl.Text != null && comboBoxUpdateFrequency.SelectedItem != null && comboBoxCategory.SelectedItem != null)
+            if (textBoxName.Text != "" && textBoxUrl.Text != null && comboBoxUpdateFrequency.SelectedItem != null && comboBoxCategory.SelectedItem != null)
             {
-                if (validation.CheckIfValidFeed(textBoxUrl.Text))
+                if (validation.CheckIfValidURL(textBoxUrl.Text))
                 {
                     try
                     {
@@ -254,6 +256,8 @@ namespace Grupp_16
 
         private void deselectListBoxCategory()
         {
+            listBoxShowPodcast.Items.Clear();
+            showPodcast();
             listBoxCategory.ClearSelected();
         }
 
@@ -306,7 +310,7 @@ namespace Grupp_16
 
         private void buttonNew2_Click(object sender, EventArgs e)
         {
-            if (textBoxCategory.Text != null)
+            if (textBoxCategory.Text != "")
             {
                 if (validation.CheckIfItemInListAlreadyExists(kController.GetKategoriListStrings(), textBoxCategory.Text))
                 {
@@ -320,7 +324,6 @@ namespace Grupp_16
                         comboBoxCategory.Items.Add(textBoxCategory.Text);
                         showCategory();
                         textBoxCategory.Text = "";
-
                     }
                     catch (OperationCanceledException)
                     {
@@ -344,43 +347,91 @@ namespace Grupp_16
 
         private void buttonDelete2_Click(object sender, EventArgs e)
         {
-            int curKategori = listBoxCategory.SelectedIndex;
-            kategoriRepository.Delete(curKategori);
-            listBoxCategory.Items.Clear();
-            textBoxCategory.Text = "";
-            showCategory();
-            showPodcast();
-            comboBoxCategory.Items.Clear();
-            List<Kategori> kategori = kategoriRepository.GetAll();
-            foreach (var item in kategori)
+            if (textBoxCategory.Text != "")
             {
-                comboBoxCategory.Items.Add(item.Namn);
-            }
-        }
-
-        private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxCategory.SelectedItems.Count == 1)
-            {
-                int curKategori = listBoxCategory.SelectedIndex;
-                string kName = kController.GetKNameByIndex(curKategori);
-                Kategori k = kController.GetKategoriByNameWithoutAddingToListBox(kName);
-                textBoxCategory.Text = k.Namn;
-                //string curKategori = listBoxCategory.SelectedIndex.ToString();
-                //textBoxCategory.Text = curKategori;
-                List<Podcast> podcasts = pcRepository.GetAll();
-                listBoxShowPodcast.Items.Clear();
-                foreach (var item in podcasts)
+                if (listBoxCategory.SelectedItems.Count == 1)
                 {
-                    if (item.Kategori.Equals(k.Namn))
+                    int curKategori = listBoxCategory.SelectedIndex;
+                    Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
+                    List<Podcast> podcasts = pcRepository.GetAll();
+                    List<Podcast> podcastsToDelete = new List<Podcast>();
+
+                    foreach (var item in podcasts)
                     {
-                        listBoxShowPodcast.Items.Add(item.Avsnitt.ToString() + "   " + item.Namn + "   " + "Var " + item.Frekvens.ToString() + ":e " + "minut" + "   " + item.Kategori);
+                        if (k.Namn.Equals(item.Kategori))
+                        {
+                            podcastsToDelete.Add(item);
+                        }
+                    }
+
+                    if (podcastsToDelete.Count() >= 0)
+                    {
+                        DialogResult dr = MessageBox.Show("Are you sure you want to delete the category and all the podcasts that has it as it's category?",
+                        "Delete Category", MessageBoxButtons.YesNo);
+
+                        switch (dr)
+                        {
+                            case DialogResult.Yes:
+                                foreach (var item in podcastsToDelete)
+                                {
+                                    pcRepository.Delete(index);
+                                    index++;
+                                }
+                                kategoriRepository.Delete(curKategori);
+                                listBoxCategory.Items.Clear();
+                                textBoxCategory.Text = "";
+                                showCategory();
+                                listBoxShowPodcast.Items.Clear();
+                                showPodcast();
+                                comboBoxCategory.Items.Clear();
+                                List<Kategori> kategoriList = kategoriRepository.GetAll();
+                                foreach (var item in kategoriList)
+                                {
+                                    comboBoxCategory.Items.Add(item.Namn);
+                                }
+                                index = 0;
+                                break;
+                            case DialogResult.No:
+                                break;
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                }
             }
-            else
+        }
+        private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
             {
-                MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                if (listBoxCategory.SelectedItems.Count == 1)
+                {
+                    int curKategori = listBoxCategory.SelectedIndex;
+                    string kName = kController.GetKNameByIndex(curKategori);
+                    Kategori k = kController.GetKategoriByNameWithoutAddingToListBox(kName);
+                    textBoxCategory.Text = k.Namn;
+                    //string curKategori = listBoxCategory.SelectedIndex.ToString();
+                    //textBoxCategory.Text = curKategori;
+                    List<Podcast> podcasts = pcRepository.GetAll();
+                    listBoxShowPodcast.Items.Clear();
+                    foreach (var item in podcasts)
+                    {
+                        if (item.Kategori.Equals(k.Namn))
+                        {
+                            listBoxShowPodcast.Items.Add(item.Avsnitt.ToString() + "   " + item.Namn + "   " + "Var " + item.Frekvens.ToString() + ":e " + "minut" + "   " + item.Kategori);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                }
+            }
+            catch (System.NullReferenceException)
+            {
+                throw;
             }
         }
 
@@ -391,57 +442,93 @@ namespace Grupp_16
 
         private void buttonSave1_Click(object sender, EventArgs e)
         {
+            if (textBoxName.Text != "" && textBoxUrl.Text != null && comboBoxUpdateFrequency.SelectedItem != null && comboBoxCategory.SelectedItem != null)
+            {
+                try
+                {
+                    if (listBoxShowPodcast.SelectedItems.Count == 1)
+                    {
+                        int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
+                        int curPodcast = listBoxShowPodcast.SelectedIndex;
+                        Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.Text);
+                        pcRepository.Save(curPodcast, pc);
+                        listBoxShowPodcast.Items.Clear();
+                        showPodcast();
+
+                        textBoxName.Text = "";
+                        textBoxUrl.Text = "";
+                        comboBoxUpdateFrequency.Text = "";
+                        comboBoxCategory.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        private void buttonSave2_Click(object sender, EventArgs e)
+        {
             try
             {
-                if (listBoxShowPodcast.SelectedItems.Count == 1)
+                if (textBoxCategory.Text != "")
                 {
-                    int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
-                    int curPodcast = listBoxShowPodcast.SelectedIndex;
-                    Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.Text);
-                    pcRepository.Save(curPodcast, pc);
-                    listBoxShowPodcast.Items.Clear();
-                    showPodcast();
+                    if (listBoxCategory.SelectedItems.Count == 1)
+                    {
+                        int curKategori = listBoxCategory.SelectedIndex;
+                        Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
+                        List<Podcast> podcasts = pcRepository.GetAll();
+                        List<Podcast> podcastsToSave = new List<Podcast>();
 
-                    textBoxName.Text = "";
-                    textBoxUrl.Text = "";
-                    comboBoxUpdateFrequency.Text = "";
-                    comboBoxCategory.Text = "";
+                        foreach (var item in podcasts)
+                        {
+                            if (k.Namn.Equals(item.Kategori))
+                            {
+                                podcastsToSave.Add(item);
+                            }
+                        }
+
+                        if (podcastsToSave.Count() >= 0)
+                        {
+                            //double frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
+                            foreach (var item in podcastsToSave)
+                            {
+                                //Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, 100, textBoxName.Text, frekvens, k.Namn);
+                                //item.Kategori = k.Namn;
+                                //pcRepository.Save(index, item);
+                                pcController.UpdatePodcastCategory(item.Kategori, k.Namn);
+                            }
+                            kategoriRepository.Save(curKategori, k);
+                            listBoxCategory.Items.Clear();
+                            textBoxCategory.Text = "";
+                            showCategory();
+                            listBoxShowPodcast.Items.Clear();
+                            showPodcast();
+                            comboBoxCategory.Items.Clear();
+                            List<Kategori> kategoriList = kategoriRepository.GetAll();
+                            foreach (var item in kategoriList)
+                            {
+                                comboBoxCategory.Items.Add(item.Namn);
+                            }
+                        }
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
                 }
             }
-            catch (Exception)
+            catch (System.ArgumentOutOfRangeException)
             {
                 throw;
             }
         }
 
-        private void buttonSave2_Click(object sender, EventArgs e)
-        {
-
-            if (listBoxCategory.SelectedItems.Count == 1)
-            {
-                int curKategori = listBoxCategory.SelectedIndex;
-                Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
-                kategoriRepository.Save(curKategori, k);
-                listBoxCategory.Items.Clear();
-                textBoxCategory.Text = "";
-                showCategory();
-                showPodcast();
-                comboBoxCategory.Items.Clear();
-                List<Kategori> kategori = kategoriRepository.GetAll();
-                foreach (var item in kategori)
-                {
-                    comboBoxCategory.Items.Add(item.Namn);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
-            }
-        }
 
         private void listBoxViewer_SelectedIndexChanged(object sender, EventArgs e)
         {

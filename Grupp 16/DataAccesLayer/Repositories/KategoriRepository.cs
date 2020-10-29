@@ -25,11 +25,18 @@ namespace DataAccesLayer.Repositories
 
         public void Save(int index, Kategori kategori)
         {
-            if (index >= 0)
+            try
             {
-                kategoriList[index] = kategori;
+                if (index >= 0)
+                {
+                    kategoriList[index] = kategori;
+                }
+                SaveAllChanges();
             }
-            SaveAllChanges();
+            catch (System.ArgumentOutOfRangeException)
+            {
+                throw;
+            }
         }
 
         public void Delete(int index)

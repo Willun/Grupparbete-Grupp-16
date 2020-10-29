@@ -1,12 +1,18 @@
 <?xml version="1.0"?>
 <ArrayOfKategori xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Kategori>
-    <Namn>Skräck</Namn>
+    <Namn>hej</Namn>
   </Kategori>
   <Kategori>
-    <Namn>hejdå</Namn>
+    <Namn>hejdågfdgfdgfdgd</Namn>
   </Kategori>
   <Kategori>
-    <Namn>hejdårenfdsfdsfds</Namn>
+    <Namn>hejdågfdgfdgfdgfdgfdgfdgfdgfdgfdgfd</Namn>
+  </Kategori>
+  <Kategori>
+    <Namn>hejdåhejdå</Namn>
+  </Kategori>
+  <Kategori>
+    <Namn>hejdåhejhej</Namn>
   </Kategori>
 </ArrayOfKategori>

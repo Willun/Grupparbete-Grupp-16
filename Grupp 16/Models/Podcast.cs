@@ -14,7 +14,7 @@ namespace Models
         public DateTime LastUpdated { get; set; }
         public List<Episode> episodeList { get; set; }
 
-        public Podcast(string url, int avsnitt, string namn, int frekvens, string kategori, List<Episode> episodes)
+        public Podcast(string url, int avsnitt, string namn, double frekvens, string kategori, List<Episode> episodes)
         {
             Url = url;
             Avsnitt = avsnitt;
@@ -37,10 +37,18 @@ namespace Models
             }
         }
 
-        public string Update()
+        //public string Update()
+        //{
+        //    LastUpdated = DateTime.Now.AddMinutes(Frekvens);
+        //    return Namn + "'s Update() was invoked. Next update is at " + LastUpdated;
+        //}
+
+        public class PodcastList : List<Podcast>
         {
-            LastUpdated = DateTime.Now.AddMinutes(Frekvens);
-            return Namn + "'s Update() was invoked. Next update is at " + LastUpdated;
+            public PodcastList()
+            {
+
+            }
         }
     }
 }

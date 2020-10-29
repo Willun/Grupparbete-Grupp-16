@@ -8,7 +8,7 @@ namespace Grupp16
 {
     public class Validation
     {
-        public bool CheckIfValidFeed(string url)
+        public bool CheckIfValidURL(string url)
         {
             try
             {
@@ -21,6 +21,18 @@ namespace Grupp16
                 return true;
             }
             catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool OmKorrektXML(XmlDocument dokument)
+        {
+            if (dokument.ChildNodes.Count != 0)
+            {
+                return String.Equals(dokument.ChildNodes[1].Name.ToString(), "rss", StringComparison.OrdinalIgnoreCase);
+            }
+            else
             {
                 return false;
             }

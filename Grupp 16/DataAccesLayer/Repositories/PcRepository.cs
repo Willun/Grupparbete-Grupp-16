@@ -35,8 +35,15 @@ namespace DataAccesLayer.Repositories
 
         public void Delete(int index)
         {
-            podcastList.RemoveAt(index);
-            SaveAllChanges();
+            try
+            {
+                podcastList.RemoveAt(index);
+                SaveAllChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void SaveAllChanges()
@@ -53,6 +60,7 @@ namespace DataAccesLayer.Repositories
             }
             catch (Exception)
             {
+
             }
             return podcastListToBeReturned;
         }
@@ -81,6 +89,16 @@ namespace DataAccesLayer.Repositories
         public string GetName(int index)
         {
             return podcastList[index].Namn;
+        }
+
+        public List<Podcast> GetPodcastList()
+        {
+            return podcastList;
+        }
+
+        public void SetPodcastList(List<Podcast> podcasts)
+        {
+            podcastList = podcasts;
         }
     }
 }
