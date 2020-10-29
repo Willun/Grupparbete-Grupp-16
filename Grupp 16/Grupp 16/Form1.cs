@@ -465,7 +465,7 @@ namespace Grupp_16
                         MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
                     }
                 }
-                catch (Exception)
+                catch (System.ArgumentOutOfRangeException)
                 {
                     throw;
                 }

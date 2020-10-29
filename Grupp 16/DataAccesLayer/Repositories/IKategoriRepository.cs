@@ -4,10 +4,7 @@ namespace DataAccesLayer.Repositories
 {
     public interface IKategoriRepository<T> : IRepository<T> where T : Kategori
     {
-        //T GetByNamn(string namn);
-  
-
-
+        T GetByNamn(string namn);
     }
 
 
