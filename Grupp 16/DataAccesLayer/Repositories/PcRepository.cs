@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DataAccesLayer.Repositories
 {
@@ -20,6 +21,7 @@ namespace DataAccesLayer.Repositories
 
         public void New(Podcast podcast)
         {
+            podcastList = GetAll();
             podcastList.Add(podcast);
             SaveAllChanges();
         }
@@ -67,16 +69,16 @@ namespace DataAccesLayer.Repositories
 
         public Podcast GetByNamn(string namn)
         {
-            Podcast pc = new Podcast();
-            List<Podcast> podcasts = GetAll();
-            foreach (var item in podcasts)
-            {
-                if (item.Namn.Equals(namn))
-                {
-                    pc = item;
-                }
-            }
-            return pc;
+            //Podcast pc = new Podcast();
+            //List<Podcast> podcasts = GetAll();
+            //foreach (var item in podcasts)
+            //{
+            //    if (item.Namn.Equals(namn))
+            //    {
+            //        pc = item;
+            //    }
+            //}
+            return GetAll().First(p => p.Namn.Equals(namn));
             //Podcast pc = GetAll().FirstOrDefault(p => p.Namn.Equals(namn));
         }
 
@@ -87,17 +89,17 @@ namespace DataAccesLayer.Repositories
 
         public string GetName(int index)
         {
-            return podcastList[index].Namn;
-        }
-
-        public List<Podcast> GetPodcastList()
-        {
-            return podcastList;
+            return GetAll()[index].Namn;
         }
 
         public void SetPodcastList(List<Podcast> podcasts)
         {
             podcastList = podcasts;
+        }
+
+        public List<Episode> GetEpisodeList()
+        {
+            return episodeList;
         }
     }
 }

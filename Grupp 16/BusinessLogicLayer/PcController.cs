@@ -8,11 +8,11 @@ namespace BusinessLogicLayer
 {
     public class PcController
     {
-        PcRepository pcRepository = new PcRepository();
+        //PcRepository pcRepository = new PcRepository();
         EController eController = new EController();
-        private IPcRepository<Podcast> podcastRepository;
+        IPcRepository<Podcast> podcastRepository;
 
-        List<string> urlList = new List<string>();
+        //List<string> urlList = new List<string>();
         private static PodcastList AllPodcastList = new PodcastList();
         private static PodcastList AllFilteredPodcastList = new PodcastList();
 
@@ -23,10 +23,10 @@ namespace BusinessLogicLayer
 
         public void CreatePodcast(string url, string namn, double frekvens, string kategori)
         {
-            List<Episode> episodes = eController.GetEpisodes(url);
-            int amountOfEpisodes = episodes.Count();
-            Podcast podcast = new Podcast(url, amountOfEpisodes, namn, frekvens, kategori, episodes);
-            urlList.Add(podcast.Url);
+            //List<Episode> episodes = new List<Episode>();
+            int amountOfEpisodes = eController.GetEpisodes(url).Count();
+            Podcast podcast = new Podcast(url, amountOfEpisodes, namn, frekvens, kategori, eController.GetEpisodes(url));
+            //urlList.Add(podcast.Url);
             podcastRepository.New(podcast);
         }
 
@@ -38,16 +38,27 @@ namespace BusinessLogicLayer
             return podcast;
         }
 
-        public List<Podcast> GetPodcastList()
+        public List<Podcast> GetPCList()
         {
             return podcastRepository.GetAll();
         }
 
-        public string GetPodcastByName(string name)
+        //public string GetPodcastByName(string name)
+        //{
+        //    Podcast podcast = podcastRepository.GetByNamn(name);
+        //    string podcasten = "Name: " + podcast.Namn + "   Episodes: " + podcast.Avsnitt.ToString() + "   Frequency: every " + podcast.Frekvens.ToString() + " minutes   Category: " + podcast.Kategori;
+        //    return podcasten;
+        //}
+
+        public string GetPodcastNameByIndex(int index)
         {
-            Podcast podcast = podcastRepository.GetByNamn(name);
-            string podcasten = "Name: " + podcast.Namn + "   Episodes: " + podcast.Avsnitt.ToString() + "   Frequency: every " + podcast.Frekvens.ToString() + " minutes   Category: " + podcast.Kategori;
-            return podcasten;
+            return podcastRepository.GetName(index);
+        }
+
+        public Podcast GetPodcastByName(string name)
+        {
+            Podcast pc = podcastRepository.GetByNamn(name);
+            return pc;
         }
 
         //public Podcast GetPodcastByNameWithoutAddingToListBox(string name)
@@ -75,7 +86,7 @@ namespace BusinessLogicLayer
 
         public void UpdatePodcastCategory(string name, string newName)
         {
-            List<Podcast> podcasts = pcRepository.GetAll();
+            List<Podcast> podcasts = podcastRepository.GetAll();
             foreach (var item in podcasts)
             {
                 if (name.Equals(item.Kategori))
@@ -83,14 +94,14 @@ namespace BusinessLogicLayer
                     item.Kategori = newName;
                 }
             }
-            pcRepository.SetPodcastList(podcasts);
-            pcRepository.SaveAllChanges();
+            podcastRepository.SetPodcastList(podcasts);
+            podcastRepository.SaveAllChanges();
         }
 
-        public List<string> GetUrlList()
-        {
-            return urlList;
-        }
+        //public List<string> GetUrlList()
+        //{
+        //    return urlList;
+        //}
 
         //public int GetTheNumberOfEpisodesInAPodcast(Podcast pc)
         //{

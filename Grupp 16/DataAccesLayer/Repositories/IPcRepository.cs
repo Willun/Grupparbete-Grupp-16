@@ -1,10 +1,10 @@
 ﻿using Models;
+using System.Collections.Generic;
 
 namespace DataAccesLayer.Repositories
 {
     public interface IPcRepository<T> : IRepository<T> where T : Podcast
     {
-        T GetByNamn(string namn);
-        string GetName(int index);
+        void SetPodcastList(List<Podcast> podcasts);
     }
 }

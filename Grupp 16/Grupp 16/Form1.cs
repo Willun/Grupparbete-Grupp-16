@@ -62,8 +62,8 @@ namespace Grupp_16
         {
             int curPodcast = listBoxShowPodcast.SelectedIndex;
             pcRepository.Delete(curPodcast);
-            listBoxShowPodcast.Items.Clear();
             listBoxEpisodes.Items.Clear();
+            listBoxShowPodcast.Items.Clear();
             showPodcast();
 
             textBoxName.Text = "";
@@ -79,9 +79,9 @@ namespace Grupp_16
 
         private void showPodcast()
         {
-            foreach (var item in pcController.GetPodcastList())
+            foreach (var item in pcController.GetPCList())
             {
-                listBoxShowPodcast.Items.Add(pcController.GetPodcastByName(item.Namn));
+                listBoxShowPodcast.Items.Add("Name: " + item.Namn + "   Episodes: " + item.Avsnitt.ToString() + "   Frequency: every " + item.Frekvens.ToString() + " minutes   Category: " + item.Kategori);
             }
         }
 
@@ -163,7 +163,7 @@ namespace Grupp_16
                 //lableEpisodeDescription.Text = episodeName;
                 int curPodcast = listBoxShowPodcast.SelectedIndex;
                 string pcName = pcController.GetPcNameByIndex(curPodcast);
-                Podcast pc = pcController.GetPodcastByNameWithoutAddingToListBox(pcName);
+                Podcast pc = pcRepository.GetByNamn(pcName);
 
                 string selectedEpisodeName = listBoxEpisodes.SelectedItem.ToString();
                 List<Episode> episodes = eController.GetEpisodes(pc.Url);
@@ -265,13 +265,14 @@ namespace Grupp_16
         {
             try
             {
-                if (listBoxShowPodcast.SelectedItems.Count == 1)
+                if (listBoxShowPodcast.SelectedItem != null)
                 {
+                    listBoxEpisodes.Items.Clear();
                     int curPodcast = listBoxShowPodcast.SelectedIndex;
                     string pcName = pcController.GetPcNameByIndex(curPodcast);
-                    Podcast pc = pcRepository.GetByNamn(pcName);
-                    List<Episode> episodeList = pc.episodeList;
-
+                    Podcast pc = pcController.GetPodcastByName(pcName);
+                    //List<Episode> episodeList = pc.episodeList;
+                    Console.WriteLine(pc.Namn + pc.Url + pc.episodeList.ToString());
                     foreach (var item in pc.episodeList)
                     {
                         listBoxEpisodes.Items.Add(item.Title);
@@ -314,7 +315,7 @@ namespace Grupp_16
         {
             foreach (var item in kController.GetCategoryList())
             {
-                listBoxCategory.Items.Add(kController.GetKategoriByName(item.Namn));
+                listBoxCategory.Items.Add(item.Namn);
             }
         }
 
@@ -525,12 +526,12 @@ namespace Grupp_16
                                 //item.Kategori = k.Namn;
                                 //pcRepository.Save(index, item);
                                 //pcController.UpdatePodcastCategory(item.Kategori, k.Namn);
-                                foreach (var podcast in pcRepository.GetPodcastList())
+                                foreach (var podcast in pcController.GetPCList())
                                 {
                                     if (podcast.Kategori.Equals(item.Kategori))
                                     {
                                         Podcast pc = pcController.CreatePodcastSave(podcast.Url, podcast.Namn, podcast.Frekvens, k.Namn);
-                                        int i = pcRepository.GetPodcastList().IndexOf(podcast);
+                                        int i = pcController.GetPCList().IndexOf(podcast);
                                         pcRepository.Save(i, pc);
                                     }
                                 }

@@ -21,6 +21,7 @@ namespace Models
             Namn = namn;
             Frekvens = frekvens;
             Kategori = kategori;
+            episodeList = new List<Episode>();
             episodeList = episodes;
         }
 
