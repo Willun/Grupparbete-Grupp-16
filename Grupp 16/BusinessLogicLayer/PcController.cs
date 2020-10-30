@@ -21,18 +21,20 @@ namespace BusinessLogicLayer
             podcastRepository = new PcRepository();
         }
 
-        public void CreatePodcast(string url, int avsnitt, string namn, double frekvens, string kategori)
+        public virtual void CreatePodcast(string url, string namn, double frekvens, string kategori)
         {
             List<Episode> episodes = eController.GetEpisodes(url);
-            Podcast podcast = new Podcast(url, avsnitt, namn, frekvens, kategori, episodes);
+            int amountOfEpisodes = episodes.Count();
+            Podcast podcast = new Podcast(url, amountOfEpisodes, namn, frekvens, kategori, episodes);
             urlList.Add(podcast.Url);
             podcastRepository.New(podcast);
         }
 
-        public Podcast CreatePodcastSave(string url, int avsnitt, string namn, double frekvens, string kategori)
+        public Podcast CreatePodcastSave(string url, string namn, double frekvens, string kategori)
         {
             List<Episode> episodes = eController.GetEpisodes(url);
-            Podcast podcast = new Podcast(url, avsnitt, namn, frekvens, kategori, episodes);
+            int amountOfEpisodes = episodes.Count();
+            Podcast podcast = new Podcast(url, amountOfEpisodes, namn, frekvens, kategori, episodes);
             return podcast;
         }
 
@@ -44,7 +46,7 @@ namespace BusinessLogicLayer
         public string GetPodcastByName(string name)
         {
             Podcast podcast = podcastRepository.GetByNamn(name);
-            string podcasten = podcast.Avsnitt.ToString() + "   " + podcast.Namn + "   " + "Var " + podcast.Frekvens.ToString() + ":e " + "minut" + "   " + podcast.Kategori;
+            string podcasten = "Name: " + podcast.Namn + "   Episodes: " + podcast.Avsnitt.ToString() + "   Frequency: " + "every " + podcast.Frekvens.ToString() + " " + "minutes" + "   Category: " + podcast.Kategori;
             return podcasten;
         }
 
@@ -89,6 +91,12 @@ namespace BusinessLogicLayer
         {
             return urlList;
         }
+
+        //public int GetTheNumberOfEpisodesInAPodcast(Podcast pc)
+        //{
+        //    int amountOfEpisodes = pc.episodeList.Count();
+        //    return amountOfEpisodes;
+        //}
 
         //public static bool KollaEfterUppdateringar()
         //{ // USE AS ASYNCHRONOUS TASK

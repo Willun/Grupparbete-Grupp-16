@@ -13,10 +13,7 @@ namespace DataAccesLayer.Repositories
     //    public virtual void Hamtaitemlista
     //    {
     //        int items = 0;
-    //        Console.writeLine("You have this many items:"+ items);
+    //    Console.writeLine("You have this many items:"+ items);
     //    }
     //}
-
 }
-
-

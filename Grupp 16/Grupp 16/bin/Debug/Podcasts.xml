@@ -2,8 +2,8 @@
 <ArrayOfPodcast xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Podcast>
     <Url>https://rss.acast.com/spoktimmen</Url>
-    <Avsnitt>100</Avsnitt>
-    <Namn>spökpodden</Namn>
+    <Avsnitt>147</Avsnitt>
+    <Namn>spöktimmen</Namn>
     <Frekvens>10</Frekvens>
     <Kategori>hej</Kategori>
     <LastUpdated>0001-01-01T00:00:00</LastUpdated>

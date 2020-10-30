@@ -99,7 +99,7 @@ namespace Grupp_16
                         //Task asyncAddingFeed = new Task(() => AddNewFeedToPersistent(cts));
                         //asyncAddingFeed.Start();
                         List<Episode> episodes = new List<Episode>();
-                        pcController.CreatePodcast(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.SelectedItem.ToString());
+                        pcController.CreatePodcast(textBoxUrl.Text, textBoxName.Text, frekvens, comboBoxCategory.SelectedItem.ToString());
                         showPodcast();
 
                         textBoxName.Text = "";
@@ -450,7 +450,7 @@ namespace Grupp_16
                     {
                         int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
                         int curPodcast = listBoxShowPodcast.SelectedIndex;
-                        Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, 100, textBoxName.Text, frekvens, comboBoxCategory.Text);
+                        Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, textBoxName.Text, frekvens, comboBoxCategory.Text);
                         pcRepository.Save(curPodcast, pc);
                         listBoxShowPodcast.Items.Clear();
                         showPodcast();
@@ -490,6 +490,7 @@ namespace Grupp_16
                         List<Kategori> kategoriList = kategoriRepository.GetAll();
                         foreach (var item in kategoriList)
                         {
+                            kategoriRepository.Save(curKategori, k);
                             comboBoxCategory.Items.Add(item.Namn);
                         }
 
@@ -498,7 +499,6 @@ namespace Grupp_16
                             if (curCategoryName.Equals(item.Kategori))
                             {
                                 podcastsToSave.Add(item);
-
                                 hasItems = true;
                             }
                         }
@@ -511,19 +511,29 @@ namespace Grupp_16
                                 //item.Kategori = k.Namn;
                                 //pcRepository.Save(index, item);
                                 //pcController.UpdatePodcastCategory(item.Kategori, k.Namn);
-                                Podcast pc = pcController.CreatePodcastSave(item.Url, 100, item.Namn, item.Frekvens, k.Namn);
-                                int i = pcRepository.GetPodcastList().IndexOf(item);
-                                pcRepository.Save(i, pc);
+                                foreach (var podcast in pcRepository.GetPodcastList())
+                                {
+                                    if (podcast.Kategori.Equals(item.Kategori))
+                                    {
+                                        Podcast pc = pcController.CreatePodcastSave(podcast.Url, podcast.Namn, podcast.Frekvens, k.Namn);
+                                        int i = pcRepository.GetPodcastList().IndexOf(podcast);
+                                        pcRepository.Save(i, pc);
+                                    }
+                                }
                             }
-                        }
 
-                        kategoriRepository.Save(curKategori, k);
-                        listBoxCategory.Items.Clear();
-                        textBoxCategory.Text = "";
-                        showCategory();
-                        listBoxShowPodcast.Items.Clear();
-                        showPodcast();
-                        comboBoxCategory.Items.Clear();
+                            kategoriRepository.Save(curKategori, k);
+                            listBoxCategory.Items.Clear();
+                            textBoxCategory.Text = "";
+                            showCategory();
+                            listBoxShowPodcast.Items.Clear();
+                            showPodcast();
+                            comboBoxCategory.Items.Clear();
+                        }
+                        else
+                        {
+                            MessageBox.Show("You have saved the change and no podcast was ...");
+                        }
                     }
                 }
                 else
@@ -535,8 +545,11 @@ namespace Grupp_16
             {
                 throw;
             }
+            catch (System.InvalidOperationException)
+            {
+                throw;
+            }
         }
-
 
         private void listBoxViewer_SelectedIndexChanged(object sender, EventArgs e)
         {
