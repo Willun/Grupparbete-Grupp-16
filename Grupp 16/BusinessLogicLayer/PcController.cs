@@ -46,7 +46,7 @@ namespace BusinessLogicLayer
         public string GetPodcastByName(string name)
         {
             Podcast podcast = podcastRepository.GetByNamn(name);
-            string podcasten = "Name: " + podcast.Namn + "   Episodes: " + podcast.Avsnitt.ToString() + "   Frequency: " + "every " + podcast.Frekvens.ToString() + " " + "minutes" + "   Category: " + podcast.Kategori;
+            string podcasten = "Name: " + podcast.Namn + "   Episodes: " + podcast.Avsnitt.ToString() + "   Frequency: every " + podcast.Frekvens.ToString() + " minutes   Category: " + podcast.Kategori;
             return podcasten;
         }
 

@@ -412,16 +412,16 @@ namespace Grupp_16
                     int curKategori = listBoxCategory.SelectedIndex;
                     string kName = kController.GetKNameByIndex(curKategori);
                     Kategori k = kController.GetKategoriByNameWithoutAddingToListBox(kName);
-                    textBoxCategory.Text = k.Namn;
                     //string curKategori = listBoxCategory.SelectedIndex.ToString();
                     //textBoxCategory.Text = curKategori;
                     List<Podcast> podcasts = pcRepository.GetAll();
+                    textBoxCategory.Text = k.Namn;
                     listBoxShowPodcast.Items.Clear();
                     foreach (var item in podcasts)
                     {
                         if (item.Kategori.Equals(k.Namn))
                         {
-                            listBoxShowPodcast.Items.Add(item.Avsnitt.ToString() + "   " + item.Namn + "   " + "Var " + item.Frekvens.ToString() + ":e " + "minut" + "   " + item.Kategori);
+                            listBoxShowPodcast.Items.Add("Name: " + item.Namn + "   Episodes: " + item.Avsnitt.ToString() + "   Frequency: every " + item.Frekvens.ToString() + " minutes   Category: " + item.Kategori);
                         }
                     }
                 }
@@ -430,9 +430,9 @@ namespace Grupp_16
                     MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
                 }
             }
-            catch (System.NullReferenceException)
+            catch (System.NullReferenceException SAT)
             {
-                throw;
+                MessageBox.Show(SAT.ToString());
             }
         }
 
@@ -466,9 +466,9 @@ namespace Grupp_16
                         MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
                     }
                 }
-                catch (System.ArgumentOutOfRangeException)
+                catch (System.ArgumentOutOfRangeException EAS)
                 {
-                    throw;
+                    MessageBox.Show(EAS.ToString());
                 }
             }
         }

@@ -14,27 +14,19 @@ namespace BusinessLogicLayer
 
         public List<Episode> GetEpisodes(string Url)
         {
-            try
+            var reader = XmlReader.Create(Url);
+            var feed = SyndicationFeed.Load(reader);
+
+            List<Episode> episodeList = new List<Episode>();
+
+            foreach (var i in feed.Items)
             {
-                var reader = XmlReader.Create(Url);
-                var feed = SyndicationFeed.Load(reader);
-
-                List<Episode> episodeList = new List<Episode>();
-
-                foreach (var i in feed.Items)
-                {
-                    Episode episode = new Episode();
-                    episode.Title = i.Title.Text;
-                    episode.Description = i.Summary.Text;
-                    episodeList.Add(episode);
-                }
-
-                return episodeList;
+                Episode episode = new Episode();
+                episode.Title = i.Title.Text;
+                episode.Description = i.Summary.Text;
+                episodeList.Add(episode);
             }
-            catch (System.IO.FileNotFoundException)
-            {
-                throw;
-            }
+            return episodeList;
         }
     }
 }
