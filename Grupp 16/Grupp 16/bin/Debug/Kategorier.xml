@@ -1,18 +1,9 @@
 <?xml version="1.0"?>
 <ArrayOfKategori xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Kategori>
-    <Namn>hejhej</Namn>
-  </Kategori>
-  <Kategori>
-    <Namn>hejrewrewrewr</Namn>
-  </Kategori>
-  <Kategori>
-    <Namn>hej</Namn>
-  </Kategori>
-  <Kategori>
     <Namn>hejdå</Namn>
   </Kategori>
   <Kategori>
-    <Namn>hejdårenjhgjhgjhggfdgfdgfdgfdgfdgfdfdsfdsfdsfds</Namn>
+    <Namn>hej</Namn>
   </Kategori>
 </ArrayOfKategori>

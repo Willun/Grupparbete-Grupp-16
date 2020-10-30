@@ -41,8 +41,15 @@ namespace DataAccesLayer.Repositories
 
         public void Delete(int index)
         {
-            kategoriList.RemoveAt(index);
-            SaveAllChanges();
+            try
+            {
+                kategoriList.RemoveAt(index);
+                SaveAllChanges();
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                throw;
+            }
         }
 
         public void SaveAllChanges()

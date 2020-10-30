@@ -377,6 +377,12 @@ namespace Grupp_16
                                     pcRepository.Delete(index);
                                     index++;
                                 }
+
+                                List<Kategori> kategoriList = kategoriRepository.GetAll();
+                                foreach (var item in kategoriList)
+                                {
+                                    comboBoxCategory.Items.Add(item.Namn);
+                                }
                                 kategoriRepository.Delete(curKategori);
                                 listBoxCategory.Items.Clear();
                                 textBoxCategory.Text = "";
@@ -384,11 +390,6 @@ namespace Grupp_16
                                 listBoxShowPodcast.Items.Clear();
                                 showPodcast();
                                 comboBoxCategory.Items.Clear();
-                                List<Kategori> kategoriList = kategoriRepository.GetAll();
-                                foreach (var item in kategoriList)
-                                {
-                                    comboBoxCategory.Items.Add(item.Namn);
-                                }
                                 index = 0;
                                 break;
                             case DialogResult.No:
@@ -541,13 +542,13 @@ namespace Grupp_16
                     MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
                 }
             }
-            catch (System.ArgumentOutOfRangeException)
+            catch (System.ArgumentOutOfRangeException AOORE)
             {
-                throw;
+                MessageBox.Show(AOORE.ToString());
             }
-            catch (System.InvalidOperationException)
+            catch (System.InvalidOperationException IOE)
             {
-                throw;
+                MessageBox.Show(IOE.ToString());
             }
         }
 
