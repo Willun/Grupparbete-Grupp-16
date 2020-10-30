@@ -21,7 +21,7 @@ namespace BusinessLogicLayer
             podcastRepository = new PcRepository();
         }
 
-        public virtual void CreatePodcast(string url, string namn, double frekvens, string kategori)
+        public void CreatePodcast(string url, string namn, double frekvens, string kategori)
         {
             List<Episode> episodes = eController.GetEpisodes(url);
             int amountOfEpisodes = episodes.Count();
@@ -50,11 +50,11 @@ namespace BusinessLogicLayer
             return podcasten;
         }
 
-        public Podcast GetPodcastByNameWithoutAddingToListBox(string name)
-        {
-            Podcast podcast = podcastRepository.GetByNamn(name);
-            return podcast;
-        }
+        //public Podcast GetPodcastByNameWithoutAddingToListBox(string name)
+        //{
+        //    Podcast podcast = podcastRepository.GetByNamn(name);
+        //    return podcast;
+        //}
 
         public List<string> PodcastObjectToStringList()
         {

@@ -74,7 +74,6 @@ namespace DataAccesLayer.Repositories
                 if (item.Namn.Equals(namn))
                 {
                     pc = item;
-                    break;
                 }
             }
             return pc;
