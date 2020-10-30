@@ -1,4 +1,7 @@
 ﻿using DataAccesLayer.Repositories;
+using System;
+using System.ServiceModel.Syndication;
+using System.Threading.Tasks;
 
 namespace BusinessLogicLayer
 {
@@ -11,32 +14,32 @@ namespace BusinessLogicLayer
         XMLController xMLController = new XMLController();
         PcRepository pcRepository = new PcRepository();
 
-        //public LogicUpdatePodcastRSS(string freqUrl, string frequence)
-        //{
-        //    frekvens = Convert.ToInt32(frequence);
-        //    url = freqUrl;
-        //    delay();
-        //}
+        public LogicUpdatePodcastRSS(string freqUrl, string frequence)
+        {
+            frekvens = Convert.ToInt32(frequence);
+            url = freqUrl;
+            delay();
+        }
 
-        //public async void UpdatePod()
-        //{
-        //    SyndicationFeed feed;
-        //    feed = await xMLController.GetXMLFile(url);
-        //    var list = pcController.GetUrlList();
-        //    for (int i = 0; i < list.Count; i++)
-        //    {
-        //        if (url.Equals(list[i]))
-        //        {
-        //            pcRepository.GetPodcastList = feed;
-        //            break;
-        //        }
-        //    }
-        //    delay();
-        //}
+        public async void UpdatePod()
+        {
+            SyndicationFeed feed;
+            feed = await xMLController.GetXMLFile(url);
+            var list = pcController.GetUrlList();
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (url.Equals(list[i]))
+                {
+                    pcRepository.GetPodcastList = feed;
+                    break;
+                }
+            }
+            delay();
+        }
 
-        //void delay()
-        //{
-        //    Task.Delay(TimeSpan.FromMinutes(frekvens)).ContinueWith(_ => UpdatePod());
-        //}
+        void delay()
+        {
+            Task.Delay(TimeSpan.FromMinutes(frekvens)).ContinueWith(_ => UpdatePod());
+        }
     }
 }
