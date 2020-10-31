@@ -35,7 +35,6 @@ namespace Grupp_16
             {
                 comboBoxCategory.Items.Add(item.Namn);
             }
-
             //timer1.Interval = 1000;
             //timer1.Tick += Timer1_Tick;
             //timer1.Start();
@@ -60,6 +59,9 @@ namespace Grupp_16
 
         private void buttonDelete1_Click(object sender, EventArgs e)
         {
+            //EventArgs a = new EventArgs();
+            //object b = new object();
+            //Form1_Load(b, a);
             int curPodcast = listBoxShowPodcast.SelectedIndex;
             pcRepository.Delete(curPodcast);
             listBoxEpisodes.Items.Clear();
@@ -106,6 +108,8 @@ namespace Grupp_16
                         textBoxUrl.Text = "";
                         comboBoxUpdateFrequency.Text = "";
                         comboBoxCategory.Text = "";
+
+                        Application.Restart();
                     }
                     catch (OperationCanceledException)
                     {
@@ -390,6 +394,7 @@ namespace Grupp_16
                                 }
 
                                 List<Kategori> kategoriList = kategoriRepository.GetAll();
+                                comboBoxCategory.Items.Clear();
                                 foreach (var item in kategoriList)
                                 {
                                     comboBoxCategory.Items.Add(item.Namn);
@@ -401,6 +406,10 @@ namespace Grupp_16
                                 listBoxShowPodcast.Items.Clear();
                                 showPodcast();
                                 comboBoxCategory.Items.Clear();
+                                textBoxName.Text = "";
+                                textBoxUrl.Text = "";
+                                comboBoxUpdateFrequency.Text = "";
+                                comboBoxCategory.Text = "";
                                 index = 0;
                                 break;
                             case DialogResult.No:
@@ -462,7 +471,10 @@ namespace Grupp_16
                 {
                     if (listBoxShowPodcast.SelectedItems.Count == 1)
                     {
-                        int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
+                        //EventArgs a = new EventArgs();
+                        //object b = new object();
+                        //Form1_Load(b, a);
+                        double frekvens = double.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
                         int curPodcast = listBoxShowPodcast.SelectedIndex;
                         Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, textBoxName.Text, frekvens, comboBoxCategory.Text);
                         pcRepository.Save(curPodcast, pc);
@@ -474,6 +486,20 @@ namespace Grupp_16
                         textBoxUrl.Text = "";
                         comboBoxUpdateFrequency.Text = "";
                         comboBoxCategory.Text = "";
+                        //int curPodcast = listBoxShowPodcast.SelectedIndex;
+                        //string pcName = pcController.GetPcNameByIndex(curPodcast);
+                        //Podcast pc = pcController.GetPodcastByName(pcName);
+                        //foreach (var item in pcController.GetPCList())
+                        //{
+                        //    if (item.Namn.Equals(pc.Namn))
+                        //    {
+                        //        item.Url = textBoxUrl.Text;
+                        //        item.Namn = textBoxName.Text;
+                        //        item.Frekvens = frekvens;
+                        //        item.Kategori = comboBoxCategory.Text;
+                        //        pcRepository.SaveAllChanges();
+                        //    }
+                        //}
                     }
                     else
                     {
