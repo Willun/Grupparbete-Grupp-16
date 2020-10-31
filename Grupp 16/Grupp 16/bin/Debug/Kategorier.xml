@@ -1,2 +1,21 @@
 <?xml version="1.0"?>
-<ArrayOfKategori xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+<ArrayOfKategori xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Kategori>
+    <Namn>hejsan</Namn>
+  </Kategori>
+  <Kategori>
+    <Namn>hejhej</Namn>
+  </Kategori>
+  <Kategori>
+    <Namn>hejsan</Namn>
+  </Kategori>
+  <Kategori>
+    <Namn>hejfdsfds</Namn>
+  </Kategori>
+  <Kategori>
+    <Namn>hej</Namn>
+  </Kategori>
+  <Kategori>
+    <Namn>fds</Namn>
+  </Kategori>
+</ArrayOfKategori>

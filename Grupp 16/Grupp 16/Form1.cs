@@ -19,7 +19,7 @@ namespace Grupp_16
         PcRepository pcRepository = new PcRepository();
         KategoriRepository kategoriRepository = new KategoriRepository();
         Validation validation = new Validation();
-        private Timer timer;
+        Timer timer = new Timer();
 
 
         //private Timer timer1 = new Timer();
@@ -34,7 +34,6 @@ namespace Grupp_16
             showCategory();
             InitializeTimer();
             SetPcList();
-            timer = new Timer();
 
             List<Kategori> kategori = kategoriRepository.GetAll();
             foreach (var item in kategori)
@@ -115,7 +114,7 @@ namespace Grupp_16
                         comboBoxUpdateFrequency.Text = "";
                         comboBoxCategory.Text = "";
 
-                        Application.Restart();
+                        //Application.Restart();
                     }
                     catch (OperationCanceledException)
                     {
@@ -435,9 +434,9 @@ namespace Grupp_16
             {
                 if (listBoxCategory.SelectedItems.Count == 1)
                 {
+                    Kategori k = new Kategori();
                     int curKategori = listBoxCategory.SelectedIndex;
                     string kName = kController.GetKNameByIndex(curKategori);
-                    Kategori k = new Kategori();
                     k = kController.GetKategoriByNameWithoutAddingToListBox(kName);
                     //string curKategori = listBoxCategory.SelectedIndex.ToString();
                     //textBoxCategory.Text = curKategori;
@@ -447,7 +446,7 @@ namespace Grupp_16
                     listBoxEpisodes.Items.Clear();
                     foreach (var item in podcasts)
                     {
-                        if (item.Kategori.Equals(k.Namn))
+                        if (k.Namn.Equals(item.Kategori))
                         {
                             listBoxShowPodcast.Items.Add("Name: " + item.Namn + "   Episodes: " + item.Avsnitt.ToString() + "   Frequency: every " + item.Frekvens.ToString() + " minutes   Category: " + item.Kategori);
                         }
@@ -640,9 +639,20 @@ namespace Grupp_16
 
         private void InitializeTimer()
         {
-            timer.Interval = 1000;
-            timer.Tick += Tiktok;
-            timer.Start();
+            try
+            {
+                //int frekvens = 10;
+                //Timer timer = new Timer();
+                timer.Interval = 10000;
+                timer.Tick += Tiktok;
+                timer.Start();
+
+            }
+            catch (System.NullReferenceException)
+            {
+
+                throw;
+            }
         }
 
         private void SetPcList()
