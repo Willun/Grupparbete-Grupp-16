@@ -19,6 +19,8 @@ namespace Grupp_16
         PcRepository pcRepository = new PcRepository();
         KategoriRepository kategoriRepository = new KategoriRepository();
         Validation validation = new Validation();
+        private Timer timer;
+
 
         //private Timer timer1 = new Timer();
         //int numberOfTimeUpdated = 0;
@@ -30,6 +32,10 @@ namespace Grupp_16
             InitializeComponent();
             showPodcast();
             showCategory();
+            InitializeTimer();
+            SetPcList();
+            timer = new Timer();
+
             List<Kategori> kategori = kategoriRepository.GetAll();
             foreach (var item in kategori)
             {
@@ -474,7 +480,7 @@ namespace Grupp_16
                         //EventArgs a = new EventArgs();
                         //object b = new object();
                         //Form1_Load(b, a);
-                        double frekvens = double.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
+                        int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
                         int curPodcast = listBoxShowPodcast.SelectedIndex;
                         Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, textBoxName.Text, frekvens, comboBoxCategory.Text);
                         pcRepository.Save(curPodcast, pc);
@@ -632,6 +638,29 @@ namespace Grupp_16
 
         }
 
+        private void InitializeTimer()
+        {
+            timer.Interval = 1000;
+            timer.Tick += Tiktok;
+            timer.Start();
+        }
+
+        private void SetPcList()
+        {
+            listBoxShowPodcast.Items.Clear();
+            listBoxShowPodcast.Refresh();
+            var pcList = pcController.GetPCList();
+            pcList.ToList().ForEach(podcast => listBoxShowPodcast.Items.Add("Name: " + podcast.Namn + "   Episodes: " + podcast.Avsnitt.ToString() + "   Frequency: every " + podcast.Frekvens.ToString() + " minutes   Category: " + podcast.Kategori));
+        }
+
+        private void Tiktok(object sender, EventArgs e)
+        {
+            foreach (var podcast in pcController.GetPCList().Where(p => p.NeedsToUpdate))
+            {
+                podcast.Update();
+                SetPcList();
+            }
+        }
 
         //private void buttonSave1_Click(object sender, EventArgs e)
         //{

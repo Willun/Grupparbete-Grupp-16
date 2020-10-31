@@ -21,16 +21,22 @@ namespace BusinessLogicLayer
             podcastRepository = new PcRepository();
         }
 
-        public void CreatePodcast(string url, string namn, double frekvens, string kategori)
+        public int AmountOfEpisodes(string url)
+        {
+            int amountOfEpisodes = eController.GetEpisodes(url).Count();
+            return amountOfEpisodes;
+        }
+
+        public void CreatePodcast(string url, string namn, int frekvens, string kategori)
         {
             //List<Episode> episodes = new List<Episode>();
-            int amountOfEpisodes = eController.GetEpisodes(url).Count();
+            int amountOfEpisodes = AmountOfEpisodes(url);
             Podcast podcast = new Podcast(url, amountOfEpisodes, namn, frekvens, kategori, eController.GetEpisodes(url));
             //urlList.Add(podcast.Url);
             podcastRepository.New(podcast);
         }
 
-        public Podcast CreatePodcastSave(string url, string namn, double frekvens, string kategori)
+        public Podcast CreatePodcastSave(string url, string namn, int frekvens, string kategori)
         {
             List<Episode> episodes = eController.GetEpisodes(url);
             int amountOfEpisodes = episodes.Count();
@@ -79,10 +85,10 @@ namespace BusinessLogicLayer
             return podcastRepository.GetName(index);
         }
 
-        public static void UpdateFrequencyInterval(int chosenPodcast, string newUpdateFrequency)
-        {
-            AllPodcastList[chosenPodcast].UpdateFrequency = newUpdateFrequency;
-        }
+        //public static void UpdateFrequencyInterval(int chosenPodcast, string newUpdateFrequency)
+        //{
+        //    AllPodcastList[chosenPodcast].UpdateFrequency = newUpdateFrequency;
+        //}
 
         public void UpdatePodcastCategory(string name, string newName)
         {
@@ -97,6 +103,7 @@ namespace BusinessLogicLayer
             podcastRepository.SetPodcastList(podcasts);
             podcastRepository.SaveAllChanges();
         }
+
 
         //public List<string> GetUrlList()
         //{
