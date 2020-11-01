@@ -440,13 +440,12 @@ namespace Grupp_16
                     k = kController.GetKategoriByNameWithoutAddingToListBox(kName);
                     //string curKategori = listBoxCategory.SelectedIndex.ToString();
                     //textBoxCategory.Text = curKategori;
-                    List<Podcast> podcasts = pcRepository.GetAll();
                     textBoxCategory.Text = kName;
                     listBoxShowPodcast.Items.Clear();
                     listBoxEpisodes.Items.Clear();
-                    foreach (var item in podcasts)
+                    foreach (var item in pcController.GetPCList())
                     {
-                        if (k.Namn.Equals(item.Kategori))
+                        if (item.Kategori.Equals(k.Namn))
                         {
                             listBoxShowPodcast.Items.Add("Name: " + item.Namn + "   Episodes: " + item.Avsnitt.ToString() + "   Frequency: every " + item.Frekvens.ToString() + " minutes   Category: " + item.Kategori);
                         }
