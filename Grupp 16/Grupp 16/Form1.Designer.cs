@@ -218,10 +218,7 @@
             this.comboBoxUpdateFrequency.FormattingEnabled = true;
             this.comboBoxUpdateFrequency.Items.AddRange(new object[] {
             "1",
-            "3",
             "5",
-            "10",
-            "15",
             "20"});
             this.comboBoxUpdateFrequency.Location = new System.Drawing.Point(456, 597);
             this.comboBoxUpdateFrequency.Name = "comboBoxUpdateFrequency";

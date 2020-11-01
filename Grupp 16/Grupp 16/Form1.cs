@@ -1,5 +1,4 @@
 ﻿using BusinessLogicLayer;
-using DataAccesLayer.Repositories;
 using Grupp16;
 using Models;
 using System;
@@ -16,10 +15,9 @@ namespace Grupp_16
         PcController pcController = new PcController();
         KController kController = new KController();
         EController eController = new EController();
-        PcRepository pcRepository = new PcRepository();
-        KategoriRepository kategoriRepository = new KategoriRepository();
         Validation validation = new Validation();
         Timer timer = new Timer();
+
 
         int index = 0;
 
@@ -31,7 +29,8 @@ namespace Grupp_16
             InitializeTimer();
             SetPcList();
 
-            List<Kategori> kategori = kategoriRepository.GetAll();
+            List<Kategori> kategori = kController.GetCategoryList();
+            kController.GetCategoryList();
             foreach (var item in kategori)
             {
                 comboBoxCategory.Items.Add(item.Namn);
@@ -46,7 +45,7 @@ namespace Grupp_16
         private void buttonDelete1_Click(object sender, EventArgs e)
         {
             int curPodcast = listBoxShowPodcast.SelectedIndex;
-            pcRepository.Delete(curPodcast);
+            pcController.DeletePodcast(curPodcast);
             listBoxEpisodes.Items.Clear();
             listBoxShowPodcast.Items.Clear();
             showPodcast();
@@ -142,7 +141,7 @@ namespace Grupp_16
                 listBoxEpisodeDescription.Items.Clear();
                 int curPodcast = listBoxShowPodcast.SelectedIndex;
                 string pcName = pcController.GetPcNameByIndex(curPodcast);
-                Podcast pc = pcRepository.GetByNamn(pcName);
+                Podcast pc = pcController.GetPodcastByName(pcName);
 
                 string selectedEpisodeName = listBoxEpisodes.SelectedItem.ToString();
                 List<Episode> episodes = eController.GetEpisodes(pc.Url);
@@ -263,7 +262,7 @@ namespace Grupp_16
                 {
                     int curKategori = listBoxCategory.SelectedIndex;
                     Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
-                    List<Podcast> podcasts = pcRepository.GetAll();
+                    List<Podcast> podcasts = pcController.GetPCList();
                     List<Podcast> podcastsToDelete = new List<Podcast>();
 
                     foreach (var item in podcasts)
@@ -284,17 +283,17 @@ namespace Grupp_16
                             case DialogResult.Yes:
                                 foreach (var item in podcastsToDelete)
                                 {
-                                    pcRepository.Delete(index);
+                                    pcController.DeletePodcast(index);
                                     index++;
                                 }
 
-                                List<Kategori> kategoriList = kategoriRepository.GetAll();
+                                List<Kategori> kategoriList = kController.GetCategoryList();
                                 comboBoxCategory.Items.Clear();
                                 foreach (var item in kategoriList)
                                 {
                                     comboBoxCategory.Items.Add(item.Namn);
                                 }
-                                kategoriRepository.Delete(curKategori);
+                                kController.DeleteKategori(curKategori);
                                 listBoxCategory.Items.Clear();
                                 textBoxCategory.Text = "";
                                 showCategory();
@@ -366,7 +365,7 @@ namespace Grupp_16
                         int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
                         int curPodcast = listBoxShowPodcast.SelectedIndex;
                         Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, textBoxName.Text, frekvens, comboBoxCategory.Text);
-                        pcRepository.Save(curPodcast, pc);
+                        pcController.SavePodcast(curPodcast, pc);
                         listBoxShowPodcast.Items.Clear();
                         showPodcast();
 
@@ -398,54 +397,23 @@ namespace Grupp_16
                     {
                         int curKategori = listBoxCategory.SelectedIndex;
                         string curCategoryName = listBoxCategory.SelectedItem.ToString();
-                        bool hasItems = false;
                         Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
-                        List<Podcast> podcasts = pcRepository.GetAll();
-                        List<Podcast> podcastsToSave = new List<Podcast>();
 
-                        List<Kategori> kategoriList = kategoriRepository.GetAll();
-                        foreach (var item in kategoriList)
+                        kController.SaveCategory(curKategori, k);
+                        pcController.UpdatePodcastCategory(curCategoryName, textBoxCategory.Text);
+                        comboBoxCategory.Items.Add(k.Namn);
+
+                        listBoxCategory.Items.Clear();
+                        showCategory();
+                        textBoxCategory.Text = "";
+                        comboBoxCategory.Items.Clear();
+                        foreach (var item in kController.GetCategoryList())
                         {
-                            kategoriRepository.Save(curKategori, k);
                             comboBoxCategory.Items.Add(item.Namn);
                         }
-
-                        foreach (var item in podcasts)
-                        {
-                            if (curCategoryName.Equals(item.Kategori))
-                            {
-                                podcastsToSave.Add(item);
-                                hasItems = true;
-                            }
-                        }
-
-                        if (hasItems)
-                        {
-                            foreach (var item in podcastsToSave)
-                            {
-                                foreach (var podcast in pcController.GetPCList())
-                                {
-                                    if (podcast.Kategori.Equals(item.Kategori))
-                                    {
-                                        Podcast pc = pcController.CreatePodcastSave(podcast.Url, podcast.Namn, podcast.Frekvens, k.Namn);
-                                        int i = pcController.GetPCList().IndexOf(podcast);
-                                        pcRepository.Save(i, pc);
-                                    }
-                                }
-                            }
-
-                            kategoriRepository.Save(curKategori, k);
-                            listBoxCategory.Items.Clear();
-                            textBoxCategory.Text = "";
-                            showCategory();
-                            listBoxShowPodcast.Items.Clear();
-                            showPodcast();
-                            comboBoxCategory.Items.Clear();
-                        }
-                        else
-                        {
-                            MessageBox.Show("You have saved the change and no podcast was ...");
-                        }
+                        listBoxShowPodcast.Items.Clear();
+                        showPodcast();
+                        MessageBox.Show("You have saved the change and no podcast category was saved!");
                     }
                 }
                 else
@@ -531,8 +499,11 @@ namespace Grupp_16
         {
             foreach (var podcast in pcController.GetPCList().Where(p => p.NeedsToUpdate))
             {
-                podcast.Update();
-                SetPcList();
+                if (pcController.GetIfANewEpisodeIsOut(podcast, podcast.Url) == true)
+                {
+                    podcast.Update();
+                    SetPcList();
+                }
             }
         }
     }

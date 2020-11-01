@@ -82,9 +82,19 @@ namespace DataAccesLayer.Repositories
             podcastList = podcasts;
         }
 
+        public void UpdatePodcastKategori(string curName, string nName)
+        {
+            foreach (var podcast in podcastList.Where(p => p.Kategori == curName))
+            {
+                podcast.Kategori = nName;
+            }
+            SaveAllChanges();
+        }
+
         public List<Episode> GetEpisodeList()
         {
             return episodeList;
         }
+
     }
 }

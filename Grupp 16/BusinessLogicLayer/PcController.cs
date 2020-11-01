@@ -3,7 +3,6 @@ using Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static Models.Podcast;
 
 namespace BusinessLogicLayer
 {
@@ -12,8 +11,8 @@ namespace BusinessLogicLayer
         EController eController = new EController();
         IPcRepository<Podcast> podcastRepository;
 
-        private static PodcastList AllPodcastList = new PodcastList();
-        private static PodcastList AllFilteredPodcastList = new PodcastList();
+        //private static PodcastList AllPodcastList = new PodcastList();
+        //private static PodcastList AllFilteredPodcastList = new PodcastList();
 
         public PcController()
         {
@@ -24,6 +23,11 @@ namespace BusinessLogicLayer
         {
             int amountOfEpisodes = eController.GetEpisodes(url).Count();
             return amountOfEpisodes;
+        }
+
+        public void DeletePodcast(int curPodcast)
+        {
+            podcastRepository.Delete(curPodcast);
         }
 
         public async void CreatePodcast(string url, string namn, int frekvens, string kategori)
@@ -84,6 +88,49 @@ namespace BusinessLogicLayer
             }
             podcastRepository.SetPodcastList(podcasts);
             podcastRepository.SaveAllChanges();
+        }
+
+        public void SavePodcast(int index, Podcast pc)
+        {
+            podcastRepository.Save(index, pc);
+        }
+
+        //public string GetPodcastCategory(int index)
+        //{
+        //    var podcastList = podcastRepository.GetAll();
+        //    Podcast podcast = podcastList[index];
+        //    string category = podcast.Category;
+        //    return category;
+        //}
+
+        //public void UpdateAllPodcastInfo(int index, string url, string name, string interval, string category)
+        //{
+        //    var podcastList = podcastRepository.GetAll();
+        //    Podcast podcast = podcastList[index];
+        //    podcast.Url = url;
+        //    podcast.Name = name;
+        //    podcast.Interval = Convert.ToInt32(interval);
+        //    podcast.Category = category;
+        //    podcastRepository.Update(index, podcast);
+        //}
+
+        //public void UpdatePcCategory(string curName, string nName)
+        //{
+        //    podcastRepository
+        //}
+
+        public bool GetIfANewEpisodeIsOut(Podcast pc, string url)
+        {
+            bool aNewEpisodeIsOut = false;
+            if (pc.Avsnitt > AmountOfEpisodes(url))
+            {
+                aNewEpisodeIsOut = true;
+            }
+            else
+            {
+                aNewEpisodeIsOut = false;
+            }
+            return aNewEpisodeIsOut;
         }
     }
 }

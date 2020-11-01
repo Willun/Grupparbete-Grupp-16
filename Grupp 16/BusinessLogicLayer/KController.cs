@@ -61,5 +61,15 @@ namespace BusinessLogicLayer
             Kategori k = kategoriRepository.GetByNamn(name);
             return k;
         }
+
+        public void SaveCategory(int index, Kategori kategori)
+        {
+            kategoriRepository.Save(index, kategori);
+        }
+
+        public void DeleteKategori(int curKategori)
+        {
+            kategoriRepository.Delete(curKategori);
+        }
     }
 }

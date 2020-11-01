@@ -52,11 +52,10 @@ namespace Models
         {
             LastUpdated = DateTime.Now.AddMinutes(Frekvens);
             XDocument urlDoc = new XDocument();
-
             {
                 urlDoc = XDocument.Load(Url);
                 episodeList = (from x in urlDoc.Descendants("item")
-                               select new Episode
+                               select new Episode()
                                {
                                    Title = x.Element("title").Value,
                                    Description = x.Element("description").Value
