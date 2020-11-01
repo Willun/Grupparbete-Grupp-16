@@ -67,12 +67,6 @@ namespace Models
             CountAllEpisodesInAList();
         }
 
-        //public string Update()
-        //{
-        //    LastUpdated = DateTime.Now.AddMinutes(Frekvens);
-        //    return Namn + "'s Update() was invoked. Next update is at " + LastUpdated;
-        //}
-
         public class PodcastList : List<Podcast>
         {
             public PodcastList()

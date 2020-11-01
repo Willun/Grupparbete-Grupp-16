@@ -69,23 +69,8 @@ namespace DataAccesLayer.Repositories
 
         public Podcast GetByNamn(string namn)
         {
-            //Podcast pc = new Podcast();
-            //List<Podcast> podcasts = GetAll();
-            //foreach (var item in podcasts)
-            //{
-            //    if (item.Namn.Equals(namn))
-            //    {
-            //        pc = item;
-            //    }
-            //}
             return GetAll().First(p => p.Namn.Equals(namn));
-            //Podcast pc = GetAll().FirstOrDefault(p => p.Namn.Equals(namn));
         }
-
-        //public void UpdateKategoriForPodcast(int chosenKategori, string newKategori)
-        //{
-        //    kategoriList[chosenKategori].Kategori = newKategori;
-        //}
 
         public string GetName(int index)
         {

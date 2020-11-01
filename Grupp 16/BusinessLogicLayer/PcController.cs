@@ -2,17 +2,16 @@
 using Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using static Models.Podcast;
 
 namespace BusinessLogicLayer
 {
     public class PcController
     {
-        //PcRepository pcRepository = new PcRepository();
         EController eController = new EController();
         IPcRepository<Podcast> podcastRepository;
 
-        //List<string> urlList = new List<string>();
         private static PodcastList AllPodcastList = new PodcastList();
         private static PodcastList AllFilteredPodcastList = new PodcastList();
 
@@ -27,13 +26,14 @@ namespace BusinessLogicLayer
             return amountOfEpisodes;
         }
 
-        public void CreatePodcast(string url, string namn, int frekvens, string kategori)
+        public async void CreatePodcast(string url, string namn, int frekvens, string kategori)
         {
-            //List<Episode> episodes = new List<Episode>();
-            int amountOfEpisodes = AmountOfEpisodes(url);
-            Podcast podcast = new Podcast(url, amountOfEpisodes, namn, frekvens, kategori, eController.GetEpisodes(url));
-            //urlList.Add(podcast.Url);
-            podcastRepository.New(podcast);
+            await Task.Run(() =>
+            {
+                int amountOfEpisodes = AmountOfEpisodes(url);
+                Podcast podcast = new Podcast(url, amountOfEpisodes, namn, frekvens, kategori, eController.GetEpisodes(url));
+                podcastRepository.New(podcast);
+            });
         }
 
         public Podcast CreatePodcastSave(string url, string namn, int frekvens, string kategori)
@@ -49,13 +49,6 @@ namespace BusinessLogicLayer
             return podcastRepository.GetAll();
         }
 
-        //public string GetPodcastByName(string name)
-        //{
-        //    Podcast podcast = podcastRepository.GetByNamn(name);
-        //    string podcasten = "Name: " + podcast.Namn + "   Episodes: " + podcast.Avsnitt.ToString() + "   Frequency: every " + podcast.Frekvens.ToString() + " minutes   Category: " + podcast.Kategori;
-        //    return podcasten;
-        //}
-
         public string GetPodcastNameByIndex(int index)
         {
             return podcastRepository.GetName(index);
@@ -66,12 +59,6 @@ namespace BusinessLogicLayer
             Podcast pc = podcastRepository.GetByNamn(name);
             return pc;
         }
-
-        //public Podcast GetPodcastByNameWithoutAddingToListBox(string name)
-        //{
-        //    Podcast podcast = podcastRepository.GetByNamn(name);
-        //    return podcast;
-        //}
 
         public List<string> PodcastObjectToStringList()
         {
@@ -84,11 +71,6 @@ namespace BusinessLogicLayer
         {
             return podcastRepository.GetName(index);
         }
-
-        //public static void UpdateFrequencyInterval(int chosenPodcast, string newUpdateFrequency)
-        //{
-        //    AllPodcastList[chosenPodcast].UpdateFrequency = newUpdateFrequency;
-        //}
 
         public void UpdatePodcastCategory(string name, string newName)
         {
@@ -103,39 +85,5 @@ namespace BusinessLogicLayer
             podcastRepository.SetPodcastList(podcasts);
             podcastRepository.SaveAllChanges();
         }
-
-
-        //public List<string> GetUrlList()
-        //{
-        //    return urlList;
-        //}
-
-        //public int GetTheNumberOfEpisodesInAPodcast(Podcast pc)
-        //{
-        //    int amountOfEpisodes = pc.episodeList.Count();
-        //    return amountOfEpisodes;
-        //}
-
-        //public static bool KollaEfterUppdateringar()
-        //{ // USE AS ASYNCHRONOUS TASK
-        //    bool hasBeenUpdated = false;
-        //    bool[] updateIntervalHasExpired = Update.CheckUpdate(AllPodcastList);
-        //    for (int i = 0; i < AllPodcastList.Count; i++)
-        //    {
-        //        if (updateIntervalHasExpired[i] == true)
-        //        {
-        //            hasBeenUpdated = true;
-        //            //string podcastURL = AllPodcastList[i].Url;
-        //            //string pocastTitel = AllPodcastList[i].Namn;
-
-        //            PcController.podcastRepository.Save(i, AllPodcastList[i]);
-
-        //            AllPodcastList[i].AntalAvsnitt = HamtaAntalAvsnitt(XML.HamtaXMLFil(feedTitel));
-        //            AllPodcastList[i].Avsnitt = HamtaAvsnitt(feedTitel);
-        //            AllPodcastList[i].SenastUppdaterad = DateTime.Now.ToUniversalTime();
-        //        }
-        //    }
-        //    return harUppdaterats;
-        //}
     }
 }

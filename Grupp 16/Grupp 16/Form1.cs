@@ -21,10 +21,6 @@ namespace Grupp_16
         Validation validation = new Validation();
         Timer timer = new Timer();
 
-
-        //private Timer timer1 = new Timer();
-        //int numberOfTimeUpdated = 0;
-
         int index = 0;
 
         public Form1()
@@ -40,9 +36,6 @@ namespace Grupp_16
             {
                 comboBoxCategory.Items.Add(item.Namn);
             }
-            //timer1.Interval = 1000;
-            //timer1.Tick += Timer1_Tick;
-            //timer1.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,23 +43,8 @@ namespace Grupp_16
 
         }
 
-        //private void Timer1_Tick(object sender, EventArgs e)
-        //{
-        //    foreach (var podcast in pcRepository.GetAll())
-        //    {
-        //        if (podcast.NeedsUpdate)
-        //        {
-        //            podcast.Update();
-        //            numberOfTimeUpdated++;
-        //        }
-        //    }
-        //}
-
         private void buttonDelete1_Click(object sender, EventArgs e)
         {
-            //EventArgs a = new EventArgs();
-            //object b = new object();
-            //Form1_Load(b, a);
             int curPodcast = listBoxShowPodcast.SelectedIndex;
             pcRepository.Delete(curPodcast);
             listBoxEpisodes.Items.Clear();
@@ -100,10 +78,6 @@ namespace Grupp_16
                 {
                     try
                     {
-                        //cts.CancelAfter(2500);
-                        //Task asyncAddingFeed = new Task(() => AddNewFeedToPersistent(cts));
-                        //asyncAddingFeed.Start();
-                        //List<Episode> episodes = new List<Episode>();
                         int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
                         pcController.CreatePodcast(textBoxUrl.Text, textBoxName.Text, frekvens, comboBoxCategory.SelectedItem.ToString());
                         listBoxShowPodcast.Items.Clear();
@@ -134,8 +108,6 @@ namespace Grupp_16
             {
                 MessageBox.Show("Försäkra du har fyllt i alla fält!");
             }
-            //string xmlreader = PcController.GetUrlFromInternet();
-            //pcController.CreatePodcast();
         }
 
         private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -168,8 +140,6 @@ namespace Grupp_16
             if (listBoxEpisodes.SelectedItems.Count == 1)
             {
                 listBoxEpisodeDescription.Items.Clear();
-                //string episodeName = listBoxEpisodes.SelectedItem.ToString();
-                //lableEpisodeDescription.Text = episodeName;
                 int curPodcast = listBoxShowPodcast.SelectedIndex;
                 string pcName = pcController.GetPcNameByIndex(curPodcast);
                 Podcast pc = pcRepository.GetByNamn(pcName);
@@ -189,68 +159,6 @@ namespace Grupp_16
             {
                 listBoxEpisodeDescription.Items.Clear();
             }
-            //listBoxEpisodeDescriptionViewer.Items.Clear();
-            //int curEpisode = listBoxEpisodes.SelectedIndex;
-            //int curEpisode1 = SelectedRow(curEpisode);
-            //List<Episode> episodes = eController.GetEpisodes(pc.Url);
-
-            //Populate the list here
-            // Bind the list box according to the type of application you are using
-            // here i use asp.net
-
-            //try
-            //{
-            //    foreach (Episode episode in episodes)
-            //    {
-            //        if (episodes.Contains(curEpisode))
-            //        {
-            //            listBoxEpisodeDescriptionViewer.Items.Add(episode.Description);
-            //        }
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    Console.WriteLine("Error in clicking podcast!");
-            //}
-
-
-            //if (listBoxEpisodes.SelectedItems.Count == 1)
-            //{
-            //    int curPodcast = listBoxShowPodcast.SelectedIndex;
-            //    string curEpisode = listBoxEpisodes.SelectedIndex.ToString();
-            //    string pcName = pcController.GetPcNameByIndex(curPodcast);
-            //    Podcast pc = pcController.GetPodcastByNameWithoutAddingToListBox(pcName);
-
-            //    List<Episode> episodes = eController.GetEpisodes(pc.Url);
-            //    int index = episodes.FindIndex(a => a.ToString() == curEpisode);
-            //    Episode episode = episodes[index];
-
-            //    foreach (var item in episodes)
-            //    {
-            //        if (item.Title.Equals(episode))
-            //        {
-            //            listBoxEpisodeDescriptionViewer.Items.Add(item.Description);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    listboxepisodedescriptionviewer.items.clear();
-            //}
-
-
-
-            //if (listboxshowpodcast.selecteditems.count == 1)
-            //{
-            //    int eindex = listboxepisodes.selectedindex;
-            //    int feedindex = listboxshowpodcast.selecteditems[0].;
-            //    string description = entitetslogik.hamtaavsnittsbeskrivning(feedindex, episodeindex);
-            //    populator.uppdateralista(avsnittsbeskrivningtextruta, description);
-            //}
-            //else
-            //{
-            //    avsnittsbeskrivningtextruta.clear();
-            //}
         }
 
         private void deselectListBoxEpisodes()
@@ -280,7 +188,6 @@ namespace Grupp_16
                     int curPodcast = listBoxShowPodcast.SelectedIndex;
                     string pcName = pcController.GetPcNameByIndex(curPodcast);
                     Podcast pc = pcController.GetPodcastByName(pcName);
-                    //List<Episode> episodeList = pc.episodeList;
                     Console.WriteLine(pc.Namn + pc.Url + pc.episodeList.ToString());
                     foreach (var item in pc.episodeList)
                     {
@@ -304,20 +211,6 @@ namespace Grupp_16
 
                 throw;
             }
-            //listBoxEpisodes.Items.Clear();
-            //int curPodcast = listBoxShowPodcast.SelectedIndex;
-            //string pcName = pcController.GetPcNameByIndex(curPodcast);
-            //Podcast pc = pcController.GetPodcastByNameWithoutAddingToListBox(pcName);
-
-            //foreach (var item in pc.episodeList)
-            //{
-            //    listBoxEpisodes.Items.Add(item.Title);
-            //}
-
-            //textBoxName.Text = pc.Namn;
-            //textBoxUrl.Text = pc.Url;
-            //comboBoxUpdateFrequency.Text = pc.Frekvens.ToString();
-            //comboBoxCategory.Text = pc.Kategori;
         }
 
         private void showCategory()
@@ -337,9 +230,6 @@ namespace Grupp_16
                     try
                     {
                         listBoxCategory.Items.Clear();
-                        //cts.CancelAfter(2500);
-                        //Task asyncAddingFeed = new Task(() => AddNewFeedToPersistent(cts));
-                        //asyncAddingFeed.Start();
                         kController.CreateCategory(textBoxCategory.Text);
                         comboBoxCategory.Items.Add(textBoxCategory.Text);
                         showCategory();
@@ -438,8 +328,6 @@ namespace Grupp_16
                     int curKategori = listBoxCategory.SelectedIndex;
                     string kName = kController.GetKNameByIndex(curKategori);
                     k = kController.GetKategoriByNameWithoutAddingToListBox(kName);
-                    //string curKategori = listBoxCategory.SelectedIndex.ToString();
-                    //textBoxCategory.Text = curKategori;
                     textBoxCategory.Text = kName;
                     listBoxShowPodcast.Items.Clear();
                     listBoxEpisodes.Items.Clear();
@@ -475,9 +363,6 @@ namespace Grupp_16
                 {
                     if (listBoxShowPodcast.SelectedItems.Count == 1)
                     {
-                        //EventArgs a = new EventArgs();
-                        //object b = new object();
-                        //Form1_Load(b, a);
                         int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
                         int curPodcast = listBoxShowPodcast.SelectedIndex;
                         Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, textBoxName.Text, frekvens, comboBoxCategory.Text);
@@ -490,20 +375,6 @@ namespace Grupp_16
                         textBoxUrl.Text = "";
                         comboBoxUpdateFrequency.Text = "";
                         comboBoxCategory.Text = "";
-                        //int curPodcast = listBoxShowPodcast.SelectedIndex;
-                        //string pcName = pcController.GetPcNameByIndex(curPodcast);
-                        //Podcast pc = pcController.GetPodcastByName(pcName);
-                        //foreach (var item in pcController.GetPCList())
-                        //{
-                        //    if (item.Namn.Equals(pc.Namn))
-                        //    {
-                        //        item.Url = textBoxUrl.Text;
-                        //        item.Namn = textBoxName.Text;
-                        //        item.Frekvens = frekvens;
-                        //        item.Kategori = comboBoxCategory.Text;
-                        //        pcRepository.SaveAllChanges();
-                        //    }
-                        //}
                     }
                     else
                     {
@@ -552,10 +423,6 @@ namespace Grupp_16
                         {
                             foreach (var item in podcastsToSave)
                             {
-                                //Podcast pc = pcController.CreatePodcastSave(textBoxUrl.Text, 100, textBoxName.Text, frekvens, k.Namn);
-                                //item.Kategori = k.Namn;
-                                //pcRepository.Save(index, item);
-                                //pcController.UpdatePodcastCategory(item.Kategori, k.Namn);
                                 foreach (var podcast in pcController.GetPCList())
                                 {
                                     if (podcast.Kategori.Equals(item.Kategori))
@@ -640,8 +507,6 @@ namespace Grupp_16
         {
             try
             {
-                //int frekvens = 10;
-                //Timer timer = new Timer();
                 timer.Interval = 10000;
                 timer.Tick += Tiktok;
                 timer.Start();
@@ -670,31 +535,5 @@ namespace Grupp_16
                 SetPcList();
             }
         }
-
-        //private void buttonSave1_Click(object sender, EventArgs e)
-        //{
-        //    if (listPodcast.SelectedItems.Count == 1)
-        //    {
-        //        int selectedFeed = listPodcast.SelectedItems[0].Index;
-        //        EntitetsLogik.UppdateraFrekvensIntervall(selectedFeed, boxUppdatering.Text);
-        //        EntitetsLogik.UppdateraFeedKategori(selectedFeed, boxKategori.Text);
-        //        List<ListViewItem> persistentFeedList = EntitetsLogik.SkickaFeedsTillPoddlista();
-        //        Populator.UppdateraListView(listPodcast, persistentFeedList);
-        //        EntitetsLogik.SkickaFeedListaTillFil();
-        //        Populator.UppdateraValda(listPodcast, listKategori, listAvsnitt, avsnittsBeskrivningTextruta, PodcastTitel);
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
-        //    }
-        //}
-
-        //private void buttonSave2_Click(object sender, EventArgs e)
-        //{
-        //    string newName = textBoxCategory.Text;
-        //    Kategori kategori = (Kategori)listBoxCategory.SelectedItem;
-        //    listBoxCategory.Items.Clear();
-        //    kategori.cre
-        //}
     }
 }
