@@ -475,10 +475,9 @@ namespace Grupp_16
         {
             try
             {
-                timer.Interval = 10000;
+                timer.Interval = 60000;
                 timer.Tick += Tiktok;
                 timer.Start();
-
             }
             catch (System.NullReferenceException)
             {

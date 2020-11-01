@@ -122,7 +122,7 @@ namespace BusinessLogicLayer
         public bool GetIfANewEpisodeIsOut(Podcast pc, string url)
         {
             bool aNewEpisodeIsOut = false;
-            if (pc.Avsnitt > AmountOfEpisodes(url))
+            if (AmountOfEpisodes(url) > pc.Avsnitt)
             {
                 aNewEpisodeIsOut = true;
             }
