@@ -91,7 +91,6 @@
             this.textBoxUrl.Name = "textBoxUrl";
             this.textBoxUrl.Size = new System.Drawing.Size(258, 26);
             this.textBoxUrl.TabIndex = 3;
-            this.textBoxUrl.TextChanged += new System.EventHandler(this.textBoxUrl_TextChanged);
             // 
             // buttonNew1
             // 
@@ -181,7 +180,6 @@
             this.textBoxCategory.Name = "textBoxCategory";
             this.textBoxCategory.Size = new System.Drawing.Size(848, 26);
             this.textBoxCategory.TabIndex = 14;
-            this.textBoxCategory.TextChanged += new System.EventHandler(this.textBoxCategory_TextChanged);
             // 
             // buttonNew2
             // 
@@ -232,7 +230,6 @@
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(240, 28);
             this.comboBoxCategory.TabIndex = 20;
-            this.comboBoxCategory.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategory_SelectedIndexChanged);
             // 
             // textBoxName
             // 
@@ -258,7 +255,6 @@
             this.label7.Size = new System.Drawing.Size(72, 20);
             this.label7.TabIndex = 23;
             this.label7.Text = "Kategori:";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label8
             // 
@@ -318,7 +314,6 @@
             this.listBoxEpisodeDescription.Name = "listBoxEpisodeDescription";
             this.listBoxEpisodeDescription.Size = new System.Drawing.Size(1749, 144);
             this.listBoxEpisodeDescription.TabIndex = 30;
-            this.listBoxEpisodeDescription.SelectedIndexChanged += new System.EventHandler(this.listBoxEpisodeDescription_SelectedIndexChanged);
             // 
             // label10
             // 

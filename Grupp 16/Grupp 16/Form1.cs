@@ -54,11 +54,6 @@ namespace Grupp_16
             comboBoxCategory.Text = "";
         }
 
-        private void textBoxUrl_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void showPodcast()
         {
             foreach (var item in pcController.GetPCList())
@@ -106,31 +101,6 @@ namespace Grupp_16
                 MessageBox.Show("Check If every field is not empty!");
             }
         }
-
-        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        //public List<List<string>> GetPodcastAllEpisodes(XmlReader reader)
-        //{
-        //    List<string> subject = new List<string>();
-        //    List<string> summary = new List<string>();
-        //    List<List<string>> text = new List<List<string>>();
-
-        //    SyndicationFeed feed = SyndicationFeed.Load(reader);
-        //    reader.Close();
-        //    foreach (SyndicationItem item in feed.Items)
-        //    {
-        //        subject.Add(item.Title.Text);
-        //        summary.Add(item.Summary.Text);
-        //    }
-
-        //    text.Add(subject);
-        //    text.Add(summary);
-
-        //    return text;
-        //}
 
         private void listBoxEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -315,6 +285,7 @@ namespace Grupp_16
                 }
             }
         }
+
         private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -345,11 +316,6 @@ namespace Grupp_16
             {
                 MessageBox.Show(SAT.ToString());
             }
-        }
-
-        private void textBoxCategory_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonSave1_Click(object sender, EventArgs e)
@@ -429,16 +395,6 @@ namespace Grupp_16
             }
         }
 
-        private void listBoxViewer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             listBoxEpisodes.Items.Clear();
@@ -462,11 +418,6 @@ namespace Grupp_16
         private void button3_Click(object sender, EventArgs e)
         {
             deselectListBoxEpisodes();
-        }
-
-        private void listBoxEpisodeDescription_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void InitializeTimer()
