@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfKategori xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Kategori>
-    <Namn>d12345</Namn>
-  </Kategori>
-  <Kategori>
-    <Namn>hejdå</Namn>
+    <Namn>Skräckigare</Namn>
   </Kategori>
 </ArrayOfKategori>

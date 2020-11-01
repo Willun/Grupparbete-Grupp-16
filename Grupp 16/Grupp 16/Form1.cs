@@ -4,9 +4,7 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel.Syndication;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace Grupp_16
 {
@@ -87,11 +85,11 @@ namespace Grupp_16
                         comboBoxUpdateFrequency.Text = "";
                         comboBoxCategory.Text = "";
 
-                        //Application.Restart();
+                        MessageBox.Show("You have added a new podcast!");
                     }
                     catch (OperationCanceledException)
                     {
-                        MessageBox.Show("Web request timed out! Det tog för lång tid.");
+                        MessageBox.Show("Web request timed out!");
                     }
                     catch (Exception ex)
                     {
@@ -100,12 +98,12 @@ namespace Grupp_16
                 }
                 else
                 {
-                    MessageBox.Show("Försäkra dig om att URL:en är korrekt formaterad!");
+                    MessageBox.Show("Check if the url is in the right format!");
                 }
             }
             else
             {
-                MessageBox.Show("Försäkra du har fyllt i alla fält!");
+                MessageBox.Show("Check If every field is not empty!");
             }
         }
 
@@ -114,25 +112,25 @@ namespace Grupp_16
 
         }
 
-        public List<List<string>> GetPodcastAllEpisodes(XmlReader reader)
-        {
-            List<string> subject = new List<string>();
-            List<string> summary = new List<string>();
-            List<List<string>> text = new List<List<string>>();
+        //public List<List<string>> GetPodcastAllEpisodes(XmlReader reader)
+        //{
+        //    List<string> subject = new List<string>();
+        //    List<string> summary = new List<string>();
+        //    List<List<string>> text = new List<List<string>>();
 
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
-            reader.Close();
-            foreach (SyndicationItem item in feed.Items)
-            {
-                subject.Add(item.Title.Text);
-                summary.Add(item.Summary.Text);
-            }
+        //    SyndicationFeed feed = SyndicationFeed.Load(reader);
+        //    reader.Close();
+        //    foreach (SyndicationItem item in feed.Items)
+        //    {
+        //        subject.Add(item.Title.Text);
+        //        summary.Add(item.Summary.Text);
+        //    }
 
-            text.Add(subject);
-            text.Add(summary);
+        //    text.Add(subject);
+        //    text.Add(summary);
 
-            return text;
-        }
+        //    return text;
+        //}
 
         private void listBoxEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -201,7 +199,7 @@ namespace Grupp_16
                 }
                 else
                 {
-                    MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                    MessageBox.Show("You havent choosen anything yet!");
                 }
 
             }
@@ -245,12 +243,12 @@ namespace Grupp_16
                 }
                 else
                 {
-                    MessageBox.Show("Försäkra dig om att URL:en är korrekt formaterad!");
+                    MessageBox.Show("Check if the url is in the right format!");
                 }
             }
             else
             {
-                MessageBox.Show("Försäkra du har fyllt i alla fält!");
+                MessageBox.Show("Check If every field is not empty!");
             }
         }
 
@@ -313,7 +311,7 @@ namespace Grupp_16
                 }
                 else
                 {
-                    MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                    MessageBox.Show("You havent choosen anything yet!");
                 }
             }
         }
@@ -340,7 +338,7 @@ namespace Grupp_16
                 }
                 else
                 {
-                    MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                    MessageBox.Show("You havent choosen anything yet!");
                 }
             }
             catch (System.NullReferenceException SAT)
@@ -377,7 +375,7 @@ namespace Grupp_16
                     }
                     else
                     {
-                        MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                        MessageBox.Show("You havent choosen anything yet!");
                     }
                 }
                 catch (System.ArgumentOutOfRangeException EAS)
@@ -413,12 +411,12 @@ namespace Grupp_16
                         }
                         listBoxShowPodcast.Items.Clear();
                         showPodcast();
-                        MessageBox.Show("You have saved the change and no podcast category was saved!");
+                        MessageBox.Show("You have saved the change!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+                    MessageBox.Show("You havent choosen anything yet!!");
                 }
             }
             catch (System.ArgumentOutOfRangeException AOORE)

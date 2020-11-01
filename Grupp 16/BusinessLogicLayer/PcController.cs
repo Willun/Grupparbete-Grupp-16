@@ -95,30 +95,6 @@ namespace BusinessLogicLayer
             podcastRepository.Save(index, pc);
         }
 
-        //public string GetPodcastCategory(int index)
-        //{
-        //    var podcastList = podcastRepository.GetAll();
-        //    Podcast podcast = podcastList[index];
-        //    string category = podcast.Category;
-        //    return category;
-        //}
-
-        //public void UpdateAllPodcastInfo(int index, string url, string name, string interval, string category)
-        //{
-        //    var podcastList = podcastRepository.GetAll();
-        //    Podcast podcast = podcastList[index];
-        //    podcast.Url = url;
-        //    podcast.Name = name;
-        //    podcast.Interval = Convert.ToInt32(interval);
-        //    podcast.Category = category;
-        //    podcastRepository.Update(index, podcast);
-        //}
-
-        //public void UpdatePcCategory(string curName, string nName)
-        //{
-        //    podcastRepository
-        //}
-
         public bool GetIfANewEpisodeIsOut(Podcast pc, string url)
         {
             bool aNewEpisodeIsOut = false;
