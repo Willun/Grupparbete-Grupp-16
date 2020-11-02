@@ -369,6 +369,7 @@ namespace Grupp_16
             }
         }
 
+        //Avmarkerar podcasten
         private void button1_Click(object sender, EventArgs e)
         {
             listBoxEpisodes.Items.Clear();
@@ -382,6 +383,7 @@ namespace Grupp_16
             deselectListBoxShowPodcast();
         }
 
+        //Avmarkerar kategorin
         private void button2_Click(object sender, EventArgs e)
         {
             textBoxCategory.Text = "";
@@ -389,31 +391,26 @@ namespace Grupp_16
             deselectListBoxCategory();
         }
 
+        //Avmarkerar episoden
         private void button3_Click(object sender, EventArgs e)
         {
             deselectListBoxEpisodes();
         }
 
+        //Lägger till i Interval så att den kan uppdatera 
         private void InitializeTimer()
         {
-            try
-            {
-                timer.Interval = 60000;
-                timer.Tick += Tiktok;
-                timer.Start();
-            }
-            catch (System.NullReferenceException)
-            {
-                throw;
-            }
+            timer.Interval = 60000;
+            timer.Tick += Tiktok;
+            timer.Start();
         }
 
+        //Återskapar det som behövs efter uppdatering av podcast
         private void SetPcList()
         {
             int indexPc = listBoxShowPodcast.SelectedIndex;
             int indexC = listBoxCategory.SelectedIndex;
             listBoxShowPodcast.Items.Clear();
-            listBoxCategory.Items.Clear();
             var pcList = pcController.GetPCList();
             pcList.ToList().ForEach(podcast => listBoxShowPodcast.Items.Add("Name: " + podcast.Namn + "   Episodes: " + podcast.Avsnitt.ToString() + "   Frequency: every " + podcast.Frekvens.ToString() + " minutes   Category: " + podcast.Kategori));
             if (indexPc >= 0)
@@ -426,6 +423,7 @@ namespace Grupp_16
             }
         }
 
+        //Kollar och uppdaterar varje podcast
         private void Tiktok(object sender, EventArgs e)
         {
             foreach (var podcast in pcController.GetPCList().Where(p => p.NeedsToUpdate))
