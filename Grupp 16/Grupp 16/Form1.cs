@@ -58,6 +58,7 @@ namespace Grupp_16
             }
         }
 
+        //Visar podcasts i istBoxShowPodcast
         private void showPodcast()
         {
             foreach (var item in pcController.GetPCList())
@@ -65,6 +66,7 @@ namespace Grupp_16
                 listBoxShowPodcast.Items.Add("Name: " + item.Namn + "   Episodes: " + item.Avsnitt.ToString() + "   Frequency: every " + item.Frekvens.ToString() + " minutes   Category: " + item.Kategori);
             }
         }
+
         // Lägger till en ny podcast 
         private void buttonNew1_Click(object sender, EventArgs e)
         {
@@ -105,6 +107,7 @@ namespace Grupp_16
             }
         }
 
+        //Kör när du har klickat på en episode, den visar även beskrivningen på den episoden man har valt
         private void listBoxEpisodes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxEpisodes.SelectedItems.Count == 1)
@@ -131,16 +134,19 @@ namespace Grupp_16
             }
         }
 
+        //Avmarkerar episode listbox
         private void deselectListBoxEpisodes()
         {
             listBoxEpisodes.ClearSelected();
         }
 
+        //Avmarkerar podcast listbox
         private void deselectListBoxShowPodcast()
         {
             listBoxShowPodcast.ClearSelected();
         }
 
+        //Avmarkerar podcast och categori listbox samt uppdaterar podcast listbox
         private void deselectListBoxCategory()
         {
             listBoxShowPodcast.Items.Clear();
@@ -148,11 +154,12 @@ namespace Grupp_16
             listBoxCategory.ClearSelected();
         }
 
+        //
         private void listBoxShowPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (listBoxShowPodcast.SelectedItem != null)
+                if (podcastValidation.CheckIfSelected(listBoxShowPodcast) == false)
                 {
                     listBoxEpisodes.Items.Clear();
                     int curPodcast = listBoxShowPodcast.SelectedIndex;
@@ -174,15 +181,14 @@ namespace Grupp_16
                 {
                     MessageBox.Show("You havent choosen anything yet!");
                 }
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
 
+        //Lägger in alla kategorier in i kategori listboxen
         private void showCategory()
         {
             foreach (var item in kController.GetCategoryList())
@@ -190,6 +196,7 @@ namespace Grupp_16
                 listBoxCategory.Items.Add(item.Namn);
             }
         }
+
         // Lägger till kategori när du klickar ny
         private void buttonNew2_Click(object sender, EventArgs e)
         {
@@ -290,6 +297,7 @@ namespace Grupp_16
                 MessageBox.Show(ex.Message);
             }
         }
+
         // Sparar informationen efter du tryckt spara
         private void buttonSave1_Click(object sender, EventArgs e)
         {

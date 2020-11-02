@@ -84,13 +84,12 @@ namespace BusinessLogicLayer
         //Raderar alla podcasts med samma kategori som den du raderar 
         public void DeletePodcastWhenDeleteingCategory(string categoryName)
         {
-            List<Podcast> podcasts = podcastRepository.GetAll();
-            foreach (var item in podcasts)
+            for (int i = GetPCList().Count() - 1; i >= 0; i--)
             {
-                if (item.Kategori.Equals(categoryName))
+                if (GetPCList()[i].Kategori.Equals(categoryName))
                 {
-                    int index = podcasts.IndexOf(item);
-                    podcastRepository.Delete(index);
+                    //int index = podcasts.IndexOf(item);
+                    podcastRepository.Delete(i);
                 }
             }
         }
