@@ -86,7 +86,6 @@ namespace BusinessLogicLayer
                     podcastRepository.Delete(index);
                 }
             }
-            podcastRepository.SaveAllChanges();
         }
 
         public void SavePodcast(int index, Podcast pc)

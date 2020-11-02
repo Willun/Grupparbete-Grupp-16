@@ -16,9 +16,6 @@ namespace Grupp_16
         Validation validation = new Validation();
         Timer timer = new Timer();
 
-
-        int index = 0;
-
         public Form1()
         {
             InitializeComponent();
@@ -237,54 +234,33 @@ namespace Grupp_16
                     int curKategori = listBoxCategory.SelectedIndex;
                     string curCategoryName = listBoxCategory.SelectedItem.ToString();
                     Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
-                    List<Podcast> podcasts = pcController.GetPCList();
-                    List<Podcast> podcastsToDelete = new List<Podcast>();
-
-                    foreach (var item in podcasts)
-                    {
-                        if (k.Namn.Equals(item.Kategori))
-                        {
-                            podcastsToDelete.Add(item);
-                        }
-                    }
-
-                    if (podcastsToDelete.Count() >= 0)
-                    {
-                        DialogResult dr = MessageBox.Show("Are you sure you want to delete the category and all the podcasts that has it as it's category?",
+                    DialogResult dr = MessageBox.Show("Are you sure you want to delete the category and all the podcasts that has it as it's category?",
                     "Delete Category", MessageBoxButtons.YesNo);
+                    switch (dr)
+                    {
+                        case DialogResult.Yes:
+                            pcController.DeletePodcastWhenDeleteingCategory(curCategoryName, textBoxCategory.Text);
+                            kController.DeleteKategori(curKategori);
 
-                        switch (dr)
-                        {
-                            case DialogResult.Yes:
-                                foreach (var item in podcastsToDelete)
-                                {
-                                    pcController.DeletePodcast(index);
-                                    index++;
-                                }
-                                //pcController.DeletePodcastWhenDeleteingCategory(curCategoryName, textBoxCategory.Text);
-                                kController.DeleteKategori(curKategori);
-
-                                List<Kategori> kategoriList = kController.GetCategoryList();
-                                comboBoxCategory.Items.Clear();
-                                foreach (var item in kategoriList)
-                                {
-                                    comboBoxCategory.Items.Add(item.Namn);
-                                }
-                                listBoxCategory.Items.Clear();
-                                textBoxCategory.Text = "";
-                                showCategory();
-                                listBoxShowPodcast.Items.Clear();
-                                showPodcast();
-                                comboBoxCategory.Items.Clear();
-                                textBoxName.Text = "";
-                                textBoxUrl.Text = "";
-                                comboBoxUpdateFrequency.Text = "";
-                                comboBoxCategory.Text = "";
-                                index = 0;
-                                break;
-                            case DialogResult.No:
-                                break;
-                        }
+                            List<Kategori> kategoriList = kController.GetCategoryList();
+                            comboBoxCategory.Items.Clear();
+                            foreach (var item in kategoriList)
+                            {
+                                comboBoxCategory.Items.Add(item.Namn);
+                            }
+                            listBoxCategory.Items.Clear();
+                            textBoxCategory.Text = "";
+                            showCategory();
+                            listBoxShowPodcast.Items.Clear();
+                            showPodcast();
+                            comboBoxCategory.Items.Clear();
+                            textBoxName.Text = "";
+                            textBoxUrl.Text = "";
+                            comboBoxUpdateFrequency.Text = "";
+                            comboBoxCategory.Text = "";
+                            break;
+                        case DialogResult.No:
+                            break;
                     }
                 }
                 else
@@ -307,6 +283,10 @@ namespace Grupp_16
                     textBoxCategory.Text = kName;
                     listBoxShowPodcast.Items.Clear();
                     listBoxEpisodes.Items.Clear();
+                    textBoxName.Text = "";
+                    textBoxUrl.Text = "";
+                    comboBoxUpdateFrequency.Text = "";
+                    comboBoxCategory.Text = "";
                     foreach (var item in pcController.GetPCList())
                     {
                         if (item.Kategori.Equals(k.Namn))

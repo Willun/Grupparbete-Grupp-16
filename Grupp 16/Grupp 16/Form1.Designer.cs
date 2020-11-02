@@ -213,6 +213,7 @@
             // 
             // comboBoxUpdateFrequency
             // 
+            this.comboBoxUpdateFrequency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUpdateFrequency.FormattingEnabled = true;
             this.comboBoxUpdateFrequency.Items.AddRange(new object[] {
             "1",
@@ -225,6 +226,7 @@
             // 
             // comboBoxCategory
             // 
+            this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategory.FormattingEnabled = true;
             this.comboBoxCategory.Location = new System.Drawing.Point(670, 597);
             this.comboBoxCategory.Name = "comboBoxCategory";
@@ -360,6 +362,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
