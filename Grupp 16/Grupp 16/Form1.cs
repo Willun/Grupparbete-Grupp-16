@@ -263,7 +263,7 @@ namespace Grupp_16
         {
             try
             {
-                if (listBoxCategory.SelectedItems.Count == 1)
+                if (categoryValidation.CheckIfSelected(listBoxCategory) == false)
                 {
                     Kategori k = new Kategori();
                     int curKategori = listBoxCategory.SelectedIndex;
@@ -284,14 +284,10 @@ namespace Grupp_16
                         }
                     }
                 }
-                else
-                {
-                    MessageBox.Show("You havent choosen anything yet!");
-                }
             }
-            catch (System.NullReferenceException SAT)
+            catch (Exception ex)
             {
-                MessageBox.Show(SAT.ToString());
+                MessageBox.Show(ex.Message);
             }
         }
         // Sparar informationen efter du tryckt spara
