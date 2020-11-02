@@ -11,9 +11,6 @@ namespace BusinessLogicLayer
         EController eController = new EController();
         IPcRepository<Podcast> podcastRepository;
 
-        //private static PodcastList AllPodcastList = new PodcastList();
-        //private static PodcastList AllFilteredPodcastList = new PodcastList();
-
         public PcController()
         {
             podcastRepository = new PcRepository();
@@ -53,22 +50,10 @@ namespace BusinessLogicLayer
             return podcastRepository.GetAll();
         }
 
-        public string GetPodcastNameByIndex(int index)
-        {
-            return podcastRepository.GetName(index);
-        }
-
         public Podcast GetPodcastByName(string name)
         {
             Podcast pc = podcastRepository.GetByNamn(name);
             return pc;
-        }
-
-        public List<string> PodcastObjectToStringList()
-        {
-            List<Podcast> pcObjects = new List<Podcast>();
-            List<string> pcStrings = (from o in pcObjects select o.ToString()).ToList();
-            return pcStrings;
         }
 
         public string GetPcNameByIndex(int index)
@@ -87,6 +72,20 @@ namespace BusinessLogicLayer
                 }
             }
             podcastRepository.SetPodcastList(podcasts);
+            podcastRepository.SaveAllChanges();
+        }
+
+        public void DeletePodcastWhenDeleteingCategory(string pcName, string tbName)
+        {
+            List<Podcast> podcasts = podcastRepository.GetAll();
+            foreach (var item in podcasts)
+            {
+                if (pcName.Equals(tbName))
+                {
+                    int index = podcasts.IndexOf(item);
+                    podcastRepository.Delete(index);
+                }
+            }
             podcastRepository.SaveAllChanges();
         }
 

@@ -44,12 +44,12 @@ namespace BusinessLogicLayer
             return kStrings;
         }
 
-        public string GetKategoriByName(string name)
-        {
-            Kategori kategori = kategoriRepository.GetByNamn(name);
-            string kategorin = kategori.Namn;
-            return kategorin;
-        }
+        //public string GetKategoriByName(string name)
+        //{
+        //    Kategori kategori = kategoriRepository.GetByNamn(name);
+        //    string kategorin = kategori.Namn;
+        //    return kategorin;
+        //}
 
         public string GetKNameByIndex(int index)
         {

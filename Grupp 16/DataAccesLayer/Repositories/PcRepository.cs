@@ -7,7 +7,7 @@ namespace DataAccesLayer.Repositories
 {
     public class PcRepository : IPcRepository<Podcast>
     {
-        DataManager dataManager;
+        PodcastDataManager podcastDataManager;
         List<Podcast> podcastList;
         List<Episode> episodeList;
 
@@ -15,7 +15,7 @@ namespace DataAccesLayer.Repositories
         {
             podcastList = new List<Podcast>();
             episodeList = new List<Episode>();
-            dataManager = new DataManager();
+            podcastDataManager = new PodcastDataManager();
             podcastList = GetAll();
         }
 
@@ -42,7 +42,7 @@ namespace DataAccesLayer.Repositories
                 podcastList.RemoveAt(index);
                 SaveAllChanges();
             }
-            catch (Exception)
+            catch (System.ArgumentOutOfRangeException)
             {
                 throw;
             }
@@ -50,7 +50,7 @@ namespace DataAccesLayer.Repositories
 
         public void SaveAllChanges()
         {
-            dataManager.Serialize(podcastList);
+            podcastDataManager.Serialize(podcastList);
         }
 
         public List<Podcast> GetAll()
@@ -58,7 +58,7 @@ namespace DataAccesLayer.Repositories
             List<Podcast> podcastListToBeReturned = new List<Podcast>();
             try
             {
-                podcastListToBeReturned = dataManager.Deserialize();
+                podcastListToBeReturned = podcastDataManager.Deserialize();
             }
             catch (Exception)
             {
@@ -81,20 +81,5 @@ namespace DataAccesLayer.Repositories
         {
             podcastList = podcasts;
         }
-
-        public void UpdatePodcastKategori(string curName, string nName)
-        {
-            foreach (var podcast in podcastList.Where(p => p.Kategori == curName))
-            {
-                podcast.Kategori = nName;
-            }
-            SaveAllChanges();
-        }
-
-        public List<Episode> GetEpisodeList()
-        {
-            return episodeList;
-        }
-
     }
 }

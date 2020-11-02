@@ -26,29 +26,29 @@ namespace Grupp16
             }
         }
 
-        public static bool OmKorrektXML(XmlDocument dokument)
-        {
-            if (dokument.ChildNodes.Count != 0)
-            {
-                return String.Equals(dokument.ChildNodes[1].Name.ToString(), "rss", StringComparison.OrdinalIgnoreCase);
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //public static bool OmKorrektXML(XmlDocument dokument)
+        //{
+        //    if (dokument.ChildNodes.Count != 0)
+        //    {
+        //        return String.Equals(dokument.ChildNodes[1].Name.ToString(), "rss", StringComparison.OrdinalIgnoreCase);
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        public bool CheckIfcomboBoxHasASelectedItem(string comboAndTextboxName)
-        {
-            if (string.IsNullOrEmpty(comboAndTextboxName))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        //public bool CheckIfcomboBoxHasASelectedItem(string comboAndTextboxName)
+        //{
+        //    if (string.IsNullOrEmpty(comboAndTextboxName))
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
 
         public bool CheckIfItemInListAlreadyExists(List<string> klist, string name)
         {

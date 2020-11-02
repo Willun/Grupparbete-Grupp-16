@@ -72,15 +72,21 @@ namespace Grupp_16
                     {
                         int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
                         pcController.CreatePodcast(textBoxUrl.Text, textBoxName.Text, frekvens, comboBoxCategory.SelectedItem.ToString());
-                        listBoxShowPodcast.Items.Clear();
-                        showPodcast();
 
                         textBoxName.Text = "";
                         textBoxUrl.Text = "";
                         comboBoxUpdateFrequency.Text = "";
                         comboBoxCategory.Text = "";
 
-                        MessageBox.Show("You have added a new podcast!");
+                        DialogResult dr = MessageBox.Show("You have added a new podcast!?",
+                        "Delete Category", MessageBoxButtons.OK);
+                        switch (dr)
+                        {
+                            case DialogResult.OK:
+                                listBoxShowPodcast.Items.Clear();
+                                showPodcast();
+                                break;
+                        }
                     }
                     catch (OperationCanceledException)
                     {
@@ -229,6 +235,7 @@ namespace Grupp_16
                 if (listBoxCategory.SelectedItems.Count == 1)
                 {
                     int curKategori = listBoxCategory.SelectedIndex;
+                    string curCategoryName = listBoxCategory.SelectedItem.ToString();
                     Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
                     List<Podcast> podcasts = pcController.GetPCList();
                     List<Podcast> podcastsToDelete = new List<Podcast>();
@@ -244,7 +251,7 @@ namespace Grupp_16
                     if (podcastsToDelete.Count() >= 0)
                     {
                         DialogResult dr = MessageBox.Show("Are you sure you want to delete the category and all the podcasts that has it as it's category?",
-                        "Delete Category", MessageBoxButtons.YesNo);
+                    "Delete Category", MessageBoxButtons.YesNo);
 
                         switch (dr)
                         {
@@ -254,6 +261,8 @@ namespace Grupp_16
                                     pcController.DeletePodcast(index);
                                     index++;
                                 }
+                                //pcController.DeletePodcastWhenDeleteingCategory(curCategoryName, textBoxCategory.Text);
+                                kController.DeleteKategori(curKategori);
 
                                 List<Kategori> kategoriList = kController.GetCategoryList();
                                 comboBoxCategory.Items.Clear();
@@ -261,7 +270,6 @@ namespace Grupp_16
                                 {
                                     comboBoxCategory.Items.Add(item.Namn);
                                 }
-                                kController.DeleteKategori(curKategori);
                                 listBoxCategory.Items.Clear();
                                 textBoxCategory.Text = "";
                                 showCategory();

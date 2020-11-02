@@ -7,13 +7,13 @@ namespace DataAccesLayer.Repositories
 {
     public class KategoriRepository : IKategoriRepository<Kategori>
     {
-        DataManager dataManager;
+        CategoryDataManager categoryDataManager;
         List<Kategori> kategoriList;
 
         public KategoriRepository()
         {
             kategoriList = new List<Kategori>();
-            dataManager = new DataManager();
+            categoryDataManager = new CategoryDataManager();
             kategoriList = GetAll();
         }
 
@@ -54,7 +54,7 @@ namespace DataAccesLayer.Repositories
 
         public void SaveAllChanges()
         {
-            dataManager.SerializeK(kategoriList);
+            categoryDataManager.Serialize(kategoriList);
         }
 
         public List<Kategori> GetAll()
@@ -62,7 +62,7 @@ namespace DataAccesLayer.Repositories
             List<Kategori> kategoriListToBeReturned = new List<Kategori>();
             try
             {
-                kategoriListToBeReturned = dataManager.DeserializeK();
+                kategoriListToBeReturned = categoryDataManager.Deserialize();
             }
             catch (Exception)
             {
