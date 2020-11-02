@@ -27,21 +27,25 @@ namespace BusinessLogicLayer
             podcastRepository.Delete(curPodcast);
         }
 
-        public async void CreatePodcast(string url, string namn, int frekvens, string kategori)
+        public Podcast CreatePodcast(string url, string namn, int frekvens, string kategori)
+        {
+            int amountOfEpisodes = AmountOfEpisodes(url);
+            Podcast podcast = new Podcast(url, amountOfEpisodes, namn, frekvens, kategori, eController.GetEpisodes(url));
+            return podcast;
+        }
+
+        public async void CreatePodcastToXML(string url, string namn, int frekvens, string kategori)
         {
             await Task.Run(() =>
             {
-                int amountOfEpisodes = AmountOfEpisodes(url);
-                Podcast podcast = new Podcast(url, amountOfEpisodes, namn, frekvens, kategori, eController.GetEpisodes(url));
+                Podcast podcast = CreatePodcast(url, namn, frekvens, kategori);
                 podcastRepository.New(podcast);
             });
         }
 
-        public Podcast CreatePodcastSave(string url, string namn, int frekvens, string kategori)
+        public Podcast CreatePodcastToSaveAndReturnPodcast(string url, string namn, int frekvens, string kategori)
         {
-            List<Episode> episodes = eController.GetEpisodes(url);
-            int amountOfEpisodes = episodes.Count();
-            Podcast podcast = new Podcast(url, amountOfEpisodes, namn, frekvens, kategori, episodes);
+            Podcast podcast = CreatePodcast(url, namn, frekvens, kategori);
             return podcast;
         }
 
@@ -75,12 +79,12 @@ namespace BusinessLogicLayer
             podcastRepository.SaveAllChanges();
         }
 
-        public void DeletePodcastWhenDeleteingCategory(string pcName, string tbName)
+        public void DeletePodcastWhenDeleteingCategory(string categoryName)
         {
             List<Podcast> podcasts = podcastRepository.GetAll();
             foreach (var item in podcasts)
             {
-                if (pcName.Equals(tbName))
+                if (item.Kategori.Equals(categoryName))
                 {
                     int index = podcasts.IndexOf(item);
                     podcastRepository.Delete(index);

@@ -7,7 +7,7 @@ namespace BusinessLogicLayer
 {
     public class KController
     {
-        private IRepository<Kategori> kategoriRepository;
+        private IKategoriRepository<Kategori> kategoriRepository;
 
         public KController()
         {
