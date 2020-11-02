@@ -88,7 +88,6 @@ namespace BusinessLogicLayer
             {
                 if (GetPCList()[i].Kategori.Equals(categoryName))
                 {
-                    //int index = podcasts.IndexOf(item);
                     podcastRepository.Delete(i);
                 }
             }
