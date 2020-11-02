@@ -7,6 +7,7 @@ namespace DataAccesLayer
 {
     class CategoryDataManager
     {
+        //skapar en lista på kategorier i en XML-fil
         public void Serialize(List<Kategori> kategoriList)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(kategoriList.GetType());
@@ -17,6 +18,7 @@ namespace DataAccesLayer
             }
         }
 
+        //Läser listan med kategorier från xml-filen
         public List<Kategori> Deserialize()
         {
             List<Kategori> listOfKategorierToBeReturned;

@@ -27,6 +27,7 @@ namespace Grupp_16
 
         }
 
+        // Kollar om du fyllt i något i listboxes
         public virtual bool CheckIfTheInputIsEmpty(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -39,6 +40,7 @@ namespace Grupp_16
             }
         }
 
+        // Kollar om comboboxen är empty
         public virtual bool CheckIfTheInputIsEmptyComboBox(ComboBox cb)
         {
             if (cb.SelectedItem == null)
@@ -51,6 +53,7 @@ namespace Grupp_16
             }
         }
 
+        // Kollar om URl är giltig
         public virtual bool CheckIfValidURL(string url)
         {
             try
@@ -68,6 +71,7 @@ namespace Grupp_16
             }
         }
 
+        // Kollar om itemet redan existerar
         public virtual bool CheckIfItemInListAlreadyExists(List<string> klist, string name)
         {
             if (klist.Contains(name) == true)
@@ -77,6 +81,19 @@ namespace Grupp_16
             else
             {
                 return true;
+            }
+        }
+
+        // Kollar så du selectad något i din listbox
+        public virtual bool CheckIfSelected(ListBox listbox)
+        {
+            if (listbox.SelectedIndex == -1)
+            {
+                throw (new Exception("Select a item in listbox!"));
+            }
+            else
+            {
+                return false;
             }
         }
     }

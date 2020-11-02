@@ -32,6 +32,7 @@ namespace Models
 
         }
 
+        //Räknar ut alla episoder från en lista
         private void CountAllEpisodesInAList()
         {
             foreach (var i in episodeList)
@@ -40,6 +41,7 @@ namespace Models
             }
         }
 
+        //Kollar ifall en podcast behöver uppdateras
         public bool NeedsToUpdate
         {
             get
@@ -48,6 +50,7 @@ namespace Models
             }
         }
 
+        //Kollar uppdateringen och checkar tiden, samt lägger in den nya episoden i podcasten
         public void Update()
         {
             LastUpdated = DateTime.Now.AddMinutes(Frekvens);

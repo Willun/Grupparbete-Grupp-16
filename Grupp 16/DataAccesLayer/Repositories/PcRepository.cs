@@ -19,6 +19,7 @@ namespace DataAccesLayer.Repositories
             podcastList = GetAll();
         }
 
+        //Skapar en ny podcast och sparar ändringarna
         public void New(Podcast podcast)
         {
             podcastList = GetAll();
@@ -26,6 +27,7 @@ namespace DataAccesLayer.Repositories
             SaveAllChanges();
         }
 
+        //Sparar ändringarna
         public void Save(int index, Podcast podcast)
         {
             if (index >= 0)
@@ -35,24 +37,20 @@ namespace DataAccesLayer.Repositories
             SaveAllChanges();
         }
 
+        //Raderar podcast och sparar ändringarna
         public void Delete(int index)
         {
-            try
-            {
-                podcastList.RemoveAt(index);
-                SaveAllChanges();
-            }
-            catch (System.ArgumentOutOfRangeException)
-            {
-                throw;
-            }
+            podcastList.RemoveAt(index);
+            SaveAllChanges();
         }
 
+        //Sparar alla ändringar och lägger in dem i ett lokalt xml dokument
         public void SaveAllChanges()
         {
             podcastDataManager.Serialize(podcastList);
         }
 
+        //Hämtar alla podcasts från ett lokalt xml dokument 
         public List<Podcast> GetAll()
         {
             List<Podcast> podcastListToBeReturned = new List<Podcast>();
@@ -67,16 +65,19 @@ namespace DataAccesLayer.Repositories
             return podcastListToBeReturned;
         }
 
+        //Hämtar podcast via ett namn
         public Podcast GetByNamn(string namn)
         {
             return GetAll().First(p => p.Namn.Equals(namn));
         }
 
+        //Hämtar podcast via ett index
         public string GetName(int index)
         {
             return GetAll()[index].Namn;
         }
 
+        //Sätter podcastlistan till valfri lista
         public void SetPodcastList(List<Podcast> podcasts)
         {
             podcastList = podcasts;

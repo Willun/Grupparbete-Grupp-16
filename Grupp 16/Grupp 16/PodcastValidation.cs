@@ -7,6 +7,7 @@ namespace Grupp16
 {
     public class PodcastValidation : Exceptions
     {
+        //Kontrollerar om inmatad URL är giltig
         public override bool CheckIfValidURL(string url)
         {
             if (string.IsNullOrEmpty(url))
@@ -19,6 +20,7 @@ namespace Grupp16
             }
         }
 
+        //Kontrollerar att inmatat värde ej är tomt
         public override bool CheckIfTheInputIsEmpty(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -31,6 +33,7 @@ namespace Grupp16
             }
         }
 
+        // Kontrollerar att det finns ett värde i comboboxen
         public override bool CheckIfTheInputIsEmptyComboBox(ComboBox cb)
         {
             if (cb.SelectedItem == null)
@@ -43,24 +46,17 @@ namespace Grupp16
             }
         }
 
-        //public static bool CheckTextField(params TextBox[] textBoxes)
-        //{
-        //    bool isValid = true;
-        //    foreach (var textbox in textBoxes)
-        //    {
-        //        if (textbox.Text == "")
-        //        {
-        //            isValid = false;
-        //        }
-        //    }
-
-        //    if (!isValid)
-        //    {
-        //        MessageBox.Show("You must enter a URL and a name for the podcast.");
-        //    }
-        //    return isValid;
-        //}
-
-
+        //Kontrollerar att man valt värde i listbox
+        public override bool CheckIfSelected(ListBox listbox)
+        {
+            if (listbox.SelectedIndex == -1)
+            {
+                throw (new Exception("Make sure you have selected a item in the podcast listbox!"));
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

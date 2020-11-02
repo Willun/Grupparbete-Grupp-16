@@ -12,6 +12,7 @@ namespace BusinessLogicLayer
 
         }
 
+        //Hämtar alla episoder
         public List<Episode> GetEpisodes(string Url)
         {
             var reader = XmlReader.Create(Url);

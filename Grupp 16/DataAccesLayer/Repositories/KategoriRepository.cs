@@ -17,12 +17,14 @@ namespace DataAccesLayer.Repositories
             kategoriList = GetAll();
         }
 
+        //Skapar ny katgori och sparar ändringarna
         public void New(Kategori kategori)
         {
             kategoriList.Add(kategori);
             SaveAllChanges();
         }
 
+        //Sparar kategori ändringar
         public void Save(int index, Kategori kategori)
         {
             try
@@ -39,24 +41,20 @@ namespace DataAccesLayer.Repositories
             }
         }
 
+        //Raderar kategori och sparar ändringarna
         public void Delete(int index)
         {
-            try
-            {
-                kategoriList.RemoveAt(index);
-                SaveAllChanges();
-            }
-            catch (System.ArgumentOutOfRangeException)
-            {
-                throw;
-            }
+            kategoriList.RemoveAt(index);
+            SaveAllChanges();
         }
 
+        //Sparar alla ändringar och lägger in dem i ett lokalt xml dokument
         public void SaveAllChanges()
         {
             categoryDataManager.Serialize(kategoriList);
         }
 
+        //Hämtar alla kategorier från ett lokalt xml dokument 
         public List<Kategori> GetAll()
         {
             List<Kategori> kategoriListToBeReturned = new List<Kategori>();
@@ -70,11 +68,13 @@ namespace DataAccesLayer.Repositories
             return kategoriListToBeReturned;
         }
 
+        //Hämtar kategori via ett namn
         public Kategori GetByNamn(string namn)
         {
             return GetAll().FirstOrDefault(p => p.Namn.Equals(namn));
         }
 
+        //Hämtar kategori via ett index
         public string GetName(int index)
         {
             return kategoriList[index].Namn;

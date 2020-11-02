@@ -17,6 +17,7 @@ namespace Grupp_16
         CategoryValidation categoryValidation = new CategoryValidation();
         Timer timer = new Timer();
 
+        //Körs när pogrammet skapas
         public Form1()
         {
             InitializeComponent();
@@ -34,25 +35,27 @@ namespace Grupp_16
         {
 
         }
-
+        // Koden körs när du klickar på delete, Tar bort podcast
         private void buttonDelete1_Click(object sender, EventArgs e)
         {
-            //if ()
-            //{
+            try
+            {
+                if (podcastValidation.CheckIfSelected(listBoxShowPodcast) == false)
+                {
+                    int curPodcast = listBoxShowPodcast.SelectedIndex;
+                    pcController.DeletePodcast(curPodcast);
+                    listBoxEpisodes.Items.Clear();
+                    listBoxShowPodcast.Items.Clear();
+                    showPodcast();
 
-            int curPodcast = listBoxShowPodcast.SelectedIndex;
-            pcController.DeletePodcast(curPodcast);
-            listBoxEpisodes.Items.Clear();
-            listBoxShowPodcast.Items.Clear();
-            showPodcast();
-
-            textBoxName.Text = "";
-            textBoxUrl.Text = "";
-            comboBoxUpdateFrequency.Text = "";
-            comboBoxCategory.Text = "";
-
-            //}
-
+                    textBoxName.Text = "";
+                    textBoxUrl.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void showPodcast()
@@ -62,7 +65,7 @@ namespace Grupp_16
                 listBoxShowPodcast.Items.Add("Name: " + item.Namn + "   Episodes: " + item.Avsnitt.ToString() + "   Frequency: every " + item.Frekvens.ToString() + " minutes   Category: " + item.Kategori);
             }
         }
-
+        // Lägger till en ny podcast 
         private void buttonNew1_Click(object sender, EventArgs e)
         {
             try
@@ -80,8 +83,6 @@ namespace Grupp_16
 
                                 textBoxName.Text = "";
                                 textBoxUrl.Text = "";
-                                comboBoxUpdateFrequency.Text = "";
-                                comboBoxCategory.Text = "";
 
                                 DialogResult dr = MessageBox.Show("You have added a new podcast!?",
                                 "Delete Category", MessageBoxButtons.OK);
@@ -166,8 +167,8 @@ namespace Grupp_16
                     listBoxCategory.ClearSelected();
                     textBoxName.Text = pc.Namn;
                     textBoxUrl.Text = pc.Url;
-                    comboBoxUpdateFrequency.Text = pc.Frekvens.ToString();
-                    comboBoxCategory.Text = pc.Kategori;
+                    comboBoxUpdateFrequency.SelectedIndex = comboBoxUpdateFrequency.FindStringExact(pc.Frekvens.ToString());
+                    comboBoxCategory.SelectedIndex = comboBoxCategory.FindStringExact(pc.Kategori);
                 }
                 else
                 {
@@ -189,14 +190,14 @@ namespace Grupp_16
                 listBoxCategory.Items.Add(item.Namn);
             }
         }
-
+        // Lägger till kategori när du klickar ny
         private void buttonNew2_Click(object sender, EventArgs e)
         {
             try
             {
-                if (categoryValidation.CheckIfTheInputIsEmpty(textBoxCategory.Text))
+                if (categoryValidation.CheckIfTheInputIsEmpty(textBoxCategory.Text) == false)
                 {
-                    if (categoryValidation.CheckIfItemInListAlreadyExists(kController.GetKategoriListStrings(), textBoxCategory.Text))
+                    if (categoryValidation.CheckIfItemInListAlreadyExists(kController.GetKategoriListStrings(), textBoxCategory.Text) == false)
                     {
                         listBoxCategory.Items.Clear();
                         kController.CreateCategory(textBoxCategory.Text);
@@ -212,232 +213,226 @@ namespace Grupp_16
             }
         }
 
+        // Tar bort kategori efter du har tryckt på radera knappen
         private void buttonDelete2_Click(object sender, EventArgs e)
         {
             try
             {
-                if (categoryValidation.CheckIfTheInputIsEmpty(textBoxCategory.Text))
+                if (categoryValidation.CheckIfSelected(listBoxCategory) == false)
                 {
-                    if (listBoxCategory.SelectedItems.Count == 1)
+                    int curKategori = listBoxCategory.SelectedIndex;
+                    DialogResult dr = MessageBox.Show("Are you sure you want to delete the category and all the podcasts that has it as it's category?",
+                    "Delete Category", MessageBoxButtons.YesNo);
+                    switch (dr)
                     {
-                        int curKategori = listBoxCategory.SelectedIndex;
-                        DialogResult dr = MessageBox.Show("Are you sure you want to delete the category and all the podcasts that has it as it's category?",
-                        "Delete Category", MessageBoxButtons.YesNo);
-                        switch (dr)
-                        {
-                            case DialogResult.Yes:
-                                pcController.DeletePodcastWhenDeleteingCategory(textBoxCategory.Text);
-                                kController.DeleteKategori(curKategori);
+                        case DialogResult.Yes:
+                            pcController.DeletePodcastWhenDeleteingCategory(textBoxCategory.Text);
+                            kController.DeleteKategori(curKategori);
 
-                                List<Kategori> kategoriList = kController.GetCategoryList();
-                                comboBoxCategory.Items.Clear();
-                                foreach (var item in kategoriList)
-                                {
-                                    comboBoxCategory.Items.Add(item.Namn);
-                                }
-                                listBoxCategory.Items.Clear();
-                                textBoxCategory.Text = "";
-                                showCategory();
-                                listBoxShowPodcast.Items.Clear();
-                                showPodcast();
-                                comboBoxCategory.Items.Clear();
-                                textBoxName.Text = "";
-                                textBoxUrl.Text = "";
-                                comboBoxUpdateFrequency.Text = "";
-                                comboBoxCategory.Text = "";
-                                break;
-                            case DialogResult.No:
-                                break;
-                        }
-                    }
-
-                }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-    }
-
-    private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        try
-        {
-            if (listBoxCategory.SelectedItems.Count == 1)
-            {
-                Kategori k = new Kategori();
-                int curKategori = listBoxCategory.SelectedIndex;
-                string kName = kController.GetKNameByIndex(curKategori);
-                k = kController.GetKategoriByNameWithoutAddingToListBox(kName);
-                textBoxCategory.Text = kName;
-                listBoxShowPodcast.Items.Clear();
-                listBoxEpisodes.Items.Clear();
-                textBoxName.Text = "";
-                textBoxUrl.Text = "";
-                comboBoxUpdateFrequency.Text = "";
-                comboBoxCategory.Text = "";
-                foreach (var item in pcController.GetPCList())
-                {
-                    if (item.Kategori.Equals(k.Namn))
-                    {
-                        listBoxShowPodcast.Items.Add("Name: " + item.Namn + "   Episodes: " + item.Avsnitt.ToString() + "   Frequency: every " + item.Frekvens.ToString() + " minutes   Category: " + item.Kategori);
+                            List<Kategori> kategoriList = kController.GetCategoryList();
+                            comboBoxCategory.Items.Clear();
+                            foreach (var item in kategoriList)
+                            {
+                                comboBoxCategory.Items.Add(item.Namn);
+                            }
+                            listBoxCategory.Items.Clear();
+                            textBoxCategory.Text = "";
+                            showCategory();
+                            listBoxShowPodcast.Items.Clear();
+                            showPodcast();
+                            comboBoxCategory.Items.Clear();
+                            textBoxName.Text = "";
+                            textBoxUrl.Text = "";
+                            comboBoxUpdateFrequency.Text = "";
+                            comboBoxCategory.Text = "";
+                            break;
+                        case DialogResult.No:
+                            break;
                     }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("You havent choosen anything yet!");
+                MessageBox.Show(ex.Message);
             }
-        }
-        catch (System.NullReferenceException SAT)
-        {
-            MessageBox.Show(SAT.ToString());
-        }
-    }
 
-    private void buttonSave1_Click(object sender, EventArgs e)
-    {
-        if (textBoxName.Text != "" && textBoxUrl.Text != null && comboBoxUpdateFrequency.SelectedItem != null && comboBoxCategory.SelectedItem != null)
+        }
+
+        // Körs när du tryckt på en kategori i listbox
+        private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (listBoxShowPodcast.SelectedItems.Count == 1)
+                if (listBoxCategory.SelectedItems.Count == 1)
                 {
-                    int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
-                    int curPodcast = listBoxShowPodcast.SelectedIndex;
-                    Podcast pc = pcController.CreatePodcastToSaveAndReturnPodcast(textBoxUrl.Text, textBoxName.Text, frekvens, comboBoxCategory.Text);
-                    pcController.SavePodcast(curPodcast, pc);
+                    Kategori k = new Kategori();
+                    int curKategori = listBoxCategory.SelectedIndex;
+                    string kName = kController.GetKNameByIndex(curKategori);
+                    k = kController.GetKategoriByNameWithoutAddingToListBox(kName);
+                    textBoxCategory.Text = kName;
                     listBoxShowPodcast.Items.Clear();
-                    showPodcast();
-
                     listBoxEpisodes.Items.Clear();
                     textBoxName.Text = "";
                     textBoxUrl.Text = "";
                     comboBoxUpdateFrequency.Text = "";
                     comboBoxCategory.Text = "";
+                    foreach (var item in pcController.GetPCList())
+                    {
+                        if (item.Kategori.Equals(k.Namn))
+                        {
+                            listBoxShowPodcast.Items.Add("Name: " + item.Namn + "   Episodes: " + item.Avsnitt.ToString() + "   Frequency: every " + item.Frekvens.ToString() + " minutes   Category: " + item.Kategori);
+                        }
+                    }
                 }
                 else
                 {
                     MessageBox.Show("You havent choosen anything yet!");
                 }
             }
-            catch (System.ArgumentOutOfRangeException EAS)
+            catch (System.NullReferenceException SAT)
             {
-                MessageBox.Show(EAS.ToString());
+                MessageBox.Show(SAT.ToString());
             }
         }
-    }
-
-    private void buttonSave2_Click(object sender, EventArgs e)
-    {
-        try
+        // Sparar informationen efter du tryckt spara
+        private void buttonSave1_Click(object sender, EventArgs e)
         {
-            if (CategoryValidation.CheckIfTheInputIsEmpty(textBoxCategory.Text))
+            try
             {
-                if (listBoxCategory.SelectedItems.Count == 1)
+                if (podcastValidation.CheckIfTheInputIsEmpty(textBoxName.Text) == false)
                 {
-                    int curKategori = listBoxCategory.SelectedIndex;
-                    string curCategoryName = listBoxCategory.SelectedItem.ToString();
-                    Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
-
-                    kController.SaveCategory(curKategori, k);
-                    pcController.UpdatePodcastCategory(curCategoryName, textBoxCategory.Text);
-                    comboBoxCategory.Items.Add(k.Namn);
-
-                    listBoxCategory.Items.Clear();
-                    showCategory();
-                    textBoxCategory.Text = "";
-                    comboBoxCategory.Items.Clear();
-                    foreach (var item in kController.GetCategoryList())
+                    if (podcastValidation.CheckIfValidURL(textBoxUrl.Text) == false)
                     {
-                        comboBoxCategory.Items.Add(item.Namn);
+                        if (podcastValidation.CheckIfTheInputIsEmptyComboBox(comboBoxUpdateFrequency) == false)
+                        {
+                            if (podcastValidation.CheckIfTheInputIsEmptyComboBox(comboBoxCategory) == false)
+                            {
+                                if (listBoxShowPodcast.SelectedItems.Count == 1)
+                                {
+                                    int frekvens = int.Parse(comboBoxUpdateFrequency.SelectedItem.ToString());
+                                    int curPodcast = listBoxShowPodcast.SelectedIndex;
+                                    Podcast pc = pcController.CreatePodcast(textBoxUrl.Text, textBoxName.Text, frekvens, comboBoxCategory.Text);
+                                    pcController.SavePodcast(curPodcast, pc);
+                                    listBoxShowPodcast.Items.Clear();
+                                    showPodcast();
+
+                                    listBoxEpisodes.Items.Clear();
+                                    textBoxName.Text = "";
+                                    textBoxUrl.Text = "";
+                                }
+                            }
+                        }
                     }
-                    listBoxShowPodcast.Items.Clear();
-                    showPodcast();
-                    MessageBox.Show("You have saved the change!");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("You havent choosen anything yet!!");
+                MessageBox.Show(ex.Message);
             }
         }
-        catch (System.ArgumentOutOfRangeException AOORE)
+
+        // Sparar din kategori efter du klickat på spara
+        private void buttonSave2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(AOORE.ToString());
+            try
+            {
+                if (categoryValidation.CheckIfTheInputIsEmpty(textBoxCategory.Text) == false)
+                {
+                    if (categoryValidation.CheckIfSelected(listBoxCategory) == false)
+                    {
+                        int curKategori = listBoxCategory.SelectedIndex;
+                        string curCategoryName = listBoxCategory.SelectedItem.ToString();
+                        Kategori k = kController.CreateCategorySave(textBoxCategory.Text);
+
+                        kController.SaveCategory(curKategori, k);
+                        pcController.UpdatePodcastCategory(curCategoryName, textBoxCategory.Text);
+                        comboBoxCategory.Items.Add(k.Namn);
+
+                        listBoxCategory.Items.Clear();
+                        showCategory();
+                        textBoxCategory.Text = "";
+                        comboBoxCategory.Items.Clear();
+                        foreach (var item in kController.GetCategoryList())
+                        {
+                            comboBoxCategory.Items.Add(item.Namn);
+                        }
+                        listBoxShowPodcast.Items.Clear();
+                        showPodcast();
+                        MessageBox.Show("You have saved the change!");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-        catch (System.InvalidOperationException IOE)
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(IOE.ToString());
+            listBoxEpisodes.Items.Clear();
+            listBoxEpisodeDescription.Items.Clear();
+
+            textBoxName.Text = "";
+            textBoxUrl.Text = "";
+            comboBoxUpdateFrequency.Text = "";
+            comboBoxCategory.Text = "";
+
+            deselectListBoxShowPodcast();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBoxCategory.Text = "";
+
+            deselectListBoxCategory();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            deselectListBoxEpisodes();
+        }
+
+        private void InitializeTimer()
+        {
+            try
+            {
+                timer.Interval = 60000;
+                timer.Tick += Tiktok;
+                timer.Start();
+            }
+            catch (System.NullReferenceException)
+            {
+                throw;
+            }
+        }
+
+        private void SetPcList()
+        {
+            int indexPc = listBoxShowPodcast.SelectedIndex;
+            int indexC = listBoxCategory.SelectedIndex;
+            listBoxShowPodcast.Items.Clear();
+            listBoxCategory.Items.Clear();
+            var pcList = pcController.GetPCList();
+            pcList.ToList().ForEach(podcast => listBoxShowPodcast.Items.Add("Name: " + podcast.Namn + "   Episodes: " + podcast.Avsnitt.ToString() + "   Frequency: every " + podcast.Frekvens.ToString() + " minutes   Category: " + podcast.Kategori));
+            if (indexPc >= 0)
+            {
+                listBoxShowPodcast.SetSelected(indexPc, true);
+            }
+            if (indexC >= 0)
+            {
+                listBoxCategory.SetSelected(indexC, true);
+            }
+        }
+
+        private void Tiktok(object sender, EventArgs e)
+        {
+            foreach (var podcast in pcController.GetPCList().Where(p => p.NeedsToUpdate))
+            {
+                podcast.Update();
+                SetPcList();
+            }
         }
     }
-
-    private void button1_Click(object sender, EventArgs e)
-    {
-        listBoxEpisodes.Items.Clear();
-        listBoxEpisodeDescription.Items.Clear();
-
-        textBoxName.Text = "";
-        textBoxUrl.Text = "";
-        comboBoxUpdateFrequency.Text = "";
-        comboBoxCategory.Text = "";
-
-        deselectListBoxShowPodcast();
-    }
-
-    private void button2_Click(object sender, EventArgs e)
-    {
-        textBoxCategory.Text = "";
-
-        deselectListBoxCategory();
-    }
-
-    private void button3_Click(object sender, EventArgs e)
-    {
-        deselectListBoxEpisodes();
-    }
-
-    private void InitializeTimer()
-    {
-        try
-        {
-            timer.Interval = 60000;
-            timer.Tick += Tiktok;
-            timer.Start();
-        }
-        catch (System.NullReferenceException)
-        {
-            throw;
-        }
-    }
-
-    private void SetPcList()
-    {
-        int indexPc = listBoxShowPodcast.SelectedIndex;
-        int indexC = listBoxCategory.SelectedIndex;
-        listBoxShowPodcast.Items.Clear();
-        listBoxCategory.Items.Clear();
-        var pcList = pcController.GetPCList();
-        pcList.ToList().ForEach(podcast => listBoxShowPodcast.Items.Add("Name: " + podcast.Namn + "   Episodes: " + podcast.Avsnitt.ToString() + "   Frequency: every " + podcast.Frekvens.ToString() + " minutes   Category: " + podcast.Kategori));
-        if (indexPc >= 0)
-        {
-            listBoxShowPodcast.SetSelected(indexPc, true);
-        }
-        if (indexC >= 0)
-        {
-            listBoxCategory.SetSelected(indexC, true);
-        }
-    }
-
-    private void Tiktok(object sender, EventArgs e)
-    {
-        foreach (var podcast in pcController.GetPCList().Where(p => p.NeedsToUpdate))
-        {
-            podcast.Update();
-            SetPcList();
-        }
-    }
-}
 }

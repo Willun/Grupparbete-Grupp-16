@@ -4,9 +4,6 @@
     <Namn>a</Namn>
   </Kategori>
   <Kategori>
-    <Namn>a</Namn>
-  </Kategori>
-  <Kategori>
     <Namn>b</Namn>
   </Kategori>
 </ArrayOfKategori>

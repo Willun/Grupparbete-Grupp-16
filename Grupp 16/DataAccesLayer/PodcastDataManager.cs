@@ -7,6 +7,7 @@ namespace DataAccesLayer
 {
     public class PodcastDataManager
     {
+        //skapar en lista på podcasts i en XML-fil
         public void Serialize(List<Podcast> podcastList)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(podcastList.GetType());
@@ -17,6 +18,7 @@ namespace DataAccesLayer
             }
         }
 
+        //Läser listan med podcasts från xml-filen
         public List<Podcast> Deserialize()
         {
             List<Podcast> listOfPodcastsToBeReturned;
