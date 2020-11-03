@@ -35,6 +35,7 @@ namespace Grupp_16
         {
 
         }
+
         // Koden körs när du klickar på delete, Tar bort podcast
         private void buttonDelete1_Click(object sender, EventArgs e)
         {
@@ -154,7 +155,7 @@ namespace Grupp_16
             listBoxCategory.ClearSelected();
         }
 
-        //
+        //Körs när man har klickat på en podcast i podcast listan, visar sedan ut alla episoder som podcasten innehåller
         private void listBoxShowPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
