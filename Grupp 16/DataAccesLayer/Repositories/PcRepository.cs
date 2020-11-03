@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccesLayer.Repositories
 {
@@ -45,9 +46,12 @@ namespace DataAccesLayer.Repositories
         }
 
         //Sparar alla ändringar och lägger in dem i ett lokalt xml dokument
-        public void SaveAllChanges()
+        public async void SaveAllChanges()
         {
-            podcastDataManager.Serialize(podcastList);
+            await Task.Run(() =>
+            {
+                podcastDataManager.Serialize(podcastList);
+            });
         }
 
         //Hämtar alla podcasts från ett lokalt xml dokument 
