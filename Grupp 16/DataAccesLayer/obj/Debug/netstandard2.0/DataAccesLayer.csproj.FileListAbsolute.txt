@@ -10,3 +10,15 @@ C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\bin\Deb
 C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\obj\Debug\netstandard2.0\DataAccesLayer.csproj.CopyComplete
 C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\obj\Debug\netstandard2.0\DataAccesLayer.dll
 C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\obj\Debug\netstandard2.0\DataAccesLayer.pdb
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\bin\Debug\netstandard2.0\DataAccesLayer.deps.json
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\bin\Debug\netstandard2.0\DataAccesLayer.dll
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\bin\Debug\netstandard2.0\DataAccesLayer.pdb
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\bin\Debug\netstandard2.0\Models.dll
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\bin\Debug\netstandard2.0\Models.pdb
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\obj\Debug\netstandard2.0\DataAccesLayer.csprojAssemblyReference.cache
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\obj\Debug\netstandard2.0\DataAccesLayer.AssemblyInfoInputs.cache
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\obj\Debug\netstandard2.0\DataAccesLayer.AssemblyInfo.cs
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\obj\Debug\netstandard2.0\DataAccesLayer.csproj.CoreCompileInputs.cache
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\obj\Debug\netstandard2.0\DataAccesLayer.csproj.CopyComplete
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\obj\Debug\netstandard2.0\DataAccesLayer.dll
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\DataAccesLayer\obj\Debug\netstandard2.0\DataAccesLayer.pdb

@@ -35,3 +35,24 @@ C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Dat
 C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\BusinessLogicLayer.pdb
 C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Models.pdb
 C:\Users\wlund\source\repos\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\DataAccesLayer.pdb
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Grupp 16.exe.config
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Grupp 16.exe
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Grupp 16.pdb
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\BusinessLogicLayer.dll
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\DataAccesLayer.dll
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Models.dll
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\System.ServiceModel.Syndication.dll
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\BusinessLogicLayer.pdb
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\DataAccesLayer.pdb
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Models.pdb
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\bin\Debug\System.ServiceModel.Syndication.xml
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp 16.csprojAssemblyReference.cache
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp_16.Form1.resources
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp_16.Properties.Resources.resources
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp 16.csproj.GenerateResource.cache
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp 16.csproj.CoreCompileInputs.cache
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp 16.csproj.CopyComplete
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp 16.exe
+C:\Users\Padfo\Documents\GitHub\Grupparbete-Grupp-16\Grupp 16\Grupp 16\obj\Debug\Grupp 16.pdb

@@ -63,6 +63,14 @@
           }
         }
       },
+      "BusinessLogicLayer/1.0.0.0": {
+        "runtime": {
+          "BusinessLogicLayer.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "System.Xaml/4.0.0.0": {
         "runtime": {
           "System.Xaml.dll": {
@@ -330,6 +338,11 @@
       "sha512": ""
     },
     "System.Windows.Forms/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BusinessLogicLayer/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -196,19 +196,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wlund\\.nuget\\packages\\": {}
+    "C:\\Users\\Padfo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj",
+      "projectUniqueName": "C:\\Users\\Padfo\\Documents\\GitHub\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj",
       "projectName": "DataAccesLayer",
-      "projectPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj",
-      "packagesPath": "C:\\Users\\wlund\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\obj\\",
+      "projectPath": "C:\\Users\\Padfo\\Documents\\GitHub\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\DataAccesLayer.csproj",
+      "packagesPath": "C:\\Users\\Padfo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Padfo\\Documents\\GitHub\\Grupparbete-Grupp-16\\Grupp 16\\DataAccesLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\wlund\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Padfo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -221,8 +221,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj"
+            "C:\\Users\\Padfo\\Documents\\GitHub\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\Padfo\\Documents\\GitHub\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj"
             }
           }
         }

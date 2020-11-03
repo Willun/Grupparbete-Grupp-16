@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj": {}
+    "C:\\Users\\Padfo\\Documents\\GitHub\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj": {
+    "C:\\Users\\Padfo\\Documents\\GitHub\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\Padfo\\Documents\\GitHub\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\wlund\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wlund\\source\\repos\\Grupparbete-Grupp-16\\Grupp 16\\Models\\obj\\",
+        "projectPath": "C:\\Users\\Padfo\\Documents\\GitHub\\Grupparbete-Grupp-16\\Grupp 16\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\Padfo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Padfo\\Documents\\GitHub\\Grupparbete-Grupp-16\\Grupp 16\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\wlund\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Padfo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
